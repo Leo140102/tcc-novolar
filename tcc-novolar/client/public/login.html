@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="imagens/Logo NovoLar.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <title>NovoLar - um lar para estudantes</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="Stylesheet" href="login.css" />
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="login">
+            <form action="" class="login-form">
+                <h2 class="title">Entre</h2>
+                <div class="input-field">
+                    <i class="bx bx-user"></i>
+                    <input type="text" placeholder="Usuário">
+                </div>
+                <div class="input-field">
+                    <i class="bx bx-lock"></i>
+                    <input type="password" placeholder="Senha">
+                </div>
+                <input type="submit" value="Login" class="btn">
+                <p class="social-text">Ou entre usando:</p>
+                <div class="social-media">
+                    <a href="#" class="social-icon">
+                        <i class="bx bxl-facebook"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="bx bxl-twitter"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="bx bxl-google"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="bx bxl-linkedin"></i>
+                    </a>
+                </div>
+                <p class="account-text">Não possui uma conta? <a href="#" id="cadastro-btn2">Cadastre-se</a></p>
+            </form>
+            <form action="" class="cadastro-form">
+                <h2 class="title">Cadastre-se</h2>
+                <div class="input-field">
+                    <i class="bx bx-user"></i>
+                    <input type="text" placeholder="Usuário">
+                </div>
+                <div class="input-field">
+                    <i class="bx bx-envelope"></i>
+                    <input type="text" placeholder="Email">
+                </div>
+                <div class="input-field">
+                    <i class="bx bx-lock"></i>
+                    <input type="password" placeholder="Senha">
+                </div>
+
+                <input type="submit" value="Cadastrar" class="btn">
+                <p class="social-text">Ou entre usando:</p>
+                <div class="social-media">
+                    <a href="#" class="social-icon">
+                        <i class="bx bxl-facebook"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="bx bxl-twitter"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="bx bxl-google"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="bx bxl-linkedin"></i>
+                    </a>
+                </div>
+                <p class="account-text">Já possui uma conta? <a href="#" id="login-btn2">Entrar</a></p>
+            </form>
+        </div>
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>Já é cadastrado?</h3>
+                    <p>Bom tê-lo de volta! Volte sempre.</p>
+                    <button class="btn" id="login-btn">Fazer login</button>
+                </div>
+                <img src="imagens/login.svg" alt="" class="image">
+            </div>
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>Ainda não é cadastrado?</h3>
+                    <p>Seja-bem vindo! Cadastre-se e tenha acesso à novas ferramentas.</p>
+                    <button class="btn" id="cadastro-btn">Criar conta</button>
+                </div>
+                <img src="imagens/explorar.svg" alt="" class="image">
+            </div>
+        </div>
+    </div>
+    <script src="App.js"></script>
+
+</body>
+
+</html>

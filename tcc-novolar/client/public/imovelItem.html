@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="imagens/Logo NovoLar.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <title>NovoLar</title>
+
+    <link rel="Stylesheet" href="imovelItem.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="logo"><img src="imagens/Logo NovoLar.png"> </a>
+
+        <div class="bx bx-menu" id="menu-icon"></div>
+
+
+        <ul class="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="imoveis.html">Imóveis</a></li>
+            <li><a href="#sobreNos">Sobre nós</a></li>
+            <li><a href="#faleConosco">Fale conosco</a></li>
+        </ul>
+
+
+        <ul class="actions">
+            <li><a>
+                    <span class="bx bx-search" id="search-icon"></span>
+                </a></li>
+
+            <li><a href="login.html">
+                    <span class="bx bx-user" id="user-icon"></span>
+                </a></li>
+        </ul>
+    </header>
+
+    <div class="card-wrapper">
+        <div class="card">
+            <div class="product-imgs">
+                <div class="img-display">
+                    <div class="img-showcase">
+                        <img src="imagens/casa2.jpg" alt="casa aluguel">
+                        <img src="imagens/casa3.jpg" alt="casa aluguel">
+                        <img src="imagens/casa-ficticia.jpg" alt="casa aluguel">
+                        <img src="imagens/casa2.jpg" alt="casa aluguel">
+                    </div>
+                </div>
+
+                <div class="img-select">
+                    <div class="img-item">
+                        <a href="#" data-id="1">
+                            <img src="imagens/casa2.jpg" alt="imagem casa">
+                        </a>
+                    </div>
+                    <div class="img-item">
+                        <a href="#" data-id="2">
+                            <img src="imagens/casa3.jpg" alt="imagem casa">
+                        </a>
+                    </div>
+                    <div class="img-item">
+                        <a href="#" data-id="3">
+                            <img src="imagens/casa3.jpg" alt="imagem casa">
+                        </a>
+                    </div>
+                    <div class="img-item">
+                        <a href="#" data-id="4">
+                            <img src="imagens/casa2.jpg" alt="imagem casa">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-content">
+                <h2 class="product-title">
+                    Pensionato feminino
+                </h2>
+                <div class="product-rating">
+                    <a href="#avaliacoes" class="">
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star-half'></i>
+                        <span>4.7(21)</span>
+                    </a>
+                </div>
+
+                <div class="house-price">
+
+                    <p class="price"> Aluguel: <span> R$750.00</span></p>
+                </div>
+
+                <div class="house-detail">
+                    <h5>Descrição:</h5>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the
+                        industry's
+                        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                        scrambled it to
+                        make.</p>
+                    <ul>
+                        <h4>Regras:</h4>
+                        <li>Sexo: <span>feminino</span></li>
+                        <li>Idade: <span>18 à 25</span></li>
+                        <li>Animais: <span> permitido</span></li>
+                        <li>Fumar/Bebidas: <span> não permitido</span></li>
+                    </ul>
+                </div>
+
+                <div class="purchase-info">
+                    <button type="button" class="btn">
+                        Enviar mensagem <i class="bx bxl-whatsapp"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mapa">
+        <h3>Endereço: <span> Rua Pássaro Lira - 445</span></h3>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3643.2019134823404!2d-52.41884628458151!3d-24.05919314820026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ed7596143f0ca9%3A0xfdcd00b0a5722491!2sR.%20P%C3%A1ssaro%20L%C3%ADra%2C%20445%20-%20Conj.%20Hab.%20Milton%20Luiz%20Pereira%2C%20Campo%20Mour%C3%A3o%20-%20PR%2C%2087306-310!5e0!3m2!1spt-BR!2sbr!4v1716776855921!5m2!1spt-BR!2sbr"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    </div>
+    <section id="avaliacoes">
+        <div class="heading">
+            <h3>Avaliações:</h3>
+        </div>
+        <div class="avaliacao-container">
+
+            <div class="avaliacao-box">
+                <div class="box-top">
+                    <div class="profile">
+                        <div class="profile-img">
+                            <img src="imagens/perfil-homem.jpg" />
+                        </div>
+                        <div class="name-user">
+                            <strong>Leonardo Clemente</strong>
+                        </div>
+                    </div>
+                    <div class="reviews">
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star-half"></i>
+                    </div>
+                </div>
+                <div class="client-comment">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the
+                        industry's
+                        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                        scrambled it to
+                        make</p>
+                </div>
+            </div>
+
+            <div class="avaliacao-box">
+                <div class="box-top">
+                    <div class="profile">
+                        <div class="profile-img">
+                            <img src="imagens/perfil-homem2.jpg" />
+                        </div>
+                        <div class="name-user">
+                            <strong>Bruno Martins</strong>
+                        </div>
+                    </div>
+                    <div class="reviews">
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star-half"></i>
+                    </div>
+                </div>
+                <div class="client-comment">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the
+                        industry's
+                        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                        scrambled it to
+                        make</p>
+                </div>
+            </div>
+
+            <div class="avaliacao-box">
+                <div class="box-top">
+                    <div class="profile">
+                        <div class="profile-img">
+                            <img src="imagens/perfil-mulher2.jpg" />
+                        </div>
+                        <div class="name-user">
+                            <strong>Leticia Nunes</strong>
+                        </div>
+                    </div>
+                    <div class="reviews">
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star-half"></i>
+                    </div>
+                </div>
+                <div class="client-comment">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the
+                        industry's
+                        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                        scrambled it to
+                        make</p>
+                </div>
+            </div>
+
+            <div class="avaliacao-box">
+                <div class="box-top">
+                    <div class="profile">
+                        <div class="profile-img">
+                            <img src="imagens/perfil-mulher1.jpg" />
+                        </div>
+                        <div class="name-user">
+                            <strong>Kamily Xavier</strong>
+                        </div>
+                    </div>
+                    <div class="reviews">
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                        <i class="bx bxs-star"></i>
+                    </div>
+                </div>
+                <div class="client-comment">
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the
+                        industry's
+                        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                        scrambled it to
+                        make</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!--Contato-->
+    <section class="contato" id="contato">
+        <div class="social">
+            <a href="#"><i class='bx bxl-facebook'></i> </a>
+            <a href="#"><i class='bx bxl-twitter'></i> </a>
+            <a href="#"><i class='bx bxl-instagram'></i> </a>
+            <a href="#"><i class='bx bxl-youtube'></i> </a>
+        </div>
+        <div class="links">
+            <a href="#">Política de privacidade</a>
+            <a href="#">Termos de uso</a>
+            <a href="#">Nossa empresa</a>
+        </div>
+        <p>&#169; NovoLar All Right Reserved.</p>
+    </section>
+
+    <script src="ImovelItem.js"></script>
+</body>
+
+</html>
