@@ -25,7 +25,7 @@ app.post("/register", (req,res)=>{
                 res.send(err)
             }
             if(result.lenght == 0){
-                db.query("INSERT INTO mydb.locatario (email, password) VALUES (?,?)", 
+                db.query("INSERT INTO mydb.locatario (email, senha, cpf, nome, telefone, dtNascimento) VALUES (?,?,?,?,?,?)", 
                 [email,password],(err, result) =>{
                     if(err){
                         res.send(err)
