@@ -1,8 +1,9 @@
-const express = require('express');
-const app = express();
+const express = require('express')
+const app = express()
 const port = 3000;
 const mysql = require("mysql")
 const bcrypt = require("bcrypt")
+const cors = require("cors")
 const saltRounds = 10
 
 const db = mysql.createConnection({
@@ -103,3 +104,5 @@ app.post("/login", (req, res) => {
 app.listen(3000, () => {
     console.log("Rodando na porta 3000 ")
 });
+
+module.exports = app;
