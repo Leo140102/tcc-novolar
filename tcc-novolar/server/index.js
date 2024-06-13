@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const mysql = require("mysql")
+const bcrypt = require("bcrypt")
+const saltRounds = 10
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -14,28 +16,58 @@ const db = mysql.createConnection({
 app.use(express.json());
 app.use(cors());
 
-app.post("/register", (req,res)=>{
+app.post("/register", (req, res) => {
     const email = req.body.email
     const password = req.body.password
 
     db.query("SELECT * FROM mydb.locador WHERE EMAIL = ?",
-    [email],
-        (err,result) =>{
-            if(err){
+        [email],
+        (err, result) => {
+            if (err) {
                 res.send(err)
             }
-            if(result.lenght == 0){
-                db.query("INSERT INTO mydb.locatario (email, senha, cpf, nome, telefone, dtNascimento) VALUES (?,?,?,?,?,?)", 
-                [email,password],(err, result) =>{
-                    if(err){
-                        res.send(err)
-                    }
-                    res.send({msg: "Cadastrado com Sucesso"})
+            if (result.lenght == 0) {
+                bcrypt.hash(password, saltRounds, (erro, hash) => {
+                    db.query(
+                        "INSERT INTO mydb.locatario (email, senha, cpf, nome, telefone, dtNascimento) VALUES (?,?,?,?,?,?)",
+                        [email, hash, cpf, nome, telefone, dtNascimento], (err, response) => {
+                            if (err) {
+                                res.send(err)
+                            }
+                            res.send({ msg: "Cadastrado com Sucesso" })
+                        })
                 })
+
+            } else {
+                res.send({ msg: "Usuário já cadastrado!" })
             }
-            res.send(result)
         }
     )
+})
+
+app.post("/login", (req, res) => {
+    const email = req.body.email
+    const password = req.body.password
+
+    db.query(
+        "SELECT * FROM mydb.locatario WHERE email = ?", [email], (err, result) => {
+            if (err) {
+                req.send(err)
+            }
+            if (result.lenght > 0) {
+                bcrypt.compare(password, result[0].password,
+                    (erro, result) => {
+                        if (result) {
+                            res.send({ msg: "Usuário logado com sucesso!" })
+                        }else{
+                            res.send({ msg: "Senha incorreta!" })
+                        }
+                    })
+
+            } else {
+                res.send({ msg: "Conta não encontrada!" })
+            }
+        })
 })
 
 // app.get("/",(req, res)=>{
@@ -62,6 +94,6 @@ app.post("/register", (req,res)=>{
 //     }
 // });
 
-app.listen(3000, () =>{
-    console.log("Rodando na porta 3000")
+app.listen(3000, () => {
+    console.log("Rodando na porta 3000 ")
 });
