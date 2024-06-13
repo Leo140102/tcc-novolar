@@ -20,6 +20,10 @@ app.post("/register", (req, res) => {
 
     const email = req.body.email
     const password = req.body.password
+    const cpf = req.body.cpf
+    const nome = req.body.nome
+    const telefone = req.body.telefone
+    const dtNascimento = req.body.dtNascimento
 
     db.query("SELECT * FROM mydb.locador WHERE EMAIL = ?",
         [email],
