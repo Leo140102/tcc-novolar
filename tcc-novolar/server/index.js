@@ -17,6 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 app.post("/register", (req, res) => {
+
     const email = req.body.email
     const password = req.body.password
 
@@ -46,6 +47,7 @@ app.post("/register", (req, res) => {
 })
 
 app.post("/login", (req, res) => {
+
     const email = req.body.email
     const password = req.body.password
 
@@ -59,7 +61,7 @@ app.post("/login", (req, res) => {
                     (erro, result) => {
                         if (result) {
                             res.send({ msg: "Usuário logado com sucesso!" })
-                        }else{
+                        } else {
                             res.send({ msg: "Senha incorreta!" })
                         }
                     })
