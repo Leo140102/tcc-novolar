@@ -604,7 +604,15 @@ img {
 }
 
 .img-item {
+
     margin: 0.3rem;
+}
+
+.img-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .img-tem:nth-child(1),
@@ -749,8 +757,9 @@ img {
 
 .mapa {
     display: flex;
-    margin-left: 14rem;
+    margin-left: 12rem;
     flex-direction: column;
+    padding-top: 1rem;
 }
 
 .mapa h3 {
@@ -762,17 +771,7 @@ img {
 .mapa iframe {
     width: 83%;
     height: 500px;
-    margin-bottom: 45px;
-}
-
-.mapa h3::after {
-    content: "";
-    position: absolute;
-    left: 14rem;
-    bottom: -3rem;
-    height: 1px;
-    width: 71%;
-    background: #959BC7;
+    margin-bottom: 10px;
 }
 
 .mapa span {

@@ -59,66 +59,6 @@ header {
 
 }
 
-.navbar a::before {
-    content: '';
-    position: absolute;
-    top: 75%;
-    left: 0;
-    width: 0;
-    height: 1.5px;
-    background: rgb(0, 134, 211);
-    transition: .3s;
-}
-
-.navbar a:hover::before {
-    width: 100%;
-}
-
-.navbar a:hover {
-    color: rgb(0, 134, 211);
-}
-
-
-.actions span {
-    font-size: 1.4rem;
-    padding: 11px 0px;
-    color: rgb(30, 16, 158);
-    font-weight: 500;
-    position: relative;
-    text-decoration: none;
-    margin-left: 20px;
-    cursor: pointer;
-}
-
-
-.actions span:hover {
-    color: rgb(0, 134, 211);
-}
-
-.actions {
-    display: flex;
-    /* Isso faz com que todos os itens da lista se comportem como blocos flexíveis */
-}
-
-.actions li {
-    margin-right: 1px;
-    /* Adiciona algum espaço entre os ícones */
-}
-
-.actions:hover {
-    color: rgb(0, 134, 211);
-
-}
-
-#menu-icon {
-    font: size 24px;
-    cursor: pointer;
-    z-index: 1001;
-    display: none;
-}
-
-/*fim navbar*/
-
 body {
     display: flex;
     align-items: center;
@@ -131,36 +71,20 @@ body {
     position: relative;
     width: 70vw;
     height: 80vh;
-    background: white;
     border-radius: 15px;
+    background-color: white;
     box-shadow: 0 4px 20px 0 rgb(145, 153, 161);
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     top: 2.2rem;
 }
 
-.container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -50%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, rgb(26, 16, 117), rgb(63, 52, 161));
-    z-index: 6;
-    transform: translateX(100%);
-    transition: 1s ease-in-out;
-}
-
-.login {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.login .cadastro-form {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    z-index: 5;
+    justify-content: center;
 }
 
 form {
@@ -168,19 +92,13 @@ form {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 40%;
-    min-width: 238px;
+    width: 70%;
+    min-width: 350px;
     padding: 0 10px;
 }
 
 form.login-form {
     opacity: 1;
-    transition: 0.5s ease-in-out;
-    transition-delay: 1s;
-}
-
-form.cadastro-form {
-    opacity: 0;
     transition: 0.5s ease-in-out;
     transition-delay: 1s;
 }
@@ -227,7 +145,7 @@ form.cadastro-form {
     height: 50px;
     border: none;
     border-radius: 40px;
-    background: #4641a8;
+    background: rgb(30, 16, 158);
     color: white;
     font: 600;
     margin: 10px 0;
@@ -237,7 +155,7 @@ form.cadastro-form {
 
 .btn:hover {
     color: white;
-    background: #6b64ff;
+    background: #6C63FF;
     cursor: pointer;
 }
 
@@ -364,11 +282,11 @@ a {
     opacity: 1;
 }
 
-.container.cadastro-mode .right-panel{
+.container.cadastro-mode .right-panel {
     pointer-events: none;
 }
 
-.container.cadastro-mode .left-panel{
+.container.cadastro-mode .left-panel {
     pointer-events: all;
 }
 
