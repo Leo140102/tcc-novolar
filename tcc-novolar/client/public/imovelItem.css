@@ -474,10 +474,17 @@ header {
     section {
         padding: 50px 4%;
     }
+    .card-wrapper {
+        padding-top: 3rem;
+    }
 
 }
 
 @media(max-width:768px) {
+
+    .card-wrapper {
+        padding-top: 3rem;
+    }
 
     header {
         padding: 11px 4%;
@@ -552,13 +559,19 @@ header {
         flex-direction: column;
     }
 
-
 }
 
 @media (max-width:364px) {
+
+    .card-wrapper {
+        padding-top: 3rem;
+    } 
     .links {
         display: flex;
         flex-direction: column;
+    }
+    .product-imgs{
+        margin-top: 3rem;
     }
 }
 
@@ -873,6 +886,7 @@ img {
         justify-content: center;
         align-items: center;
 
+
     }
 
     .product-imgs {
@@ -888,4 +902,5 @@ img {
     .product-title {
         font-size: 1.5;
     }
+
 }

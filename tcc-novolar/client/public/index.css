@@ -492,6 +492,10 @@ header {
         font-size: 1.5rem;
     }
 
+    .home-img {
+        flex: 1 0 30rem;
+    }
+
 
 }
 
@@ -503,6 +507,10 @@ header {
 
     section {
         padding: 50px 4%;
+    }
+
+    .home-img {
+        flex: 1 0 30rem;
     }
 
 }
@@ -559,6 +567,10 @@ header {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .home-img {
+        flex: 1 0 20rem;
+    }
+
 
 }
 
@@ -602,7 +614,6 @@ header {
     .popular__grid {
         grid-template-columns: repeat(1, 1fr);
     }
-
 
     .home-img {
         flex: 1 0 22rem;
