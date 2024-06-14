@@ -107,7 +107,6 @@ header {
     color: rgb(0, 134, 211);
 }
 
-
 .actions span {
     font-size: 1.4rem;
     padding: 11px 0px;
@@ -128,6 +127,7 @@ header {
     display: flex;
     /* Isso faz com que todos os itens da lista se comportem como blocos flexíveis */
 }
+
 
 .actions li {
     margin-right: 1px;
@@ -522,7 +522,16 @@ header {
     }
 
     #menu-icon {
-        display: initial;
+        display: flex;
+    }
+
+    .logo img {
+
+        width: 60px;
+    }
+
+    .navbar a:hover::before {
+        width: 0%;
     }
 
     header .navbar {

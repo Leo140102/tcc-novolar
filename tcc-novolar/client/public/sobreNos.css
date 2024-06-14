@@ -389,7 +389,16 @@ header {
     }
 
     #menu-icon {
-        display: initial;
+        display: flex;
+    }
+
+    .logo img {
+
+        width: 60px;
+    }
+
+    .navbar a:hover::before {
+        width: 0%;
     }
 
     header .navbar {
