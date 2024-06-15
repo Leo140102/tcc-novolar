@@ -102,7 +102,7 @@ app.post("/login", (req, res) => {
 // });
 
 app.listen(3000, () => {
-    console.log("Rodando na porta 3000 ")
+    console.log(`Rodando na porta ${port}`)
 });
 
 module.exports = app;
