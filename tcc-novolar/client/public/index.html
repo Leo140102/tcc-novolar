@@ -23,11 +23,11 @@
   <header>
     <a href="#" class="logo"><img src="imagens/Logo NovoLar.png"> </a>
 
-    <div class="bx bx-menu" id="menu-icon"></div>
+
 
 
     <ul class="navbar">
-      <li><a href="#home"  style="color: rgb(0, 134, 211);">Home</a></li>
+      <li><a href="#home" style="color: rgb(0, 134, 211);">Home</a></li>
       <li><a href="imoveis.html">Imóveis</a></li>
       <li><a href="sobreNos.html">Sobre nós</a></li>
       <li><a href="faleConosco.html">Fale conosco</a></li>
@@ -42,6 +42,9 @@
       <li><a href="login.html">
           <span class="bx bx-user" id="user-icon"></span>
         </a></li>
+      <li>
+        <span class="bx bx-menu" id="menu-icon"></span>
+      </li>
     </ul>
 
 
@@ -239,20 +242,8 @@
     <p>&#169; NovoLar All Right Reserved.</p>
   </section>
 
-  <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
   <script src="main.js"></script>
-
-  <script>
-    window.addEventListener('scroll', function () {
-      var header = document.getElementById('header');
-      if (window.pageYOffset > 0) { // Se a página foi rolada
-        header.style.backgroundColor = 'white'; // Muda para branco
-      } else {
-        header.style.backgroundColor = 'transparent'; // Retorna transparente
-      }
-    });
-  </script>
 
 </body>
 

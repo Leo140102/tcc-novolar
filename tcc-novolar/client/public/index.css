@@ -107,7 +107,6 @@ header {
     color: rgb(0, 134, 211);
 }
 
-
 .actions span {
     font-size: 1.4rem;
     padding: 11px 0px;
@@ -128,6 +127,7 @@ header {
     display: flex;
     /* Isso faz com que todos os itens da lista se comportem como blocos flexíveis */
 }
+
 
 .actions li {
     margin-right: 1px;
@@ -492,6 +492,10 @@ header {
         font-size: 1.5rem;
     }
 
+    .home-img {
+        flex: 1 0 30rem;
+    }
+
 
 }
 
@@ -505,6 +509,10 @@ header {
         padding: 50px 4%;
     }
 
+    .home-img {
+        flex: 1 0 30rem;
+    }
+
 }
 
 @media(max-width:768px) {
@@ -514,7 +522,16 @@ header {
     }
 
     #menu-icon {
-        display: initial;
+        display: flex;
+    }
+
+    .logo img {
+
+        width: 60px;
+    }
+
+    .navbar a:hover::before {
+        width: 0%;
     }
 
     header .navbar {
@@ -557,6 +574,10 @@ header {
 
     .popular__grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .home-img {
+        flex: 1 0 20rem;
     }
 
 
@@ -602,7 +623,6 @@ header {
     .popular__grid {
         grid-template-columns: repeat(1, 1fr);
     }
-
 
     .home-img {
         flex: 1 0 22rem;
