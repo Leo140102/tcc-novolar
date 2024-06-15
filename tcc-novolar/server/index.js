@@ -81,10 +81,10 @@ app.use(cors());
 
 app.get("/", (req, res) => {
     //res.send("Olá Mundo!");
-    db.query("SELECT COUNT (*) imoveis FROM imovel WHERE EMAIL = ?", (err, results) => {
+    db.query("SELECT COUNT (*) imovel FROM imovel", (err, results) => {
         if (err) {
-            //res.send(err.message);
-            res.send("Olá Mundo!");
+            res.send(err.message);
+            //res.send("Olá Mundo!");
         }
         res.send(results);
     })
