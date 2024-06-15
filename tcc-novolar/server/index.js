@@ -90,6 +90,24 @@ app.get("/", (req, res) => {
     })
 })
 
+// function getRegistroById(id, callback) {
+//     let query = 'SELECT * FROM mydb.imovel';
+//     db.query(query, [id], (error, results) => {
+//       if (error) throw error;
+//       callback(null, results[0]);
+//     });
+//   }
+  
+//   // Rota GET para obter um registro pelo ID
+//   app.get('/obterImovel/:id', (req, res) => {
+//     const id = req.params.id;
+//     getRegistroById(id, (err, registro) => {
+//       if (err) return res.status(500).send(err.message);
+//       if (!registro) return res.status(404).send('Registro não encontrado.');
+//       res.json(registro);
+//     });
+//   });
+
 // app.get("/",(req, res)=>{
 //     console.log("Testandando rota insert")
 //     db.query("INSERT INTO mydb.locador (cpf, telefone, nome, dtNascimento, idImovelAtual, idImovelAnterior, email, senha,imovel_id) VALUES ('09560828908', '(44)99886466', 'Bruno Xavier', '22/07/1998', 'NULL','NULL','brunoXavier@gmail.com','11223344',1)"),(err,result) =>{     
