@@ -90,25 +90,23 @@ app.get("/", (req, res) => {
     })
 })
 
-app.get("/imovel/:id", (req, res) => {
-    //res.send("Olá Mundo!");
-    let id = req.params.id;
-    db.query("SELECT * FROM imovel WHERE id= ?", [req.params.id], (err, results) => {
-        if (err) {
-            res.send('err.message');
-            //res.send("Olá Mundo!");
-        }
-        res.json(results);
-    })
-});
+// app.get("/imovel/:id", (req, res) => {
+//     //res.send("Olá Mundo!");
+//     let id = req.params.id;
+//     db.query("SELECT * FROM imovel WHERE id= ?", [req.params.id], (err, results) => {
+//         if (err) {
+//             res.send('err.message');
+//             //res.send("Olá Mundo!");
+//         }
+//         res.json(results);
+//     })
+// });
 
 /* IMOVEIS POR ID */
 app.get("/imoveis/:id", (req, res) => {
-    //res.send("Olá Mundo!");
     db.query("SELECT id, titulo FROM imovel WHERE id = ?", [req.params.id], (err, results) => {
         if (err) {
             res.send('err.message');
-            //res.send("Olá Mundo!");
         }
         res.json(results);
     })

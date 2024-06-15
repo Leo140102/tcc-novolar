@@ -51,113 +51,7 @@
 
     <body>
         <section class="section__container popular__container">
-            <div class="popular__grid">
-
-
-                <div class="popular__card">
-                    <a href="imovelItem.html">
-                        <img src="imagens/casa2.jpg" alt="popular hotel" />
-                        <div class="stars">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star-half'></i>
-                        </div>
-                        <div class="popular__content">
-                            <div class="popular__card__header">
-                                <h4>the plaza hotel</h4>
-                                <h3>R$800.00</h3>
-                            </div>
-                            <p>Campo Mourão - PR</p>
-                        </div>
-                    </a>
-
-                </div>
-
-                <div class="popular__card">
-                    <a href="imovelItem.html">
-                        <img src="imagens/casa2.jpg" alt="popular hotel" />
-                        <div class="stars">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star-half'></i>
-                        </div>
-                        <div class="popular__content">
-                            <div class="popular__card__header">
-                                <h4>the plaza hotel</h4>
-                                <h3>R$800.00</h3>
-                            </div>
-                            <p>Campo Mourão - PR</p>
-                        </div>
-                    </a>
-
-                </div>
-
-                <div class="popular__card">
-                    <a href="imovelItem.html">
-                        <img src="imagens/casa2.jpg" alt="popular hotel" />
-                        <div class="stars">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star-half'></i>
-                        </div>
-                        <div class="popular__content">
-                            <div class="popular__card__header">
-                                <h4>the plaza hotel</h4>
-                                <h3>R$800.00</h3>
-                            </div>
-                            <p>Campo Mourão - PR</p>
-                        </div>
-                    </a>
-
-                </div>
-
-                <div class="popular__card">
-                    <a href="imovelItem.html">
-                        <img src="imagens/casa2.jpg" alt="popular hotel" />
-                        <div class="stars">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star-half'></i>
-                        </div>
-                        <div class="popular__content">
-                            <div class="popular__card__header">
-                                <h4>the plaza hotel</h4>
-                                <h3>R$800.00</h3>
-                            </div>
-                            <p>Campo Mourão - PR</p>
-                        </div>
-                    </a>
-
-                </div>
-
-                <div class="popular__card">
-                    <a href="imovelItem.html">
-                        <img src="imagens/casa2.jpg" alt="popular hotel" />
-                        <div class="stars">
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star'></i>
-                            <i class='bx bxs-star-half'></i>
-                        </div>
-                        <div class="popular__content">
-                            <div class="popular__card__header">
-                                <h4>the plaza hotel</h4>
-                                <h3>R$800.00</h3>
-                            </div>
-                            <p>Campo Mourão - PR</p>
-                        </div>
-                    </a>
-
-                </div>
+            <div id="popular__grid"  class="d-none">
 
                 <div class="popular__card">
                     <a href="imovelItem.html">
@@ -181,9 +75,16 @@
                 </div>
 
             </div>
+            <!--não há imoveis-->
+            <div class="row d-none" id="text-info" id="no_imoveis">
+                <div class="col text-center">
+                    <span class="opacity-75">Ops! Não encontramos nenhum imóvel no momento</span>
+                </div>
+            </div>
         </section>
 
         <!--Contato-->
+        
         <section class="contato" id="contato">
             <div class="social">
                 <a href="#"><i class='bx bxl-facebook'></i> </a>
@@ -200,5 +101,6 @@
         </section>
     </body>
     <script src="Main.js"></script>
+    <script src="imovel.js"></script>
 
 </html>
