@@ -78,7 +78,7 @@ app.use(cors());
 // })
 
 /* -------------------- ROTAS ANUNCIOS IMOVEIS ----------------*/
-
+/* TESTE */
 app.get("/", (req, res) => {
     //res.send("Olá Mundo!");
     db.query("SELECT COUNT (*) imovel FROM imovel", (err, results) => {
@@ -89,6 +89,7 @@ app.get("/", (req, res) => {
         res.send(results);
     })
 })
+
 
 // function getRegistroById(id, callback) {
 //     let query = 'SELECT * FROM mydb.imovel';
@@ -107,6 +108,31 @@ app.get("/", (req, res) => {
 //       res.json(registro);
 //     });
 //   });
+
+app.get("/imovel/:id", (req, res) => {
+    //res.send("Olá Mundo!");
+    let id = req.params.id;
+    db.query("SELECT * FROM imovel WHERE id= ?", [req.params.id], (err, results) => {
+        if (err) {
+            res.send('err.message');
+            //res.send("Olá Mundo!");
+        }
+        res.json(results);
+    })
+});
+
+/* IMOVEIS POR ID */
+app.get("/imoveis/:id", (req, res) => {
+    //res.send("Olá Mundo!");
+    db.query("SELECT id, titulo FROM imovel WHERE id = ?", [req.params.id], (err, results) => {
+        if (err) {
+            res.send('err.message');
+            //res.send("Olá Mundo!");
+        }
+        res.json(results);
+    })
+});
+
 
 // app.get("/",(req, res)=>{
 //     console.log("Testandando rota insert")
