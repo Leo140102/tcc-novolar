@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000;
+const port = 8000;
 const mysql = require("mysql")
 const bcrypt = require("bcrypt")
 const cors = require("cors")
