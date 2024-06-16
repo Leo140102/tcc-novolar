@@ -474,33 +474,17 @@ header {
     section {
         padding: 50px 4%;
     }
-    .card-wrapper {
-        padding-top: 3rem;
-    }
 
 }
 
 @media(max-width:768px) {
-
-    .card-wrapper {
-        padding-top: 3rem;
-    }
 
     header {
         padding: 11px 4%;
     }
 
     #menu-icon {
-        display: flex;
-    }
-
-    .logo img {
-
-        width: 60px;
-    }
-
-    .navbar a:hover::before {
-        width: 0%;
+        display: initial;
     }
 
     header .navbar {
@@ -568,19 +552,13 @@ header {
         flex-direction: column;
     }
 
+
 }
 
 @media (max-width:364px) {
-
-    .card-wrapper {
-        padding-top: 3rem;
-    } 
     .links {
         display: flex;
         flex-direction: column;
-    }
-    .product-imgs{
-        margin-top: 3rem;
     }
 }
 
@@ -613,13 +591,8 @@ img {
 
 .img-showcase {
     display: flex;
+    width: 100%;
     transition: all 0.5s ease;
-    height: 23rem;
-    width:  34rem;
-    overflow: hidden;
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: .35s;
 }
 
 .img-showcase img {
@@ -780,10 +753,8 @@ img {
     border: 2px solid rgb(208, 213, 218);
 }
 
-.img-showcase img{
-    
-}
 /* mapa -------------------------------------------*/
+
 .mapa {
     display: flex;
     margin-left: 12rem;
@@ -902,7 +873,6 @@ img {
         justify-content: center;
         align-items: center;
 
-
     }
 
     .product-imgs {
@@ -918,5 +888,4 @@ img {
     .product-title {
         font-size: 1.5;
     }
-
 }

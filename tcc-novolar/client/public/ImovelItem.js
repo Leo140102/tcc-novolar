@@ -77,25 +77,28 @@ function get_imovelImgs(id) {
                 document.querySelector("#imgs").innerHTML = null;
                 document.querySelector("#rolagem").innerHTML = null;
 
-                //     imoveis.forEach(imovel => {
-                //         let html = `
-                // <img src="imagens/c" alt="casa aluguel">`;
-
-                //         let new_imgs = document.createElement('div');
-                //         new_imgs.classList.add('img-showcase')
-                //         new_imgs.innerHTML = html;
-
-                //         document.querySelector("#imgs").appendChild(new_imgs);
-                //         console.log(imovel.image_url);
-
-                //     });
-
                 imoveis.forEach(imovel => {
+                    let html = ``;
+
+                    let new_imgs = document.createElement('img');
+                    new_imgs.classList.add('imagens')
+                    new_imgs.src=`imagens/${imovel.image_url}`
+                    new_imgs.alt="casa aluguel"
+                    // new_imgs.style="transform: translateX(-538px)";
+                    new_imgs.innerHTML = html;
+
+                    document.querySelector("#imgs").appendChild(new_imgs);
+                    //document.querySelector("#imgs").style = "transform: translateX(-538px)";
+                    console.log(imovel.image_url);
+
+                });
+
+                imoveis.forEach((imovel, index) => {
                     let html = `
-                        <a href="#" data-id="1">
+                        <a data-id="${index + 1}">
                             <img src="imagens/${imovel.image_url}" alt="imagem casa">
                         </a>`;
-
+                    console.log(index + 1);
                     let new_imgs = document.createElement('div');
                     new_imgs.classList.add('img-item')
                     new_imgs.innerHTML = html;
@@ -104,8 +107,8 @@ function get_imovelImgs(id) {
 
 
                 });
-                const principal = imoveis[0];
-                document.querySelector("#imgs").src = `imagens/${principal.image_url}`;
+                // const principal = imoveis[0];
+                // document.querySelector("#imgs").src = `imagens/${principal.image_url}`;
 
 
             }
