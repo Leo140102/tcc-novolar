@@ -50,10 +50,7 @@
         <div class="card">
             <div class="product-imgs">
                 <div class="img-display">
-                    <div class="img-showcase">
-                        <img src="imagens/casa2.jpg" alt="casa aluguel">
-                        <img src="imagens/casa3.jpg" alt="casa aluguel">
-                        <img src="imagens/casa-ficticia.jpg" alt="casa aluguel">
+                    <div class="img-showcase" id="imgs">
                         <img src="imagens/casa2.jpg" alt="casa aluguel">
                     </div>
                 </div>
@@ -87,27 +84,29 @@
                 </div>
             </div>
 
-            <div class="product-content">
+            <div class="product-content" id="anunciosItem">
                 <h2 class="product-title">
                     Pensionato feminino
                 </h2>
                 <div class="product-rating">
-                    <a href="#avaliacoes" class="">
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star'></i>
-                        <i class='bx bxs-star-half'></i>
-                        <span>4.7(21)</span>
-                    </a>
+                    <div>
+                        <a href="#avaliacoes" class="">
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star-half'></i>
+                            <span>4.7(21)</span>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="house-price">
+                <div class="house-price" id="aluguel">
 
-                    <p class="price"> Aluguel: <span> R$750.00</span></p>
+                    <h3 class="price"> Aluguel: <span> R$750.00</span></h3>
                 </div>
 
-                <div class="house-detail">
+                <div class="house-detail" id="descricaoImovel">
                     <h5>Descrição:</h5>
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
                         the
@@ -116,25 +115,27 @@
                         scrambled it to
                         make.</p>
                     <ul>
-                        <h4>Regras:</h4>
-                        <li>Sexo: <span>feminino</span></li>
-                        <li>Idade: <span>18 à 25</span></li>
-                        <li>Animais: <span> permitido</span></li>
-                        <li>Fumar/Bebidas: <span> não permitido</span></li>
+                        <li>Sexo: <span id="sexo"></span></li>
+                        <li>Idade: <span id="idade"></span></li>
+                        <li>Animais: <span id="animais"></span></li>
+                        <li>Fumar/Bebidas: <span id="fumarBebidas"></span></li>
                     </ul>
                 </div>
 
                 <div class="purchase-info">
-                    <button type="button" class="btn">
-                        Enviar mensagem <i class="bx bxl-whatsapp"></i>
-                    </button>
+                    <a href="">
+                        <button type="button" class="btn">
+                            Enviar mensagem <i class="bx bxl-whatsapp"></i>
+                        </button>
+                    </a>
+
                 </div>
             </div>
         </div>
     </div>
 
     <div class="mapa">
-        <h3>Endereço: <span> Rua Pássaro Lira - 445</span></h3>
+        <h3>Endereço: <span id="endereco"> Rua Pássaro Lira - 445</span></h3>
         <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3643.2019134823404!2d-52.41884628458151!3d-24.05919314820026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ed7596143f0ca9%3A0xfdcd00b0a5722491!2sR.%20P%C3%A1ssaro%20L%C3%ADra%2C%20445%20-%20Conj.%20Hab.%20Milton%20Luiz%20Pereira%2C%20Campo%20Mour%C3%A3o%20-%20PR%2C%2087306-310!5e0!3m2!1spt-BR!2sbr!4v1716776855921!5m2!1spt-BR!2sbr"
             width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"

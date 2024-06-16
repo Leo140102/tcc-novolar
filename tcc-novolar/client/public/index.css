@@ -414,7 +414,15 @@ header {
     gap: 2rem
 }
 
+.popular__card img {
+    height: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
 .popular__card {
+    height: 19rem;
+    width:  18rem;
     overflow: hidden;
     border-radius: 1rem;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);

@@ -80,16 +80,73 @@ app.use(cors());
 /* -------------------- ROTAS ANUNCIOS IMOVEIS ----------------*/
 /* TESTE */
 app.get("/", (req, res) => {
-    //res.send("Olá Mundo!");
-    db.query("SELECT COUNT (*) imovel FROM imovel", (err, results) => {
+
+    db.query("SELECT COUNT(*) imoveis FROM imovel", (err, results) => {
         if (err) {
-            res.send(err.message);
-            //res.send("Olá Mundo!");
+            res.send("err.message");
         }
-        res.send(results);
+        res.send("ok");
     })
 })
 
+app.get("/imovel/:id", (req, res) => {
+
+    db.query("SELECT * FROM imovel WHERE id= ?", [req.params.id], (err, results) => {
+        if (err) {
+            res.send('err.message');
+        }
+        res.send(results);
+    })
+});
+//imovel.html
+app.get("/imoveis/:id", (req, res) => {
+
+    db.query("WITH RankedImages AS (SELECT imovel.*,imagens.image_url, ROW_NUMBER() OVER(PARTITION BY imovel.id ORDER BY imagens.id ASC) AS RowNum FROM mydb.imovel INNER JOIN mydb.imagens ON imovel.id = imagens.imovel_id) SELECT * FROM RankedImages WHERE RowNum = 1;"
+        , [req.params.id], (err, results) => {
+            if (err) {
+                res.send('err.message');
+
+            }
+            res.send(results);
+        })
+});
+
+//imovelItem.html
+app.get("/imovelItem/:id", (req, res) => {
+
+    db.query("WITH RankedImages AS ( SELECT imovel.*, regras.idade, regras.sexo, regras.animais, regras.fumar, locador.telefone FROM mydb.imovel INNER JOIN mydb.regras ON imovel.id = regras.imoveis_id_regras LEFT JOIN mydb.locador ON imovel.id = locador.imovel_id ) SELECT * FROM RankedImages WHERE id = ?;"
+        , [req.params.id], (err, results) => {
+            if (err) {
+                res.send('err.message');
+
+            }
+            res.send(results);
+        })
+});
+
+//imovelItem.html IMAGENS
+app.get("/imovelImgs/:id", (req, res) => {
+
+    db.query("WITH RankedImages AS ( SELECT imovel.id, imagens.image_url FROM mydb.imovel INNER JOIN mydb.imagens ON imovel.id = imagens.imovel_id ) SELECT * FROM RankedImages WHERE id = ? ;"
+        , [req.params.id], (err, results) => {
+            if (err) {
+                res.send('err.message');
+
+            }
+            res.send(results);
+        })
+});
+
+//index.html BEM AVALIADOS
+app.get("/bemAvaliados", (req, res) => {
+
+    db.query("WITH RankedImages AS ( SELECT imovel.*, imagens.image_url, ROW_NUMBER() OVER(PARTITION BY imovel.id ORDER BY imovel.nota DESC) AS RowNum FROM mydb.imovel INNER JOIN mydb.imagens ON imovel.id = imagens.imovel_id ORDER BY imovel.nota DESC ) SELECT * FROM RankedImages WHERE RowNum = 1 AND RowNum <= 4;", (err, results) => {
+        if (err) {
+            res.send("err.message");
+        }
+        res.send("ok");
+    })
+})
 
 // function getRegistroById(id, callback) {
 //     let query = 'SELECT * FROM mydb.imovel';
@@ -98,7 +155,7 @@ app.get("/", (req, res) => {
 //       callback(null, results[0]);
 //     });
 //   }
-  
+
 //   // Rota GET para obter um registro pelo ID
 //   app.get('/obterImovel/:id', (req, res) => {
 //     const id = req.params.id;
@@ -109,25 +166,25 @@ app.get("/", (req, res) => {
 //     });
 //   });
 
-app.get("/imovel/:id", (req, res) => {
-    //res.send("Olá Mundo!");
-    let id = req.params.id;
-    db.query("SELECT * FROM imovel WHERE id= ?", [req.params.id], (err, results) => {
-        if (err) {
-            res.send('err.message');
-            //res.send("Olá Mundo!");
-        }
-        res.json(results);
-    })
-});
+
+
+// app.get("/imovel/:id", (req, res) => {
+//     //res.send("Olá Mundo!");
+//     let id = req.params.id;
+//     db.query("SELECT * FROM imovel WHERE id= ?", [req.params.id], (err, results) => {
+//         if (err) {
+//             res.send('err.message');
+//             //res.send("Olá Mundo!");
+//         }
+//         res.json(results);
+//     })
+// });
 
 /* IMOVEIS POR ID */
 app.get("/imoveis/:id", (req, res) => {
-    //res.send("Olá Mundo!");
     db.query("SELECT id, titulo FROM imovel WHERE id = ?", [req.params.id], (err, results) => {
         if (err) {
             res.send('err.message');
-            //res.send("Olá Mundo!");
         }
         res.json(results);
     })
