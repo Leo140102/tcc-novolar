@@ -29,7 +29,6 @@ window.onload = () => {
 }
 
 function get_infoImovel(id) {
-    console.log(id);
     fetch(`http://localhost:8000/imovelItem/${id}`)
         .then(response => {
             if (response.status === 200) {
@@ -42,11 +41,11 @@ function get_infoImovel(id) {
             if (imoveis.length === 0) {
                 document.querySelector("#no_imoveis").classList.remove("d-none");
             } else {
-                console.log(id);
+                // console.log(id);
                 const imovel = imoveis[0]
-                console.log(imovel);
+                // console.log(imovel);
                 document.querySelector("#anunciosItem > h2").textContent = imovel.titulo;
-                console.log(imovel.titulo);
+                // console.log(imovel.titulo);
                 document.querySelector("#anunciosItem > div > h3 > span").textContent = imovel.valor;
                 document.querySelector("#anunciosItem  > div >  p").textContent = imovel.descricao;
                 document.querySelector("#anunciosItem > div > a").href = `https://wa.me/${imovel.telefone}`;
@@ -63,49 +62,55 @@ function get_infoImovel(id) {
 }
 
 function get_imovelImgs(id) {
-    fetch(`http://localhost:8000/imoimovelImgsveis/${id}`)
+    fetch(`http://localhost:8000/imovelImgs/${id}`)
         .then(response => {
             if (response.status === 200) {
                 return response.json();
             } else {
-                console.log('erro')
+                console.log("entra erro?");
             }
         })
         .then(imoveis => {
             if (imoveis.length === 0) {
                 document.querySelector("#no_imoveis").classList.remove("d-none")
             } else {
-                document.querySelector("#anuncios").innerHTML = null;
+                document.querySelector("#imgs").innerHTML = null;
+                document.querySelector("#rolagem").innerHTML = null;
+
+                //     imoveis.forEach(imovel => {
+                //         let html = `
+                // <img src="imagens/c" alt="casa aluguel">`;
+
+                //         let new_imgs = document.createElement('div');
+                //         new_imgs.classList.add('img-showcase')
+                //         new_imgs.innerHTML = html;
+
+                //         document.querySelector("#imgs").appendChild(new_imgs);
+                //         console.log(imovel.image_url);
+
+                //     });
 
                 imoveis.forEach(imovel => {
                     let html = `
-            <a href="imovelItem.html?id=${imovel.id}">
-                <img src="imagens/${imovel.image_url}" alt="popular hotel" />
-                <div class="stars">
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star'></i>
-                    <i class='bx bxs-star-half'></i>
-                </div>
-                <div class="popular__content">
-                    <div class="popular__card__header">
-                        <h4>${imovel.titulo}</h4>
-                        <h3>R$ ${imovel.valor}</h3>
-                    </div>
-                    <p>${imovel.endereco}</p>
-                </div>
-            </a>`;
+                        <a href="#" data-id="1">
+                            <img src="imagens/${imovel.image_url}" alt="imagem casa">
+                        </a>`;
 
-                    let new_anuncio = document.createElement('div');
-                    new_anuncio.classList.add('popular__card')
-                    new_anuncio.innerHTML = html;
+                    let new_imgs = document.createElement('div');
+                    new_imgs.classList.add('img-item')
+                    new_imgs.innerHTML = html;
 
-                    document.querySelector("#anuncios").appendChild(new_anuncio);
-                   
+                    document.querySelector("#rolagem").appendChild(new_imgs);
+
+
                 });
+                const principal = imoveis[0];
+                document.querySelector("#imgs").src = `imagens/${principal.image_url}`;
+
 
             }
+
+
 
         })
 }
