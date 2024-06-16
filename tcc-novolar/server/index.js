@@ -144,7 +144,7 @@ app.get("/bemAvaliados", (req, res) => {
         if (err) {
             res.send("err.message");
         }
-        res.send("ok");
+        res.send(results);
     })
 })
 

@@ -407,6 +407,13 @@ header {
     text-align: center;
 }
 
+#nota{
+    margin-left: 0.3rem;
+    font-weight: 600;
+    color: black;
+    font-size: 0.8rem;
+}
+
 .popular__grid {
     margin-top: -2rem;
     display: grid;
@@ -421,8 +428,8 @@ header {
 }
 
 .popular__card {
-    height: 19rem;
-    width:  18rem;
+    height: 18rem;
+    width:  17.7rem;
     overflow: hidden;
     border-radius: 1rem;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);

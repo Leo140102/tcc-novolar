@@ -416,8 +416,8 @@ header {
 }
 
 .popular__card {
-    height: 20rem;
-    width:  22.5rem;
+    height: 23rem;
+    width:  24.5rem;
     overflow: hidden;
     border-radius: 1rem;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
