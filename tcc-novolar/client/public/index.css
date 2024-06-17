@@ -10,6 +10,10 @@
     font-family: "Poppins", sans-serif;
 }
 
+body{
+    overflow-x: hidden;
+}
+
 :root {
 
     --main-color: #008148;
@@ -407,7 +411,7 @@ header {
     text-align: center;
 }
 
-#nota{
+#nota {
     margin-left: 0.3rem;
     font-weight: 600;
     color: black;
@@ -429,7 +433,7 @@ header {
 
 .popular__card {
     height: 18rem;
-    width:  17.7rem;
+    width: 17.7rem;
     overflow: hidden;
     border-radius: 1rem;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
@@ -652,4 +656,144 @@ header {
     background-color: rgb(196, 204, 209);
     border: 1px;
     border-color: rgb(196, 204, 209);
+}
+
+/* -------------------- animação css ------------------------- */
+
+#shop {
+    animation: apper 20ms ease-in-out;
+    animation-timeline: view();
+    animation-range: cover 0% cover 40%;
+}
+
+#anuncios {
+    animation: apper 1ms ease-in-out;
+    animation-timeline: view();
+    animation-range: cover 0% cover 40%;
+}
+
+#sobreNos {
+    animation: apperleft 7ms ease-in-out;
+    animation-timeline: view();
+    animation-range: cover 0% cover 40%;
+    animation-fill-mode: forwards;
+}
+
+#faleConosco {
+    animation: apperright 7ms ease-in-out;
+    animation-timeline: view();
+    animation-range: cover 0% cover 40%;
+}
+
+#teste {
+    animation: apperopacity 7ms ease-in-out;
+    animation-timeline: view();
+    animation-range: cover 0% cover 40%;
+}
+
+#contato {
+    animation: apper 7ms ease-in-out;
+    animation-timeline: view();
+    animation-range: cover 0% cover 23%;
+}
+
+
+@keyframes apper {
+    from {
+        opacity: 0;
+        transform: translateY(-10vh);
+        /* Começa fora da tela */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* Retorna à posição original */
+
+    }
+}
+
+@keyframes apper2 {
+    from {
+        opacity: 0;
+        transform: translateY(-8vh);
+        /* Começa fora da tela */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        /* Retorna à posição original */
+
+    }
+}
+
+@keyframes apperright {
+    from {
+        opacity: 0;
+        translate: -4vw 0;
+        /*transform: translateY(-11vh);
+        /* Começa fora da tela */
+    }
+
+    to {
+        opacity: 1;
+        translate: 0 0;
+        /* transform: translateY(0);
+        /* Retorna à posição original */
+
+    }
+}
+
+@keyframes apperleft {
+    from {
+        opacity: 0;
+        transform: translateX(4vw);
+        /*transform: translateY(-11vh);
+        /* Começa fora da tela */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        /* transform: translateY(0);
+        /* Retorna à posição original */
+
+    }
+}
+
+
+@keyframes apperopacity {
+    from {
+        opacity: 0;
+
+        /*transform: translateY(-11vh);
+        /* Começa fora da tela */
+    }
+
+    to {
+        opacity: 1;
+
+        /* transform: translateY(0);
+        /* Retorna à posição original */
+
+    }
+}
+
+/* -------------------- whatsapp ------------------------- */
+
+.icon{
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    font-size: 30px;
+    background-color: #00974c;
+    color: #ffffff;
+    border-radius: 50%;
+    padding: 3px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    text-decoration: none;
+    z-index: 100;
 }
