@@ -1,10 +1,17 @@
 const express = require('express');
 const app = express()
-const port = 8000;
+const port = 8001;
 const mysql = require("mysql");
 const bcrypt = require("bcrypt")
 const cors = require("cors")
 const saltRounds = 10
+
+const http = require('http')
+const path = require('path')
+
+const fs = require("fs")
+var session = require = ("express-sesserio")
+
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -16,6 +23,11 @@ const db = mysql.createConnection({
 
 app.use(express.json());
 app.use(cors());
+
+app.use(express.urlencoded())
+app.use(session({
+    secret:"abc"
+}))
 
 // app.post("/register", (req, res) => {
 
@@ -51,31 +63,33 @@ app.use(cors());
 //     )
 // })
 
-// app.post("/login", (req, res) => {
+app.use()
 
-//     const email = req.body.email
-//     const password = req.body.password
+app.post("/login", (req, res) => {
 
-//     db.query(
-//         "SELECT * FROM mydb.locatario WHERE email = ?", [email], (err, result) => {
-//             if (err) {
-//                 req.send(err)
-//             }
-//             if (result.lenght > 0) {
-//                 bcrypt.compare(password, result[0].password,
-//                     (erro, result) => {
-//                         if (result) {
-//                             res.send({ msg: "Usuário logado com sucesso!" })
-//                         } else {
-//                             res.send({ msg: "Senha incorreta!" })
-//                         }
-//                     })
+    const email = req.body.email
+    const password = req.body.password
 
-//             } else {
-//                 res.send({ msg: "Conta não encontrada!" })
-//             }
-//         })
-// })
+    db.query(
+        "SELECT * FROM mydb.locatario WHERE email = ?", [email], (err, result) => {
+            if (err) {
+                req.send(err)
+            }
+            if (result.lenght > 0) {
+                bcrypt.compare(password, result[0].password,
+                    (erro, result) => {
+                        if (result) {
+                            res.send({ msg: "Usuário logado com sucesso!" })
+                        } else {
+                            res.send({ msg: "Senha incorreta!" })
+                        }
+                    })
+
+            } else {
+                res.send({ msg: "Conta não encontrada!" })
+            }
+        })
+})
 
 /* -------------------- ROTAS ANUNCIOS IMOVEIS ----------------*/
 /* TESTE */
