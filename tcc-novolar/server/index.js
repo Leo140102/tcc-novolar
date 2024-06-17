@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express()
-const port = 8001;
+const port = 8000;
 const mysql = require("mysql");
 const bcrypt = require("bcrypt")
 const cors = require("cors")
@@ -79,7 +79,7 @@ app.use("/public/*", (req, res, next) => {
 
 
 
-app.post("/login", (req, res) => {
+app.post("/login.html", (req, res) => {
     const email = req.body.email
     const password = req.body.password
 
@@ -245,7 +245,7 @@ app.get("/imoveis/:id", (req, res) => {
 // });
 
 
-app.listen(8001, () => {
+app.listen(port, () => {
     console.log(`Rodando na porta 8000`)
 
 });
