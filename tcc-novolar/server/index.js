@@ -5,12 +5,13 @@ const mysql = require("mysql");
 const bcrypt = require("bcrypt")
 const cors = require("cors")
 const saltRounds = 10
+const bodyParser = require("body-parser")
+const session = require("express-session")
 
 const http = require('http')
 const path = require('path')
 
 const fs = require("fs")
-var session = require = ("express-sesserio")
 
 
 const db = mysql.createConnection({
@@ -24,9 +25,12 @@ const db = mysql.createConnection({
 app.use(express.json());
 app.use(cors());
 
-app.use(express.urlencoded())
+app.use(bodyParser.json())
+app.use(express.urlencoded({extended: true}))
 app.use(session({
-    secret:"abc"
+    secret: "secret",
+    resave: false,
+    saveUninitialized: true
 }))
 
 // app.post("/register", (req, res) => {
@@ -63,10 +67,19 @@ app.use(session({
 //     )
 // })
 
-app.use()
+app.use(express.static(path.join(__dirname, 'public')))
+
+app.use("/public/*", (req, res, next) => {
+    if (req.session.user) {
+        next()
+    } else {
+        req.redirect('/index.html')
+    }
+})
+
+
 
 app.post("/login", (req, res) => {
-
     const email = req.body.email
     const password = req.body.password
 
@@ -76,12 +89,14 @@ app.post("/login", (req, res) => {
                 req.send(err)
             }
             if (result.lenght > 0) {
+                
                 bcrypt.compare(password, result[0].password,
                     (erro, result) => {
                         if (result) {
-                            res.send({ msg: "Usuário logado com sucesso!" })
+                            res.send("Usuário logado com sucesso!")
+                            req.session.loggedin = true
                         } else {
-                            res.send({ msg: "Senha incorreta!" })
+                            res.send("Senha incorreta!")
                         }
                     })
 
@@ -230,7 +245,7 @@ app.get("/imoveis/:id", (req, res) => {
 // });
 
 
-app.listen(8000, () => {
+app.listen(8001, () => {
     console.log(`Rodando na porta 8000`)
 
 });
