@@ -1,16 +1,19 @@
+
+
+console.log("ENTRA LOGIN.JS");
+
 function logar(){
-    var user = document.getElementById("user").value
+    console.log("ENTRA logar");
+    var email = document.getElementById("email").value
     var password = document.getElementById("password").value
 
-    console.log(JSON.stringify({
-        user:user,
-        password
-    }))
-
-    fetch("login",{
+    console.log(
+        password);
+    
+    fetch("http://localhost:8000/login",{
         method: 'POST',
         body: JSON.stringify({
-            user:user,
+            email:email,
             password:password
         }),
         headers:{"content-type" : "application/json"}

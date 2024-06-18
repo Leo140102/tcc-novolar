@@ -78,8 +78,9 @@ app.use("/public/*", (req, res, next) => {
 })
 
 
-
-app.post("/login.html", (req, res) => {
+/* -------------------- login ----------------*/
+app.post("/login", (req, res) => {
+    console.log("INDEX.JSddddddddddddddddddddddd");
     const email = req.body.email
     const password = req.body.password
 
