@@ -10,6 +10,32 @@
     font-family: "Poppins", sans-serif;
     color: rgb(30, 16, 158);
 }
+#esqueceu {
+    margin: 0 0 15px;
+    text-align: left; /* Alinha o texto à esquerda */
+    font-size: 14px;
+    left: 30px;
+    color: #b9b9b9; /* Define a cor do texto para cinza claro */
+}
+
+.esqueceu:hover {
+    color: #b3b3b3; /* Alterna a cor do texto para um cinza ainda mais claro ao passar o mouse sobre o link */
+}
+
+#termosConcordancia:hover{
+    cursor: pointer;
+
+}
+
+#termos{
+    margin-left: 5px;
+    font-size: 12px;
+    color: #a0a0a0; 
+}
+
+#divTermos{
+    margin: 0 0 10px;
+}
 
 header {
 
@@ -151,6 +177,7 @@ form.cadastro-form {
 }
 
 .btn {
+    margin-top: 1rem;
     width: 150px;
     height: 50px;
     border: none;
@@ -158,7 +185,7 @@ form.cadastro-form {
     background: #4641a8;
     color: white;
     font: 600;
-    margin: 10px 0;
+    margin: 10px 0px;
     text-transform: uppercase;
     cursor: pointer;
 }

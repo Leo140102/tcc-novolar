@@ -2,6 +2,16 @@
 
 console.log("ENTRA LOGIN.JS");
 
+function validateForm() {
+    event.preventDefault();
+    var agree = document.getElementById("termosConcordancia").checked;
+    if (!agree) {
+        alert("Por favor, indique que leu e concorda com os Termos e Condições e a Política de Privacidade.");
+        return false;
+    }
+    return true;
+}
+
 function logar(){
     console.log("ENTRA logar");
     var email = document.getElementById("email").value

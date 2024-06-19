@@ -35,6 +35,9 @@
                     <i class="bx bx-lock"></i>
                     <input type="password" placeholder="Senha" id="password">
                 </div>
+                <a href="#" class="esqueceu" id="esqueceu">
+                    Esqueceu a senha?
+                </a>
                 <input type="submit" value="Login" class="btn" onclick="logar()">
                 <p class="social-text">Ou entre usando:</p>
                 <div class="social-media">
@@ -54,19 +57,42 @@
                 <h2 class="title">Cadastre-se</h2>
                 <div class="input-field">
                     <i class="bx bx-user"></i>
-                    <input type="text" placeholder="Nome">
+                    <input type="text" placeholder="Nome" required>
+                </div>
+
+                <div class="input-field">
+                    <i class="bx bx-doc"></i>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                          const cpfInput = document.querySelector('input[type="text"][placeholder="CPF"]');
+                          
+                          cpfInput.addEventListener('keydown', function(e) {
+                            // Permite apenas números
+                            if (!/[0-9]/.test(String.fromCharCode(e.keyCode))) {
+                              e.preventDefault();
+                            }
+                          });
+                        });
+                        </script>
+                    <input type="text" placeholder="CPF" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" inputmode="numeric" title="Digite o CPF no formato 000.000.000-00">
                 </div>
                 <div class="input-field">
                     <i class="bx bx-envelope"></i>
-                    <input type="email" placeholder="Email">
+                    <input type="email" placeholder="Email" required>
                 </div>
                 <div class="input-field">
                     <i class="bx bx-lock"></i>
-                    <input type="password" placeholder="Senha">
+                    <input type="password" placeholder="Senha" required>
                 </div>
-                
+
+                <div id="divTermos" style="display: flex; align-items: center;">
+                    <input type="checkbox" id="termosConcordancia" name="termosConcordancia">
+                    <label for="termosConcordancia" id="termos"> Li e concordo com os Termos de Uso e a Política de
+                        Privacidade.</label>
+                </div>
+
                 <a href="formCadastro.html">
-                    <input type="submit" value="Cadastrar" class="btn">
+                    <input type="submit" value="Cadastrar" class="btn" onclick="validateForm();">
                 </a>
                 <p class="social-text">Ou entre usando:</p>
                 <div class="social-media">

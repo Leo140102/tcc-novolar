@@ -2,8 +2,6 @@
 
 <html lang="en">
 
-
-
 <head>
     <meta charset="utf-8" />
     <link rel="icon" href="imagens/Logo NovoLar.png" />
@@ -24,8 +22,6 @@
 
     <header>
         <a href="index.html" class="logo"><img src="imagens/Logo NovoLar.png"> </a>
-
-
     </header>
 
     <div class="container">
@@ -34,25 +30,55 @@
                 <h2 class="title">Cadastre-se</h2>
                 <div class="input-field">
                     <i class="bx bx-user"></i>
-                    <input type="text" placeholder="CPF">
+                    <input type="text" placeholder="Nome">
                 </div>
                 <div class="input-field">
-                    <i class="bx bx-calendar"></i>
-                    <input type="date" placeholder="Nascimento">
+                    <i class="bx bx-envelope"></i>
+                    <input type="email" placeholder="Email">
                 </div>
                 <div class="input-field">
-                    <i class="bx bx-phone"></i>
-                    <input type="tel" placeholder="Telefone">
+                    <i class="bx bx-lock"></i>
+                    <input type="password" placeholder="Senha">
                 </div>
+                
                 <a href="formCadastro.html">
-                    <input type="submit" value="Cadastrar" class="btn">
+                    <input value="Cadastrar" class="btn">
                 </a>
+                <p class="social-text">Ou entre usando:</p>
+                <div class="social-media">
+                    <a href="#" class="social-icon">
+                        <i class="bx bxl-facebook"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="bx bxl-gmail"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="bx bxl-google"></i>
+                    </a>
+                </div>
+                <p class="account-text">Já possui uma conta? <a href="#" id="login-btn2">Entrar</a></p>
             </form>
         </div>
-
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>Já é cadastrado?</h3>
+                    <p>Entre em sua conta</p>
+                    <button class="btn" id="login-btn">Fazer login</button>
+                </div>
+                <img src="imagens/login.svg" alt="" class="image">
+            </div>
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>Ainda não é cadastrado?</h3>
+                    <p>Seja-bem vindo! Cadastre-se e tenha acesso à novas ferramentas.</p>
+                    <button class="btn" id="cadastro-btn">Criar conta</button>
+                </div>
+                <img src="imagens/explorar.svg" alt="" class="image">
+            </div>
+        </div>
     </div>
-    <script src="App.js"></script>
-
+  
 </body>
 
 </html>
