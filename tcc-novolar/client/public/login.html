@@ -67,12 +67,9 @@
                             const cpfInput = document.querySelector('input[type="text"][placeholder="CPF"]');
 
                             cpfInput.addEventListener('input', function (e) {
-                                // Mantém o campo a 11 caracteres
                                 if (this.value.length > 14) {
                                     this.value = this.value.slice(0, 14);
                                 }
-
-                                // Adiciona pontos e hífen automaticamente para manter o formato do CPF
                                 this.value = this.value.replace(/\D/g, '').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1-$2').replace(/(\d{3})(\d)/, '$1.$2');
                             });
                         });
