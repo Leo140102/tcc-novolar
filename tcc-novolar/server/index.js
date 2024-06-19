@@ -25,47 +25,49 @@ const db = mysql.createConnection({
 app.use(express.json());
 app.use(cors());
 
-app.use(bodyParser.json())
-app.use(express.urlencoded({extended: true}))
-app.use(session({
-    secret: "secret",
-    resave: false,
-    saveUninitialized: true
-}))
+// app.use(bodyParser.json())
+// app.use(express.urlencoded({ extended: true }))
+// app.use(session({
+//     secret: "secret",
+//     resave: false,
+//     saveUninitialized: true
+// }))
 
-// app.post("/register", (req, res) => {
+app.post("/register", (req, res) => {
 
-//     const email = req.body.email
-//     const password = req.body.password
-//     const cpf = req.body.cpf
-//     const nome = req.body.nome
-//     const telefone = req.body.telefone
-//     const dtNascimento = req.body.dtNascimento
+    const email = req.body.email
+    const senha = req.body.senha
+    const cpf = req.body.cpf
+    const nome = req.body.nome
+    const telefone = req.body.telefone
+    const dtNascimento = req.body.dtNascimento
 
-//     db.query("SELECT * FROM mydb.locador WHERE EMAIL = ?",
-//         [email],
-//         (err, result) => {
-//             if (err) {
-//                 res.send(err)
-//             }
-//             if (result.lenght == 0) {
-//                 bcrypt.hash(password, saltRounds, (erro, hash) => {
-//                     db.query(
-//                         "INSERT INTO mydb.locatario (email, senha, cpf, nome, telefone, dtNascimento) VALUES (?,?,?,?,?,?)",
-//                         [email, hash, cpf, nome, telefone, dtNascimento], (err, response) => {
-//                             if (err) {
-//                                 res.send(err)
-//                             }
-//                             res.send({ msg: "Cadastrado com Sucesso" })
-//                         })
-//                 })
+    db.query("SELECT * FROM mydb.locatario WHERE email =?",
+        [email],
+        (err, result) => {
+            if (err) {
+                res.send(err)
+            }
+            console.log(result.length)
+            if (result.length === 0) {
+                bcrypt.hash(senha, saltRounds, (erro, hash) => {
+                    db.query(
+                        "INSERT INTO mydb.locatario (email, senha, cpf, nome, telefone, dtNascimento) VALUES (?,?,?,?,?,?)",
+                        [email, hash, cpf, nome, telefone, dtNascimento], (err, response) => {
+                            if (err) {
+                                return  res.send(err)
+                            }
+                            return  res.send({ msg: "Cadastrado com Sucesso" })
+                        })
+                })
 
-//             } else {
-//                 res.send({ msg: "Usuário já cadastrado!" })
-//             }
-//         }
-//     )
-// })
+            } else {
+                //res.send({ msg: "Usuário já cadastrado!" })
+                return  res.send({ msg: "Usuário já cadastradorsssss!" })
+            }
+        }
+    )
+})
 
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -80,32 +82,59 @@ app.use("/public/*", (req, res, next) => {
 
 /* -------------------- login ----------------*/
 app.post("/login", (req, res) => {
-    console.log("INDEX.JSddddddddddddddddddddddd");
     const email = req.body.email
-    const password = req.body.password
-
-    db.query(
+    const senha = req.body.senha
+    db.query(      
         "SELECT * FROM mydb.locatario WHERE email = ?", [email], (err, result) => {
             if (err) {
-                req.send(err)
+                return req.send(err)
             }
-            if (result.lenght > 0) {
-                
-                bcrypt.compare(password, result[0].password,
+            console.log(result)
+            if (result.length > 0) {
+                bcrypt.compare(senha, result[0].senha,
                     (erro, result) => {
                         if (result) {
-                            res.send("Usuário logado com sucesso!")
-                            req.session.loggedin = true
+                            console.log("logado")
+                            return res.send("Usuário logado com sucesso!")
+                           
                         } else {
-                            res.send("Senha incorreta!")
+                            console.log("senha incorreta")
+                            return res.send("Senha incorreta!")
+                            
                         }
                     })
 
             } else {
-                res.send({ msg: "Conta não encontrada!" })
+                console.log("ENTRA ELSE");
+                return res.send("Conta não encontrada!")
+                
             }
         })
 })
+
+app.post('/login', async (req, res) => {
+    console.log("INDEX.JS - Rota de Login");
+    const { email, password } = req.body;
+
+    try {
+        const user = await db.query("SELECT * FROM mydb.locatario WHERE email =?", [email]);
+        if (user.length === 0) {
+            return res.status(404).json({ msg: "Conta não encontrada!" });
+        }
+
+        // Comparação direta da senha, não recomendada por motivos de segurança
+        if (password!== user[0].password) {
+            return res.status(401).json({ msg: "Senha incorreta!" });
+        }
+
+        // Aqui você pode iniciar a sessão ou gerar um token JWT, dependendo da sua implementação
+        req.session.loggedin = true;
+        res.status(200).json({ msg: "Usuário logado com sucesso!" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+});
 
 /* -------------------- ROTAS ANUNCIOS IMOVEIS ----------------*/
 /* TESTE */

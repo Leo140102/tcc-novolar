@@ -37,6 +37,7 @@ function get_imoveisMaiorNotas() {
             if (imoveis.length === 0) {
                 document.querySelector("#no_imoveis").classList.remove("d-none")
             } else {
+                console.log(imoveis);
                 document.querySelector("#anuncios").innerHTML = null;
 
                 imoveis.forEach(imovel => {
