@@ -303,7 +303,7 @@ a {
 
 .container.cadastro-mode .right-panel .image,
 .container.cadastro-mode .right-panel .content {
-    transform: translateX(200%);
+    transform: translateX(300%);
 }
 
 .container.cadastro-mode .left-panel .image,
