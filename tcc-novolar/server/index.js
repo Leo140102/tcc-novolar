@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express()
-const port = 8000;
+const PORT = 8000;
 const mysql = require("mysql");
 const bcrypt = require("bcrypt")
 const cors = require("cors")
@@ -34,13 +34,11 @@ app.use(cors());
 // }))
 
 app.post("/register", (req, res) => {
-
-    const email = req.body.email
-    const senha = req.body.senha
-    const cpf = req.body.cpf
+    
     const nome = req.body.nome
-    const telefone = req.body.telefone
-    const dtNascimento = req.body.dtNascimento
+    const email = req.body.email
+    const cpf = req.body.cpf
+    const senha = req.body.senha
 
     db.query("SELECT * FROM mydb.locatario WHERE email =?",
         [email],
@@ -52,8 +50,8 @@ app.post("/register", (req, res) => {
             if (result.length === 0) {
                 bcrypt.hash(senha, saltRounds, (erro, hash) => {
                     db.query(
-                        "INSERT INTO mydb.locatario (email, senha, cpf, nome, telefone, dtNascimento) VALUES (?,?,?,?,?,?)",
-                        [email, hash, cpf, nome, telefone, dtNascimento], (err, response) => {
+                        "INSERT INTO mydb.locatario (email, senha, cpf, nome) VALUES (?,?,?,?)",
+                        [email, hash, cpf, nome], (err, response) => {
                             if (err) {
                                 return  res.send(err)
                             }
@@ -63,7 +61,7 @@ app.post("/register", (req, res) => {
 
             } else {
                 //res.send({ msg: "Usuário já cadastrado!" })
-                return  res.send({ msg: "Usuário já cadastradorsssss!" })
+                return  res.send({ msg: "Usuário já cadastrado!" })
             }
         }
     )
@@ -275,8 +273,8 @@ app.get("/imoveis/:id", (req, res) => {
 // });
 
 
-app.listen(port, () => {
-    console.log(`Rodando na porta 8000`)
+app.listen(PORT, () => {
+    console.log(`Aplicação rodando na porta ${PORT}`)
 
 });
 
