@@ -1,5 +1,3 @@
-console.log("CHAMANDO TELA DE CADASTRO.JS")
-
 function TestaCPF(strCPF) {
     var Soma;
     var Resto;
@@ -54,7 +52,7 @@ function cadastroUser() {
        
 
         if (!TestaCPF(cpfValido.toString())) {
-            alert('CPF inválidoooooooooooo.');
+            alert('CPF inválido!');
             return;
         }
 
