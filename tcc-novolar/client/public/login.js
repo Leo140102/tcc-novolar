@@ -15,16 +15,18 @@ function validateForm() {
 function logar(){
     console.log("ENTRA logar");
     var email = document.getElementById("email").value
-    var password = document.getElementById("password").value
-
-    console.log(
-        password);
+    var senha = document.getElementById("password").value
+    console.log(JSON.stringify({
+        email:email,
+        senha:senha
+    }));
     
-    fetch("http://localhost:8000/login",{
+    fetch('http://localhost:8000/login',{
+        
         method: 'POST',
         body: JSON.stringify({
             email:email,
-            password:password
+            senha:senha
         }),
         headers:{"content-type" : "application/json"}
     })
