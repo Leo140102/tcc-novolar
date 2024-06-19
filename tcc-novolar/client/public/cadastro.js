@@ -1,43 +1,46 @@
 console.log("CHAMANDO TELA DE CADASTRO.JS")
-function cadastroUser(){
-    function validaCPF(cpf) {
-        let cpfLimpo = cpf.replace(/\D/g, "");
-    
-        if (cpfLimpo.length!== 11) {
-            return false;
-        }
-    
-        let soma = 0;
-        let resto;
-        for (let i = 1; i <= 9; i++) {
-            soma += parseInt(cpfLimpo.substring(i - 1, i)) * (11 - i);
-        }
-        resto = soma % 11;
-    
-        if (((resto < 2) && resto!== parseInt(cpfLimpo.substring(9, 10))) || ((resto >= 2) && (resto - 11)!== parseInt(cpfLimpo.substring(9, 10)))) {
-            return false;
-        }
-    
-        soma = 0;
-        for (let i = 1; i <= 10; i++) {
-            soma += parseInt(cpfLimpo.substring(i - 1, i)) * (12 - i);
-        }
-        resto = soma % 11;
-    
-        if (((resto < 2) && resto!== parseInt(cpfLimpo.substring(10, 11))) || ((resto >= 2) && (resto - 11)!== parseInt(cpfLimpo.substring(10, 11)))) {
-            return false;
-        }
-    
-        return true;
+
+function validaCPF(cpf) {
+    let cpfLimpo = cpf.replace(/\D/g, "");
+
+    if (cpfLimpo.length!== 11) {
+        return false;
     }
+
+    let soma = 0;
+    let resto;
+    for (let i = 1; i <= 9; i++) {
+        soma += parseInt(cpfLimpo.substring(i - 1, i)) * (11 - i);
+    }
+    resto = soma % 11;
+
+    if (((resto < 2) && resto!== parseInt(cpfLimpo.substring(9, 10))) || ((resto >= 2) && (resto - 11)!== parseInt(cpfLimpo.substring(9, 10)))) {
+        return false;
+    }
+
+    soma = 0;
+    for (let i = 1; i <= 10; i++) {
+        soma += parseInt(cpfLimpo.substring(i - 1, i)) * (12 - i);
+    }
+    resto = soma % 11;
+
+    if (((resto < 2) && resto!== parseInt(cpfLimpo.substring(10, 11))) || ((resto >= 2) && (resto - 11)!== parseInt(cpfLimpo.substring(10, 11)))) {
+        return false;
+    }
+
+    return true;
+}
+
+function cadastroUser(){
+   
     
     document.getElementById('cadastro').addEventListener('submit', function(event) {
         event.preventDefault();
     
-        const nome = document.getElementById('nome').value.trim();
-        const email = document.getElementById('emailCadastro').value.trim();
-        const cpf = document.getElementById('cpf').value.trim();
-        const senha = document.getElementById('senhaCadastro').value.trim();
+        const nome = document.getElementById('nome').value.toString().trim();
+        const email = document.getElementById('emailCadastro').value.toString().trim();
+        const cpf = document.getElementById('cpf').value.toString().trim();
+        const senha = document.getElementById('senhaCadastro').value.toString().trim();
     
         if (!nome ||!email ||!cpf ||!senha) {
             alert('Todos os campos são obrigatórios.');
@@ -49,13 +52,13 @@ function cadastroUser(){
             return; 
         }
     
-        const cpfValido = /^\d{11}$/.test(cpf); 
-        if (!cpfValido) {
-            if(!validaCPF(cpfValido)){
-                alert('CPF inválido.');
-            }    
-            return; 
-        }
+        // const cpfValido = /^\d{11}$/.test(cpf); 
+        // if (!cpfValido) {
+        //     if(!validaCPF(cpfValido.toString())){
+        //         alert('CPF inválidoooooooooooo.');
+        //     }    
+        //     return; 
+        // }
     
     
         const senhaValida = senha.length > 6;
