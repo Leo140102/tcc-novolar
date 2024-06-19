@@ -57,7 +57,7 @@
                 <h2 class="title">Cadastre-se</h2>
                 <div class="input-field">
                     <i class="bx bx-user"></i>
-                    <input type="text" placeholder="Nome" required>
+                    <input type="text" placeholder="Nome" required id="nome">
                 </div>
 
                 <div class="input-field">
@@ -78,11 +78,11 @@
                         });
                     </script>
                     <input type="text" placeholder="CPF" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-                        inputmode="numeric" title="Digite o CPF no formato 000.000.000-00" required>
+                        inputmode="numeric" title="Digite o CPF no formato 000.000.000-00" id="cpf">
                 </div>
                 <div class="input-field">
                     <i class="bx bx-envelope"></i>
-                    <input type="email" placeholder="Email" required>
+                    <input type="email" placeholder="Email" required id="emailCadastro">
                 </div>
                 <div class="input-field">
                     <i class="bx bx-lock"></i>
@@ -99,7 +99,7 @@
                             });
                         });
                     </script>
-                    <input type="password" placeholder="Senha" required>
+                    <input type="password" placeholder="Senha" required id="senhaCadastro">
                 </div>
 
                 <div id="divTermos" style="display: flex; align-items: center;">
@@ -109,7 +109,7 @@
                 </div>
 
                 <a href="formCadastro.html">
-                    <input type="submit" value="Cadastrar" class="btn" onclick="validateForm();">
+                    <input type="submit" value="Cadastrar" class="btn" onclick="cadastroUser();">
                 </a>
                 <p class="social-text">Ou entre usando:</p>
                 <div class="social-media">
