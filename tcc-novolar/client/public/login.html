@@ -53,7 +53,7 @@
                 </div>
                 <p class="account-text">Não possui uma conta? <a href="#" id="cadastro-btn2">Cadastre-se</a></p>
             </form>
-            <form action="" class="cadastro-form">
+            <form action="" class="cadastro-form" id="cadastro">
                 <h2 class="title">Cadastre-se</h2>
                 <div class="input-field">
                     <i class="bx bx-user"></i>
@@ -61,20 +61,24 @@
                 </div>
 
                 <div class="input-field">
-                    <i class="bx bx-doc"></i>
+                    <i class="bx bx-card"></i>
                     <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                          const cpfInput = document.querySelector('input[type="text"][placeholder="CPF"]');
-                          
-                          cpfInput.addEventListener('keydown', function(e) {
-                            // Permite apenas números
-                            if (!/[0-9]/.test(String.fromCharCode(e.keyCode))) {
-                              e.preventDefault();
-                            }
-                          });
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const cpfInput = document.querySelector('input[type="text"][placeholder="CPF"]');
+
+                            cpfInput.addEventListener('input', function (e) {
+                                // Mantém o campo a 11 caracteres
+                                if (this.value.length > 14) {
+                                    this.value = this.value.slice(0, 14);
+                                }
+
+                                // Adiciona pontos e hífen automaticamente para manter o formato do CPF
+                                this.value = this.value.replace(/\D/g, '').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1-$2').replace(/(\d{3})(\d)/, '$1.$2');
+                            });
                         });
-                        </script>
-                    <input type="text" placeholder="CPF" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" inputmode="numeric" title="Digite o CPF no formato 000.000.000-00">
+                    </script>
+                    <input type="text" placeholder="CPF" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+                        inputmode="numeric" title="Digite o CPF no formato 000.000.000-00">
                 </div>
                 <div class="input-field">
                     <i class="bx bx-envelope"></i>
@@ -82,6 +86,20 @@
                 </div>
                 <div class="input-field">
                     <i class="bx bx-lock"></i>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const senhaInput = document.querySelector('input[type="text"][placeholder="Senha"]');
+
+                            cpfInput.addEventListener('input', function (e) {
+                                // Verifica se o campo contém apenas números e letras e tem no mínimo 6 caracteres
+                                if (/^[A-Za-z0-9]{6,}$/.test(this.value)) {
+
+                                } else {
+                                    alert('Por favor, insira uma senha válida com no mínimo 6 caracteres.');
+                                }
+                            });
+                        });
+                    </script>
                     <input type="password" placeholder="Senha" required>
                 </div>
 
@@ -130,8 +148,8 @@
     </div>
     <!--whatssapp-->
     <div class="buttonzap">
-        <a href="https://wa.me/5544998996466" class="icon" target="_blank"><i class="bx bxl-whatsapp"  id="zap"></i></a>
-      </div>
+        <a href="https://wa.me/5544998996466" class="icon" target="_blank"><i class="bx bxl-whatsapp" id="zap"></i></a>
+    </div>
     <script src="App.js"></script>
     <script src="login.js"></script>
 
