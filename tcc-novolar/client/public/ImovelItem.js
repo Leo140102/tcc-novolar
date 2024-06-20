@@ -1,21 +1,3 @@
-const imgs = document.querySelectorAll('.img-select a');
-const imgBtns = [...imgs];
-let imgId = 1;
-
-imgBtns.forEach((imgItem) => {
-    imgItem.addEventListener('click', (event) => {
-        event.preventDefault();
-        imgId = imgItem.dataset.id;
-        slideImage();
-
-    });
-});
-
-function slideImage() {
-    const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
-
-    document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
-}
 
 /* --------------------------------------------- MOSTRA ANUNCIOS DOS IMÓVEIS NA TELA ----------------------------------------------------- */
 
@@ -41,11 +23,8 @@ function get_infoImovel(id) {
             if (imoveis.length === 0) {
                 document.querySelector("#no_imoveis").classList.remove("d-none");
             } else {
-                // console.log(id);
                 const imovel = imoveis[0]
-                // console.log(imovel);
                 document.querySelector("#anunciosItem > h2").textContent = imovel.titulo;
-                // console.log(imovel.titulo);
                 document.querySelector("#anunciosItem > div > h3 > span").textContent = imovel.valor;
                 document.querySelector("#anunciosItem  > div >  p").textContent = imovel.descricao;
                 document.querySelector("#anunciosItem > div > a").href = `https://wa.me/${imovel.telefone}`;
@@ -82,13 +61,11 @@ function get_imovelImgs(id) {
 
                     let new_imgs = document.createElement('img');
                     new_imgs.classList.add('imagens')
-                    new_imgs.src=`imagens/${imovel.image_url}`
-                    new_imgs.alt="casa aluguel"
-                    // new_imgs.style="transform: translateX(-538px)";
+                    new_imgs.src = `imagens/${imovel.image_url}`
+                    new_imgs.alt = "casa aluguel"
                     new_imgs.innerHTML = html;
 
                     document.querySelector("#imgs").appendChild(new_imgs);
-                    //document.querySelector("#imgs").style = "transform: translateX(-538px)";
                     console.log(imovel.image_url);
 
                 });
@@ -103,12 +80,12 @@ function get_imovelImgs(id) {
                     new_imgs.classList.add('img-item')
                     new_imgs.innerHTML = html;
 
-                    document.querySelector("#rolagem").appendChild(new_imgs);
+                    document.querySelector(".img-select").appendChild(new_imgs);
+
 
 
                 });
-                // const principal = imoveis[0];
-                // document.querySelector("#imgs").src = `imagens/${principal.image_url}`;
+                addEventListenersToImages();
 
 
             }
@@ -116,4 +93,29 @@ function get_imovelImgs(id) {
 
 
         })
+}
+
+//----------------------------------------------------mudar imagem animação-----------------------------------------------------------------------
+
+let imgId = 1;
+function addEventListenersToImages() {
+    const imgs = document.querySelectorAll('.img-select a');
+    const imgBtns = Array.from(imgs);
+    
+
+    imgBtns.forEach((imgItem) => {
+        imgItem.addEventListener('click', (event) => {
+            event.preventDefault();
+            imgId = imgItem.dataset.id;
+            console.log(imgId);
+            slideImage();
+            console.log();
+        });
+    });
+}
+
+function slideImage() {
+    const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+
+    document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
 }

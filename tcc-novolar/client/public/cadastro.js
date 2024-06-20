@@ -70,10 +70,10 @@ function cadastroUser() {
         }
 
         const formCad = {
-            nome,
             email,
+            senha,
             cpf,
-            senha
+            nome          
         };
 
         const jsonData = JSON.stringify(formCad);
@@ -90,7 +90,7 @@ function cadastroUser() {
 
         console.log(options)
 
-        fetch('https://seusite.com/api/cadastro', options)
+        fetch('http://localhost:8000/register', options)
             .then(response => response.json())
             .then(data => console.log(data))
             .catch(error => console.error('Erro:', error));
