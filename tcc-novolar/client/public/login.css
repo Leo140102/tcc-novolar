@@ -334,6 +334,10 @@ a {
         width: 100vw;
         height: 100vh;
     }
+    .logo img {
+
+        width: 60px;
+    }
 }
 
 @media (max-width:635px) {
@@ -343,6 +347,10 @@ a {
 
     form {
         width: 80%;
+    }
+    .logo img {
+
+        width: 60px;
     }
 
 
@@ -373,6 +381,10 @@ a {
 @media (max-width:320px) {
     form {
         width: 90%;
+    }
+    .logo img {
+
+        width: 60px;
     }
 }
 

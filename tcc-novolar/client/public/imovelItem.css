@@ -551,6 +551,10 @@ header {
         display: contents;
         flex-direction: column;
     }
+    .logo img {
+
+        width: 60px;
+    }
 
 
 }
@@ -559,6 +563,11 @@ header {
     .links {
         display: flex;
         flex-direction: column;
+    }
+
+    .logo img {
+
+        width: 50px;
     }
 }
 
@@ -897,8 +906,32 @@ img {
 @media screen and (min-width: 292px) {
     .mapa {
         display: flex;
-        margin-left: 4rem;
+        margin-left: 3.5rem;
         flex-direction: column;
         padding-top: 2rem;
     }
+    .product-imgs {
+        padding-bottom: 3rem;
+    }
+    .product-display {
+        padding-top: 3rem;
+    }
+}
+
+/* -------------------- whatsapp ------------------------- */
+
+.icon {
+    position: fixed;
+    bottom: 40px;
+    right: 30px;
+    font-size: 30px;
+    background-color: #00974c;
+    color: #ffffff;
+    border-radius: 50%;
+    padding: 4.5px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    text-decoration: none;
+    z-index: 100;
 }

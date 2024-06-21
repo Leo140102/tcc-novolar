@@ -478,7 +478,7 @@ header {
 
 }
 
-@media (max-width:375px) {
+@media (max-width:475px) {
     .links {
         display: flex;
         flex-direction: column;
@@ -491,6 +491,24 @@ header {
 
     .home-img {
         flex: 1 0 22rem;
+    }
+
+    .container {
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .sobreNos-img {
+
+        flex: 1 1 3rem;
+
+    }
+}
+
+@media (max-width:575px) {
+    .links {
+        display: flex;
+        flex-direction: column;
     }
 }
 
@@ -526,7 +544,7 @@ header {
 
 /* -------------------- whatsapp ------------------------- */
 
-.iconzap{
+.iconzap {
     position: fixed;
     bottom: 40px;
     right: 30px;
@@ -534,7 +552,7 @@ header {
     background-color: #00974c;
     color: #ffffff;
     border-radius: 50%;
-    padding: 3px;
+    padding: 4.5px;
     width: 50px;
     height: 50px;
     text-align: center;
