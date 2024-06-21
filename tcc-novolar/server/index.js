@@ -22,20 +22,31 @@ const db = mysql.createConnection({
 
 app.use(express.json());
 app.use(cors());
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000"); // Substitua pelo domínio do seu cliente
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    next();
+  });
+  
 //Configurações da session
 app.use(session({
-    secret: 'rwZcr7FK', // Uma string secreta usada para assinar o cookie da sessão
-    resave: true, // Força a sessão a ser salva, mesmo se modificada
-    saveUninitialized: true, // Salva sessões não modificadas
-    cookie: { secure: false } // Ativa o atributo Secure do cookie, recomendado para produção
+    secret: 'rwZcr7FK',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { 
+        secure: false, 
+        maxAge: 1800000 
+    }
 }));
 app.use(flash())
 
 //Middleware
-app.use((req, res, next) => {
-    res.locals.success_msg = req.flash('success_msg');
-    res.locals.error_msg = req.flash('error_msg');
-})
+// app.use((req, res, next) => {
+//     res.locals.success_msg = req.flash('success_msg');
+//     res.locals.error_msg = req.flash('error_msg');
+// })
 
 /* -------------------- cadastro ----------------*/
 
@@ -85,37 +96,87 @@ app.use("/public/*", (req, res, next) => {
 
 
 /* -------------------- login ----------------*/
-app.post("/login", (req, res) => {
-    const email = req.body.email
-    const senha = req.body.senha
-    db.query(
-        "SELECT * FROM mydb.locatario WHERE email = ?", [email], (err, result) => {
-            if (err) {
-                return res.status(500).send({ error: err });
-            }
-            console.log(result)
-            if (result.length > 0) {
-                bcrypt.compare(senha, result[0].senha,
-                    (erro, result) => {
-                        if (result) {
-                            req.session.user = {
-                                nome: result[0].nome,
-                                email: email
-                            };
-                            return res.status(200).send('Login realizado com sucesso.');
+// app.post("/login", (req, res) => {
+//     const email = req.body.email
+//     const senha = req.body.senha
+//     db.query(
+//         "SELECT * FROM mydb.locatario WHERE email = ?", [email], (err, result) => {
+//             if (err) {
+//                 return res.status(500).send({ error: err });
+//             }
+//             console.log(result)
+//             if (result.length > 0) {
+//                 bcrypt.compare(senha, result[0].senha,
+//                     (erro, result) => {
+//                         if (result.length != 0) {
+//                             req.session.user = {
+//                                 nome: result[0].nome,
+//                                 email: email
+//                             };
+//                             console.log('Login realizado com sucesso.')
+//                             return res.status(200).send('Login realizado com sucesso.');
 
-                        } else {
-                            return res.status(401).send('Senha incorreta.');
+//                         } else {
+//                             console.log('Senha incorreta.')
+//                             return res.status(401).send('Senha incorreta.');
 
-                        }
-                    })
+//                         }
+//                     })
 
-            } else {
-                return res.status(404).send('Conta não encontrada.');
+//             } else {
+//                 console.log('Conta não encontrada.')
+//                 return res.status(404).send('Conta não encontrada.');
 
-            }
-        })
-})
+//             }
+//         })
+// })
+
+app.post("/login", async (req, res) => {
+    try {
+        const email = req.body.email;
+        const senha = req.body.senha;
+
+        const result = await new Promise((resolve, reject) => {
+            db.query("SELECT * FROM mydb.locatario WHERE email =?", [email], (err, result) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(result);
+                }
+            });
+        });
+
+        if (result.length === 0) {
+            return res.status(404).send('Conta não encontrada.');
+        }
+
+        const passwordMatch = await new Promise((resolve, reject) => {
+            bcrypt.compare(senha, result[0].senha, (erro, result) => {
+                if (erro) {
+                    reject(erro);
+                } else {
+                    resolve(result);
+                }
+            });
+        });
+
+        if (!passwordMatch) {
+            return res.status(401).send('Senha incorreta.');
+        }
+
+        req.session.user = {
+            nome: result[0].nome,
+            email: email
+        };
+
+        console.log('Login realizado com sucesso.');
+        return res.sendStatus(200);
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send({ error: error.message });
+    }
+});
 
 /* -------------------- ROTAS ANUNCIOS IMOVEIS ----------------*/
 /* TESTE */

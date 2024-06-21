@@ -19,31 +19,102 @@ function TestaCPF(strCPF) {
     return true;
 }
 
-function redirectToIndex() {
-    window.location.href = 'index.html';
+function redirectToLogin() {
+    window.location.href = '/login.html';
 }
 
+
+// function cadastroUser() {
+
+
+//     document.getElementById('cadastro').addEventListener('submit', function (event) {
+//         event.preventDefault();
+
+//         const nome = document.getElementById('nome').value.toString().trim();
+//         const email = document.getElementById('emailCadastro').value.toString().trim();
+//         const cpf = document.getElementById('cpf').value.toString().trim();
+
+//         const cpfValido = cpf.replace(/\D/g, "");
+
+//         console.log("CPFLIMPO" + cpfValido)
+
+
+
+//         const senha = document.getElementById('senhaCadastro').value.toString().trim();
+
+        
+
+//         if (!nome || !email || !cpf || !senha) {
+//             alert('Todos os campos são obrigatórios.');
+//         }
+
+//         const emailValido = /\S+@\S+\.\S+/.test(email);
+//         if (!emailValido) {
+//             alert('Por favor, insira um email válido.');
+//             return;
+//         }
+
+       
+
+//         if (!TestaCPF(cpfValido.toString())) {
+//             alert('CPF inválido!');
+//             return;
+//         }
+
+
+//         const senhaValida = senha.length >= 6;
+//         if (!senhaValida) {
+//             alert('A senha deve ter mais de 6 caracteres.');
+//             return;
+//         }
+
+//         const senhaSegura = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/.test(senha);
+//         if (!senhaSegura) {
+//             alert('A senha deve conter letras maiúsculas, minúsculas e números.');
+//             return;
+//         }
+
+//         const formCad = {
+//             email,
+//             senha,
+//             cpf,
+//             nome          
+//         };
+
+//         const jsonData = JSON.stringify(formCad);
+
+//         console.log(jsonData)
+
+//         const options = {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: jsonData
+//         };
+
+//         console.log(options)
+
+//         fetch('http://localhost:8000/register', options)
+//             .then(response => response.json())
+//             .then(data => console.log(data))
+//             .catch(error => console.error('Erro:', error));
+//     });
+// }
+
 function cadastroUser() {
-
-
     document.getElementById('cadastro').addEventListener('submit', function (event) {
         event.preventDefault();
 
         const nome = document.getElementById('nome').value.toString().trim();
         const email = document.getElementById('emailCadastro').value.toString().trim();
         const cpf = document.getElementById('cpf').value.toString().trim();
-
         const cpfValido = cpf.replace(/\D/g, "");
-
-        console.log("CPFLIMPO" + cpfValido)
-
-
+        console.log("CPFLIMPO" + cpfValido);
 
         const senha = document.getElementById('senhaCadastro').value.toString().trim();
 
-        
-
-        if (!nome || !email || !cpf || !senha) {
+        if (!nome ||!email ||!cpf ||!senha) {
             alert('Todos os campos são obrigatórios.');
         }
 
@@ -53,13 +124,10 @@ function cadastroUser() {
             return;
         }
 
-       
-
         if (!TestaCPF(cpfValido.toString())) {
             alert('CPF inválido!');
             return;
         }
-
 
         const senhaValida = senha.length >= 6;
         if (!senhaValida) {
@@ -77,12 +145,11 @@ function cadastroUser() {
             email,
             senha,
             cpf,
-            nome          
+            nome
         };
 
         const jsonData = JSON.stringify(formCad);
-
-        console.log(jsonData)
+        console.log(jsonData);
 
         const options = {
             method: 'POST',
@@ -91,13 +158,18 @@ function cadastroUser() {
             },
             body: jsonData
         };
-
-        console.log(options)
+        console.log(options);
 
         fetch('http://localhost:8000/register', options)
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error('Erro:', error));
+           .then(response => {
+                if (response.status === 201) {
+                    redirectToLogin(); 
+                } else if(response.status === 409) {
+                    alert('Usuário já cadastrado.');
+                }
+            })
+           .then(data => console.log(data))
+           .catch(error => console.error('Erro:', error));
     });
 }
 
