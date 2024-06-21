@@ -10,7 +10,7 @@
     font-family: "Poppins", sans-serif;
 }
 
-body{
+body {
     overflow-x: hidden;
 }
 
@@ -633,7 +633,7 @@ header {
 
 }
 
-@media (max-width:375px) {
+@media (max-width:475px) {
     .links {
         display: flex;
         flex-direction: column;
@@ -641,6 +641,14 @@ header {
 
     .popular__grid {
         grid-template-columns: repeat(1, 1fr);
+        display: grid;
+        place-items: center;
+
+    }
+
+    .popular__card {
+        height: 18rem;
+        width: 19.7rem;
     }
 
     .home-img {
@@ -656,6 +664,14 @@ header {
     background-color: rgb(196, 204, 209);
     border: 1px;
     border-color: rgb(196, 204, 209);
+}
+
+@media (max-width:264px) {
+    .links {
+        display: flex;
+        flex-direction: column;
+    }
+
 }
 
 /* -------------------- animação css ------------------------- */
@@ -767,7 +783,7 @@ header {
 
 /* -------------------- whatsapp ------------------------- */
 
-.icon{
+.icon {
     position: fixed;
     bottom: 40px;
     right: 30px;

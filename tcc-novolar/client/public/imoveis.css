@@ -592,15 +592,25 @@ header {
         display: contents;
         flex-direction: column;
     }
+    
 
 
 }
 
-@media (max-width:364px) {
+@media (max-width:564px) {
+
+    .popular__card {
+        height: 18rem;
+        width: 23.7rem;
+    }
+} 
+
+@media (max-width:264px) {
     .links {
         display: flex;
         flex-direction: column;
     }
+
 }
 
 ::-webkit-scrollbar {

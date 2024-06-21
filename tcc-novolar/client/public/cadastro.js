@@ -19,6 +19,10 @@ function TestaCPF(strCPF) {
     return true;
 }
 
+function redirectToIndex() {
+    window.location.href = 'index.html';
+}
+
 function cadastroUser() {
 
 

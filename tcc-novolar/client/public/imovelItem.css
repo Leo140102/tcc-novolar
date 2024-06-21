@@ -614,7 +614,7 @@ img {
 }
 
 .img-item img {
-  
+
     object-fit: cover;
     object-position: center;
 }
@@ -891,5 +891,14 @@ img {
 
     .product-title {
         font-size: 1.5;
+    }
+}
+
+@media screen and (min-width: 292px) {
+    .mapa {
+        display: flex;
+        margin-left: 4rem;
+        flex-direction: column;
+        padding-top: 2rem;
     }
 }

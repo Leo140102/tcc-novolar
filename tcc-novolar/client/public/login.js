@@ -1,7 +1,3 @@
-
-
-console.log("ENTRA LOGIN.JS");
-
 function validateForm() {
     event.preventDefault();
     var agree = document.getElementById("termosConcordancia").checked;
@@ -22,7 +18,6 @@ function logar(){
     }));
     
     fetch('http://localhost:8000/login',{
-        
         method: 'POST',
         body: JSON.stringify({
             email:email,

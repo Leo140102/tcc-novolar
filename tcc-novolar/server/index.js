@@ -33,6 +33,10 @@ app.use(cors());
 //     saveUninitialized: true
 // }))
 
+function redirectToIndex() {
+    window.location.href = 'client/public/index.html';
+}
+
 app.post("/register", (req, res) => {
     
     const nome = req.body.nome
@@ -55,7 +59,9 @@ app.post("/register", (req, res) => {
                             if (err) {
                                 return  res.send(err)
                             }
+                            redirectToIndex();
                             return  res.send({ msg: "Cadastrado com Sucesso" })
+                            
                         })
                 })
 
