@@ -11,7 +11,7 @@ function validateForm() {
 function logar(){
     console.log("ENTRA logar");
     var email = document.getElementById("email").value
-    var senha = document.getElementById("password").value
+    var senha = document.getElementById("senha").value
     console.log(JSON.stringify({
         email:email,
         senha:senha
