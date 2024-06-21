@@ -77,7 +77,6 @@ app.post("/register", (req, res) => {
                 })
 
             } else {
-                //res.send({ msg: "Usuário já cadastrado!" })
                 return res.status(409).send('Usuário já cadastrado.');
             }
         }
@@ -94,42 +93,7 @@ app.use("/public/*", (req, res, next) => {
     }
 })
 
-
-/* -------------------- login ----------------*/
-// app.post("/login", (req, res) => {
-//     const email = req.body.email
-//     const senha = req.body.senha
-//     db.query(
-//         "SELECT * FROM mydb.locatario WHERE email = ?", [email], (err, result) => {
-//             if (err) {
-//                 return res.status(500).send({ error: err });
-//             }
-//             console.log(result)
-//             if (result.length > 0) {
-//                 bcrypt.compare(senha, result[0].senha,
-//                     (erro, result) => {
-//                         if (result.length != 0) {
-//                             req.session.user = {
-//                                 nome: result[0].nome,
-//                                 email: email
-//                             };
-//                             console.log('Login realizado com sucesso.')
-//                             return res.status(200).send('Login realizado com sucesso.');
-
-//                         } else {
-//                             console.log('Senha incorreta.')
-//                             return res.status(401).send('Senha incorreta.');
-
-//                         }
-//                     })
-
-//             } else {
-//                 console.log('Conta não encontrada.')
-//                 return res.status(404).send('Conta não encontrada.');
-
-//             }
-//         })
-// })
+ //----------------------------Login-------------------------------------
 
 app.post("/login", async (req, res) => {
     try {
