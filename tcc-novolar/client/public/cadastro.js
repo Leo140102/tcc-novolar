@@ -23,8 +23,83 @@ function redirectToLogin() {
     window.location.href = '/login.html';
 }
 
+// function cadastroUser() {
+//     document.getElementById('cadastro').addEventListener('submit', function (event) {
+//         event.preventDefault();
+
+//         const nome = document.getElementById('nome').value.toString().trim();
+//         const email = document.getElementById('emailCadastro').value.toString().trim();
+//         const cpf = document.getElementById('cpf').value.toString().trim();
+//         const cpfValido = cpf.replace(/\D/g, "");
+//         console.log("CPFLIMPO" + cpfValido);
+
+//         const senha = document.getElementById('senhaCadastro').value.toString().trim();
+
+//         if (!nome ||!email ||!cpf ||!senha) {
+//             alert('Todos os campos são obrigatórios.');
+//         }
+
+//         const emailValido = /\S+@\S+\.\S+/.test(email);
+//         if (!emailValido) {
+//             alert('Por favor, insira um email válido.');
+//             return;
+//         }
+
+//         if (!TestaCPF(cpfValido.toString())) {
+//             alert('CPF inválido!');
+//             return;
+//         }
+
+//         const senhaValida = senha.length >= 6;
+//         if (!senhaValida) {
+//             alert('A senha deve ter mais de 6 caracteres.');
+//             return;
+//         }
+
+//         const senhaSegura = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/.test(senha);
+//         if (!senhaSegura) {
+//             alert('A senha deve conter letras maiúsculas, minúsculas e números.');
+//             return;
+//         }
+
+//         const formCad = {
+//             email,
+//             senha,
+//             cpf,
+//             nome
+//         };
+
+//         const jsonData = JSON.stringify(formCad);
+//         console.log(jsonData);
+
+//         const options = {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: jsonData
+//         };
+//         console.log(options);
+
+//         fetch('http://localhost:8000/register', options)
+//            .then(response => {
+//                 if (response.status === 201) {
+//                     redirectToLogin(); 
+//                 } else if(response.status === 409) {
+//                     alert('Usuário já cadastrado.');
+//                 }
+//             })
+//            .then(data => console.log(data))
+//            .catch(error => console.error('Erro:', error));
+//     });
+// }
+
 function cadastroUser() {
-    document.getElementById('cadastro').addEventListener('submit', function (event) {
+    // Obtém o elemento do formulário
+    const formElement = document.getElementById('cadastro');
+
+    // Define a função de manipulação do evento
+    function handleSubmit(event) {
         event.preventDefault();
 
         const nome = document.getElementById('nome').value.toString().trim();
@@ -82,17 +157,26 @@ function cadastroUser() {
         console.log(options);
 
         fetch('http://localhost:8000/register', options)
-           .then(response => {
+          .then(response => {
                 if (response.status === 201) {
                     redirectToLogin(); 
                 } else if(response.status === 409) {
                     alert('Usuário já cadastrado.');
                 }
             })
-           .then(data => console.log(data))
-           .catch(error => console.error('Erro:', error));
-    });
+          .then(data => console.log(data))
+          .catch(error => console.error('Erro:', error));
+    }
+
+    // Verifica se o evento já foi adicionado
+    if (!formElement.hasAttribute('data-submit-listener-added')) {
+        // Adiciona o evento se ainda não foi adicionado
+        formElement.addEventListener('submit', handleSubmit);
+        // Marca o atributo para indicar que o evento foi adicionado
+        formElement.setAttribute('data-submit-listener-added', '');
+    }
 }
+
 
 
 
