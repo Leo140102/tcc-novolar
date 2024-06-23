@@ -32,15 +32,17 @@ app.use((req, res, next) => {
 
 //Configurações da session
 app.use(session({
+
     secret: 'rwZcr7FK',
     resave: false,
     saveUninitialized: true,
-    cookie: {
-        secure: false,
-        maxAge: 1800000
-    }
+    cookie: { secure: true }
 }));
-app.use(flash())
+
+global.myGlobalVariable
+
+
+
 
 //Middleware
 // app.use((req, res, next) => {
@@ -129,12 +131,7 @@ app.post("/login", async (req, res) => {
             return res.status(401).send('Senha incorreta.');
         }
 
-        req.session.user = {
-            nome: result[0].nome,
-            email: email
-        };
-
-        console.log('Login realizado com sucesso.');
+        myGlobalVariable = req.session.nome = result[0].nome
         return res.sendStatus(200);
 
     } catch (error) {
@@ -143,13 +140,20 @@ app.post("/login", async (req, res) => {
     }
 });
 
-app.get('/user', (req, res) => {
-    if (req.session.user) {
-      res.json(req.session.user);
+app.get("/user/name", (req, res) => {
+    console.log("testeeeeeeeeeeeeeeeeeee");
+    console.log(req.session); // Para depuração, verifique todo o objeto de sessão
+    req.session.nome = myGlobalVariable
+    console.log(req.session.nome); // Verifica o valor de nome na sessão
+
+    
+
+    if (req.session.nome) {
+        res.json({ nome: req.session.nome }); // Retorna apenas o nome
     } else {
-      res.status(404).json({ message: 'Usuário não encontrado.' });
+        res.status(404).json({ message: 'Usuário não encontrado.' }); // Mensagem de erro se o nome não for encontrado
     }
-  });
+});
 
 /* -------------------- ROTAS ANUNCIOS IMOVEIS ----------------*/
 /* TESTE */

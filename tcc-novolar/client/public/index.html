@@ -24,7 +24,7 @@
     <a href="#" class="logo"><img src="imagens/Logo NovoLar.png"> </a>
 
 
-
+    
 
     <ul class="navbar">
       <li><a href="#home" style="color: rgb(0, 134, 211);">Home</a></li>
@@ -38,13 +38,13 @@
       <li><a>
           <span class="bx bx-search" id="search-icon"></span>
         </a></li>
-
       <li><a href="login.html">
           <span class="bx bx-user" id="user-icon"></span>
         </a></li>
       <li>
         <span class="bx bx-menu" id="menu-icon"></span>
       </li>
+      <span id="userSession"></span>
     </ul>
 
 
@@ -72,7 +72,7 @@
   <section class="section__container popular__container">
 
     <div class="popular__grid" id="anuncios">
-      <div class="popular__card" >
+      <div class="popular__card">
 
         <a href="imovelItem.html">
           <img src="imagens/casa2.jpg" alt="popular hotel" />
@@ -194,10 +194,21 @@
   <script src="main.js"></script>
   <script src="home.js"></script>
 
-    <!--whatssapp-->
-    <div class="buttonzap">
-      <a href="https://wa.me/5544998996466" class="icon" target="_blank"><i class="bx bxl-whatsapp"></i></a>
-    </div>
+  <!--whatssapp-->
+  <div class="buttonzap">
+    <a href="https://wa.me/5544998996466" class="icon" target="_blank"><i class="bx bxl-whatsapp"></i></a>
+  </div>
 </body>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      fetch('http://localhost:8000/user/name')
+     .then(response => response.json())
+     .then(data => {
+          document.getElementById('userSession').innerText = data.nome;
+      })
+     .catch(error => console.error('Erro ao carregar nome do usuário:', error));
+  });
+  </script>
 
 </html>
