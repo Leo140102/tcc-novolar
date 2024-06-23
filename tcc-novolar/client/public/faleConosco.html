@@ -94,29 +94,33 @@
         <span class="circle one"></span>
         <span class="circle two"></span>
 
-        <form action="index.html" autocomplete="off">
+        <form action="https://formsubmit.co/kamilyxavierp@gmail.com" method="POST" autocomplete="off" >
           <h3 class="title">Envie uma mensagem</h3>
           <div class="input-container">
-            <input type="text" name="name" class="input">
+            <input type="text" name="Nome" class="input" required>
             <label for="">Nome</label>
             <span>Nome</span>
           </div>
           <div class="input-container">
-            <input type="email" name="email" class="input">
+            <input type="email" name="E-mail" class="input" required>
             <label for="">E-mail</label>
             <span>E-mail</span>
           </div>
           <div class="input-container">
-            <input type="tel" name="phone" class="input" />
+            <input type="tel" name="Telefone" class="input" required>
             <label for="">Telefone</label>
             <span>Telefone</span>
           </div>
           <div class="input-container textarea">
-            <textarea name="message" class="input"></textarea>
+            <textarea rows="10" name="Mensagem" class="input"></textarea>
             <label for="">Mensagem</label>
             <span>Mensagem</span>
           </div>
           <input type="submit" value="Enviar" class="btn">
+          <input type="hidden" name="_subject" value="Novo contato NovoLar!">
+          <input type="text" name="_honey" style="display: none">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="http://localhost:3000/faleConosco.html">
         </form>
       </div>
     </div>
