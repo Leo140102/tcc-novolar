@@ -28,16 +28,16 @@ app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.setHeader("Access-Control-Allow-Credentials", "true");
     next();
-  });
-  
+});
+
 //Configurações da session
 app.use(session({
     secret: 'rwZcr7FK',
     resave: false,
     saveUninitialized: true,
-    cookie: { 
-        secure: false, 
-        maxAge: 1800000 
+    cookie: {
+        secure: false,
+        maxAge: 1800000
     }
 }));
 app.use(flash())
@@ -49,6 +49,7 @@ app.use(flash())
 // })
 
 /* -------------------- cadastro ----------------*/
+
 
 app.post("/register", (req, res) => {
 
@@ -93,7 +94,7 @@ app.use("/public/*", (req, res, next) => {
     }
 })
 
- //----------------------------Login-------------------------------------
+//----------------------------Login-------------------------------------
 
 app.post("/login", async (req, res) => {
     try {
@@ -141,6 +142,14 @@ app.post("/login", async (req, res) => {
         return res.status(500).send({ error: error.message });
     }
 });
+
+app.get('/user', (req, res) => {
+    if (req.session.user) {
+      res.json(req.session.user);
+    } else {
+      res.status(404).json({ message: 'Usuário não encontrado.' });
+    }
+  });
 
 /* -------------------- ROTAS ANUNCIOS IMOVEIS ----------------*/
 /* TESTE */
