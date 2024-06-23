@@ -141,17 +141,11 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/user/name", (req, res) => {
-    console.log("testeeeeeeeeeeeeeeeeeee");
-    console.log(req.session); // Para depuração, verifique todo o objeto de sessão
     req.session.nome = myGlobalVariable
-    console.log(req.session.nome); // Verifica o valor de nome na sessão
-
-    
-
     if (req.session.nome) {
-        res.json({ nome: req.session.nome }); // Retorna apenas o nome
+        res.json({ nome: req.session.nome }); 
     } else {
-        res.status(404).json({ message: 'Usuário não encontrado.' }); // Mensagem de erro se o nome não for encontrado
+        res.status(404).json({ message: 'Usuário não encontrado.' }); 
     }
 });
 

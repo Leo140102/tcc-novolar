@@ -24,7 +24,7 @@
     <a href="#" class="logo"><img src="imagens/Logo NovoLar.png"> </a>
 
 
-    
+
 
     <ul class="navbar">
       <li><a href="#home" style="color: rgb(0, 134, 211);">Home</a></li>
@@ -201,14 +201,21 @@
 </body>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-      fetch('http://localhost:8000/user/name')
-     .then(response => response.json())
-     .then(data => {
-          document.getElementById('userSession').innerText = data.nome;
+  document.addEventListener('DOMContentLoaded', function () {
+    fetch('http://localhost:8000/user/name')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('userSession').innerText = data.nome;
       })
-     .catch(error => console.error('Erro ao carregar nome do usuário:', error));
+      .catch(error => console.error('Erro ao carregar nome do usuário:', error));
   });
-  </script>
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('userSession').innerText = data.nome;
+  })
+
+</script>
 
 </html>
