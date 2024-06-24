@@ -43,6 +43,7 @@
             <li>
                 <span class="bx bx-menu" id="menu-icon"></span>
             </li>
+            <span id="userSession"></span>
         </ul>
     </header>
 
@@ -263,6 +264,16 @@
 
     <script src="ImovelItem.js"></script>
     <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          fetch('http://localhost:8000/user/name')
+            .then(response => response.json())
+            .then(data => {
+              document.getElementById('userSession').innerText = data.nome;
+            })
+            .catch(error => console.error('Erro ao carregar nome do usuário:', error));
+        });
+      </script>
 
     <!--whatssapp-->
     <div class="buttonzap">
