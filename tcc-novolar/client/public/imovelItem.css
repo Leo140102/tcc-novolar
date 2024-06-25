@@ -584,7 +584,7 @@ header {
 /*imovel---------------------------------------------*/
 
 .card-wrapper {
-    padding-top: 0.1rem;
+    padding-top: 1rem;
     max-width: 1100px;
     margin: 0 auto;
 }
@@ -772,7 +772,7 @@ img {
     display: flex;
     margin-left: 12rem;
     flex-direction: column;
-    padding-top: 1rem;
+    padding-top: 4rem;
 }
 
 .mapa h3 {
@@ -892,6 +892,7 @@ img {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        padding-top: 1rem;
     }
 
     .product-content {
@@ -903,7 +904,7 @@ img {
     }
 }
 
-@media screen and (min-width: 292px) {
+@media screen and (max-width: 492px) {
     .mapa {
         display: flex;
         margin-left: 3.5rem;
