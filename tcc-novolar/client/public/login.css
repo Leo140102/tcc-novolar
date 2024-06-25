@@ -16,14 +16,14 @@ body{
 }
 #esqueceu {
     margin: 0 0 15px;
-    text-align: left; /* Alinha o texto à esquerda */
+    text-align: left;
     font-size: 14px;
     left: 30px;
-    color: #b9b9b9; /* Define a cor do texto para cinza claro */
+    color: #b9b9b9;
 }
 
 .esqueceu:hover {
-    color: #b3b3b3; /* Alterna a cor do texto para um cinza ainda mais claro ao passar o mouse sobre o link */
+    color: #b3b3b3;
 }
 
 #termosConcordancia:hover{
@@ -286,7 +286,7 @@ a {
 
 .left-panel .image,
 .left-panel .content {
-    transform: translateX(-200%);
+    transform: translateX(-250%);
 }
 
 .right-panel .image,
