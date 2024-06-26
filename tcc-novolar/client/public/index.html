@@ -8,6 +8,7 @@
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="Web site created using create-react-app" />
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
@@ -20,23 +21,35 @@
 
 <body>
 
+
+
   <header>
     <a href="#" class="logo"><img src="imagens/Logo NovoLar.png"> </a>
-
-
-
 
     <ul class="navbar">
       <li><a href="#home" style="color: rgb(0, 134, 211);">Home</a></li>
       <li><a href="imoveis.html">Imóveis</a></li>
       <li><a href="sobreNos.html">Sobre nós</a></li>
       <li><a href="faleConosco.html">Fale conosco</a></li>
+
+
     </ul>
 
 
     <ul class="actions">
       <li><a>
-          <span class="bx bx-search" id="search-icon"></span>
+          <div class="searchBox">
+            <div class="searchToggle">
+              <span class="bx bx-x cancel"></span>
+              <span class="bx bx-search search"></span>
+            </div>
+
+            <div class="search-field">
+              <input type="text" placeholder="Pesquisar">
+              <span class="bx bx-search"></span>
+            </div>
+
+          </div>
         </a></li>
       <li><a href="login.html">
           <span class="bx bx-user" id="user-icon"></span>
@@ -44,8 +57,54 @@
       <li>
         <span class="bx bx-menu" id="menu-icon"></span>
       </li>
-      <span id="userSession"></span>
+      <!-- <span id="userSession"></span> -->
+      <div class="profile-dropdown">
+        <div onclick="toggle()" class="profile-dropdown-btn">
+
+          <span>Leonardo
+            <i class="fa-solid fa-angle-down"></i>
+          </span>
+        </div>
+
+        <ul class="profile-dropdown-list">
+          <li class="profile-dropdown-list-item">
+            <a href="#">
+              <i class="fa-regular fa-user"></i>
+              Perfil
+            </a>
+          </li>
+
+          <li class="profile-dropdown-list-item">
+            <a href="#">
+              <i class="fa-solid fa-sliders"></i>
+              Configurações
+            </a>
+          </li>
+
+          <li class="profile-dropdown-list-item">
+            <a href="#">
+              <i class="fa-regular fa-circle-question"></i>
+              Ajuda e suporte
+            </a>
+          </li>
+          <hr />
+
+          <li class="profile-dropdown-list-item">
+            <a href="#">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              Sair
+            </a>
+          </li>
+        </ul>
+      </div>
+
+
     </ul>
+
+
+
+
+
 
 
 
