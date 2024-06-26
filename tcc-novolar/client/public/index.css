@@ -76,8 +76,8 @@ header {
 .navbar {
     display: flex;
     align-items: center;
-    /* left: 544px;  */
-    /* position: fixed; */
+    left: 544px;
+    position: fixed;
 }
 
 .navbar a {
@@ -89,8 +89,8 @@ header {
     text-transform: uppercase;
     text-decoration: none;
     margin-left: 35px;
- 
     align-items: center;
+
 
 }
 
@@ -100,7 +100,7 @@ header {
     top: 75%;
     left: 0;
     width: 0;
-    height: 1.5px;
+    height: 2.5px;
     background: rgb(0, 134, 211);
     transition: .3s;
 }
