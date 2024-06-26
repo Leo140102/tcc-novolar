@@ -850,7 +850,11 @@ header {
     text-decoration: none;
     z-index: 100;
 }
+/*----------- session ------*/
 
+#userSession {
+    font-size: 16px;
+}
 /* -------------------- pesquisar ------------------------- */
 
 .searchToggle span.cancel {
