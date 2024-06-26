@@ -1,3 +1,4 @@
+
 let id = 2;
 
 window.onload = () => {
@@ -90,3 +91,6 @@ searchToggle.addEventListener("click", () => {
     cancelIcon.style.display = "block";
   }
 });
+
+
+
