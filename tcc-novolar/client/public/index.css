@@ -693,6 +693,7 @@ header {
 
         font-size: 1.9rem;
     }
+
     .links {
         display: contents;
         flex-direction: column;
@@ -714,6 +715,7 @@ header {
         display: flex;
         flex-direction: column;
     }
+
     .links {
         display: contents;
         flex-direction: column;
@@ -844,4 +846,10 @@ header {
     text-align: center;
     text-decoration: none;
     z-index: 100;
+}
+
+/*----------- session ------*/
+
+#userSession {
+    font-size: 16px;
 }
