@@ -56,44 +56,7 @@
       <li>
         <span class="bx bx-menu" id="menu-icon"></span>
       </li>
-      <!-- <span id="userSession"></span> -->
-      <div class="profile-dropdown" id="perfil">
-        <div onclick="toggle()" class="profile-dropdown-btn">
-
-          <span><span id="userSession"></span>
-            <i class="fa-solid fa-angle-down"></i>
-          </span>
-        </div>
-
-        <ul class="profile-dropdown-list">
-          <li class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-regular fa-user"></i>
-              Perfil
-            </a>
-          </li>
-
-          <li class="profile-dropdown-list-item">
-            <a href="faleConosco.html">
-              <i class="fa-regular fa-circle-question"></i>
-              Ajuda e suporte
-            </a>
-          </li>
-          <hr />
-
-          <li class="profile-dropdown-list-item" id="sair">
-            <a href="#">
-              <!-- <button id="logoutBtn"> -->
-              <i class="fa-solid fa-arrow-right-from-bracket"></i>
-              Sair
-            </a>
-            <!-- </button> -->
-          </li>
-        </ul>
-      </div>
-
-
-      <!-- <span id="userSession"></span>  -->
+      <span id="userSession"></span>
     </ul>
 
 
@@ -249,10 +212,19 @@
     <a href="https://wa.me/5544998996466" class="icon" target="_blank"><i class="bx bxl-whatsapp"></i></a>
   </div>
 </body>
-
 <script>
+fetch('http://localhost:8000/user/name')
+              .then(response => response.json())
+              .then(data => {
+                   document.getElementById('userSession').innerText = data.nome;
+                   let iconUser = document.querySelector('#user-icon');
+                  // iconUser.classList.remove('bx-group'); // Indica que o usuário está logado
+                   // iconUser.classList.add('bx-user');
+               })
+              .catch(error => console.error('Erro ao carregar nome do usuário:', error));
+</script>
 
-  document.addEventListener('DOMContentLoaded', function () {
+  <!-- document.addEventListener('DOMContentLoaded', function () {
 
 
     //  const clearProfile = () => {
@@ -280,15 +252,15 @@
   //   document.addEventListener('DOMContentLoaded', function () {
   //     // Verifica se o usuário está logado antes de buscar o nome
   //     if (sessionStorage.getItem('loggedIn')!== null) {
-  //         fetch('http://localhost:8000/user/name')
-  //            .then(response => response.json())
-  //            .then(data => {
-  //                 document.getElementById('userSession').innerText = data.nome;
-  //                 let iconUser = document.querySelector('#user-icon');
-  //                 // iconUser.classList.remove('bx-group'); // Indica que o usuário está logado
-  //                 // iconUser.classList.add('bx-user');
-  //             })
-  //            .catch(error => console.error('Erro ao carregar nome do usuário:', error));
+        fetch('http://localhost:8000/user/name')
+              .then(response => response.json())
+              .then(data => {
+                   document.getElementById('userSession').innerText = data.nome;
+                   let iconUser = document.querySelector('#user-icon');
+                  // iconUser.classList.remove('bx-group'); // Indica que o usuário está logado
+                   // iconUser.classList.add('bx-user');
+               })
+              .catch(error => console.error('Erro ao carregar nome do usuário:', error));
   //     } else {
   //         // Se o usuário não estiver logado, limpa o nome do usuário e atualiza o ícone
   //         document.getElementById('userSession').innerText = "";
@@ -327,11 +299,10 @@
 
 </script>
 
-<!-- <script>
+ <script>
   document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('perfil').innerText = "";
-  })
+  }) -->
 
-</script> -->
-
+</script> 
 </html>

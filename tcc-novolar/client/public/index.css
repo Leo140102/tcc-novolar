@@ -958,6 +958,11 @@ header {
 .profile-dropdown {
     position: relative;
     width: fit-content;
+    /* display: none; */
+}
+
+.oculta {
+    display: none;
 }
 
 .profile-dropdown-btn {
