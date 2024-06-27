@@ -39,7 +39,7 @@ app.use(session({
     cookie: { secure: true }
 }));
 
-global.myGlobalVariable
+global.myGlobalVariable = null
 
 
 
@@ -139,6 +139,7 @@ app.post("/login", async (req, res) => {
         return res.status(500).send({ error: error.message });
     }
 });
+
 
 app.get("/user/name", (req, res) => {
     req.session.nome = myGlobalVariable
