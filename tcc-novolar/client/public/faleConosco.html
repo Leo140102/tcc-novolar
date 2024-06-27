@@ -52,7 +52,10 @@
       <li>
         <span class="bx bx-menu" id="menu-icon"></span>
       </li>
+<<<<<<< HEAD
       <span id="userSession"></span>
+=======
+>>>>>>> parent of f45bc45 (comit session completo)
     </ul>
 
 
@@ -64,8 +67,8 @@
     <div class="form">
       <div class="contact-info">
         <h3 class="title">Entre em contato conosco</h3>
-        <p class="text ">Estamos aqui para ajudar você a encontrar o lar perfeito durante seus estudos.
-          Se você tiver dúvidas, sugestões ou precisar de assistência, não hesite em entrar em contato conosco.
+        <p class="text ">Estamos aqui para ajudar você a encontrar o lar perfeito durante seus estudos. 
+          Se você tiver dúvidas, sugestões ou precisar de assistência, não hesite em entrar em contato conosco. 
           Nossa equipe está pronta para atendê-lo!</p>
 
         <div class="info">
@@ -105,7 +108,7 @@
         <span class="circle one"></span>
         <span class="circle two"></span>
 
-        <form action="https://formsubmit.co/kamilyxavierp@gmail.com" method="POST" autocomplete="off">
+        <form action="https://formsubmit.co/kamilyxavierp@gmail.com" method="POST" autocomplete="off" >
           <h3 class="title">Envie uma mensagem</h3>
           <div class="input-container">
             <input type="text" name="Nome" class="input" required>
@@ -158,22 +161,12 @@
   <script src="App.js"></script>
   <script src="Main.js"></script>
 
-  <!--whatssapp-->
-  <div class="buttonzap">
-    <a href="https://wa.me/5544998996466" class="iconzap" target="_blank"><i class="bx bxl-whatsapp" id="zap"></i></a>
-  </div>
-  <script src="App.js"></script>
-  <script src="login.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      fetch('http://localhost:8000/user/name')
-        .then(response => response.json())
-        .then(data => {
-          document.getElementById('userSession').innerText = data.nome;
-        })
-        .catch(error => console.error('Erro ao carregar nome do usuário:', error));
-    });
-  </script>
+ <!--whatssapp-->
+ <div class="buttonzap">
+  <a href="https://wa.me/5544998996466" class="iconzap" target="_blank"><i class="bx bxl-whatsapp"  id="zap"></i></a>
+</div>
+<script src="App.js"></script>
+<script src="login.js"></script>
 </body>
 
 </html>

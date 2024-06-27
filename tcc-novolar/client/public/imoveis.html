@@ -53,8 +53,12 @@
             <li>
               <span class="bx bx-menu" id="menu-icon"></span>
             </li>
+<<<<<<< HEAD
             <span id="userSession"></span>
           </ul>
+=======
+        </ul>
+>>>>>>> parent of f45bc45 (comit session completo)
 
 
 
@@ -121,16 +125,6 @@
     </body>
     <script src="Main.js"></script>
     <script src="imovel.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          fetch('http://localhost:8000/user/name')
-            .then(response => response.json())
-            .then(data => {
-              document.getElementById('userSession').innerText = data.nome;
-            })
-            .catch(error => console.error('Erro ao carregar nome do usuário:', error));
-        });
-      </script>
 
      <!--whatssapp-->
  <div class="buttonzap">
