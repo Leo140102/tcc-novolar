@@ -8,6 +8,7 @@
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="Web site created using create-react-app" />
   <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
@@ -49,18 +50,17 @@
 
           </div>
         </a></li>
-      <li><a href="login.html">
+      <li><a href="login.html" id="loginicon">
           <span class="bx bx-user" id="user-icon"></span>
         </a></li>
       <li>
         <span class="bx bx-menu" id="menu-icon"></span>
       </li>
-<<<<<<< HEAD
       <!-- <span id="userSession"></span> -->
-      <div class="profile-dropdown">
+      <div class="profile-dropdown" id="perfil">
         <div onclick="toggle()" class="profile-dropdown-btn">
 
-          <span>Leonardo
+          <span><span id="userSession"></span>
             <i class="fa-solid fa-angle-down"></i>
           </span>
         </div>
@@ -74,33 +74,24 @@
           </li>
 
           <li class="profile-dropdown-list-item">
-            <a href="#">
-              <i class="fa-solid fa-sliders"></i>
-              Configurações
-            </a>
-          </li>
-
-          <li class="profile-dropdown-list-item">
-            <a href="#">
+            <a href="faleConosco.html">
               <i class="fa-regular fa-circle-question"></i>
               Ajuda e suporte
             </a>
           </li>
           <hr />
 
-          <li class="profile-dropdown-list-item">
-            <a href="#" id="sair">
+          <li class="profile-dropdown-list-item" id="sair">
+            <!-- <button id="logoutBtn"> -->
               <i class="fa-solid fa-arrow-right-from-bracket"></i>
               Sair
-            </a>
+            <!-- </button> -->
           </li>
         </ul>
       </div>
 
 
-=======
-      <span id="userSession"></span>
->>>>>>> parent of cbf028d (perfil)
+      <!-- <span id="userSession"></span>  -->
     </ul>
 
 
@@ -247,8 +238,9 @@
   </section>
 
   <div id="root"></div>
-  <script src="main.js"></script>
   <script src="home.js"></script>
+  <script src="main.js"></script>
+
 
   <!--whatssapp-->
   <div class="buttonzap">
@@ -257,21 +249,87 @@
 </body>
 
 <script>
+
   document.addEventListener('DOMContentLoaded', function () {
+
+
+    //  const clearProfile = () => {
+    //    const vazio = document.getElementById('perfil').innerText = "";
+    //    let iconUser = document.querySelector('#user-icon');
+    //   iconUser.classList.toggle('bx-user');
+    //    // vazio = "";
+    //  };
+
+    //dockument.getElementById('sair').addEventListener('click', clearProfile);
+
+    //  if (vazio === "") {
     fetch('http://localhost:8000/user/name')
       .then(response => response.json())
       .then(data => {
         document.getElementById('userSession').innerText = data.nome;
+        let iconUser = document.querySelector('#user-icon');
+        iconUser.classList.toggle('');
       })
       .catch(error => console.error('Erro ao carregar nome do usuário:', error));
+    //  } else {
+    //    clearUserSession(); // Limpa o nome do usuário se não estiver logado
+    //  }
   });
+  //   document.addEventListener('DOMContentLoaded', function () {
+  //     // Verifica se o usuário está logado antes de buscar o nome
+  //     if (sessionStorage.getItem('loggedIn')!== null) {
+  //         fetch('http://localhost:8000/user/name')
+  //            .then(response => response.json())
+  //            .then(data => {
+  //                 document.getElementById('userSession').innerText = data.nome;
+  //                 let iconUser = document.querySelector('#user-icon');
+  //                 // iconUser.classList.remove('bx-group'); // Indica que o usuário está logado
+  //                 // iconUser.classList.add('bx-user');
+  //             })
+  //            .catch(error => console.error('Erro ao carregar nome do usuário:', error));
+  //     } else {
+  //         // Se o usuário não estiver logado, limpa o nome do usuário e atualiza o ícone
+  //         document.getElementById('userSession').innerText = "";
+  //         // let iconUser = document.querySelector('#user-icon');
+  //         // iconUser.classList.remove('bx-user'); // Remover a classe 'bx-user'
+  //         // iconUser.classList.add('bx-group'); // Adicionar a classe 'bx-group' para indicar que o usuário saiu
+  //     }
+  // });
 </script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('sair').innerText = "";
-  })
+    const logoutButton = document.getElementById('logoutBtn');
+
+    if (logoutButton) {
+      logoutButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Impede o comportamento padrão do botão
+
+        fetch('http://localhost:8000/logout', { method: 'GET' }) // Corrigido aqui
+          .then(response => {
+            if (response.ok) {
+              document.getElementById('userSession').innerText = ""; // Limpa o texto do usuário
+              alert("Logout realizado com sucesso!"); // Opicional: exibe uma mensagem de confirmação
+            } else {
+              throw new Error('Erro ao encerrar sessão.');
+            }
+          })
+          .catch(error => {
+            console.error('Erro ao encerrar sessão:', error);
+            alert("Falha ao realizar o logout."); // Opicional: exibe uma mensagem de erro
+          });
+      });
+    }
+  });
+
 
 </script>
+
+<!-- <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('perfil').innerText = "";
+  })
+
+</script> -->
 
 </html>

@@ -122,7 +122,8 @@ app.post("/login", async (req, res) => {
                 if (erro) {
                     reject(erro);
                 } else {
-                    resolve(result);
+                    resolve(result);    
+                    
                 }
             });
         });
@@ -149,6 +150,10 @@ app.get("/user/name", (req, res) => {
         res.status(404).json({ message: 'Usuário não encontrado.' }); 
     }
 });
+
+app.get('/logout', (req, res) => {
+    req.session.destroy()
+  });
 
 /* -------------------- ROTAS ANUNCIOS IMOVEIS ----------------*/
 /* TESTE */

@@ -100,7 +100,7 @@ header {
     top: 75%;
     left: 0;
     width: 0;
-    height: 2.5px;
+    height: 1.5px;
     background: rgb(0, 134, 211);
     transition: .3s;
 }
@@ -941,3 +941,99 @@ header {
 /* @media (max-width: 790px) {
     
 } */
+
+:root {
+    --primary: #eeeeee;
+    --secondary: rgb(26, 16, 117);
+    --green: #e2e2e2;
+    --secondary-light3: #575757;
+    --secondary-light: #f1f1f1;
+    --secondary-light-2: #f1f1f1;
+    --white: #fff;
+    --black: #393e46;
+
+    --shadow: 0px 2px 8px 0px var(--secondary-light3);
+}
+
+.profile-dropdown {
+    position: relative;
+    width: fit-content;
+}
+
+.profile-dropdown-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 0rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    width: 150px;
+    border-radius: 50px;
+    color: var(--black);
+
+    cursor: pointer;
+    transition: box-shadow 0.2s ease-in, background-color 0.2s ease-in,
+        border 0.3s;
+}
+
+.profile-dropdown-btn span {
+    margin: 0 0.5rem;
+    margin-right: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    padding-left: 1rem;
+}
+
+.profile-dropdown-list {
+    position: absolute;
+    top: 68px;
+    width: 220px;
+    right: 0;
+    background-color: var(--white);
+    border-radius: 10px;
+    max-height: 0;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: max-height 0.5s;
+}
+
+/* .profile-dropdown-list hr {
+  border: 0.5px solid var(--green);
+} */
+
+.profile-dropdown-list.active {
+    max-height: 500px;
+}
+
+.profile-dropdown-list-item {
+    padding: 0.5rem 0rem 0.5rem 1rem;
+    transition: background-color 0.2s ease-in, padding-left 0.2s;
+}
+
+.profile-dropdown-list-item a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--black);
+}
+
+.profile-dropdown-list-item a i {
+    margin-right: 0.8rem;
+    font-size: 1.0rem;
+    width: 2.3rem;
+    height: 2.3rem;
+    /* background-color: var(--secondary); */
+    color: rgb(26, 16, 117);
+    line-height: 2.3rem;
+    text-align: center;
+    margin-right: 0.5rem;
+    /* border-radius: 50%; */
+    transition: margin-right 0.3s;
+}
+
+.profile-dropdown-list-item:hover {
+    padding-left: 1.5rem;
+    background-color: var(--secondary-light);
+}
