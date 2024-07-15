@@ -241,4 +241,18 @@ app.listen(PORT, () => {
 
 });
 
+//--------------------------------ROTAS 2.0-------------------------------------
+
+app.get('/pesquisa', (req, res) => {
+    const { query } = req.query;
+
+    let queryValue = '%' + query + '%';
+  
+    db.query('SELECT * FROM mydb.imovel WHERE descricao LIKE ?', [queryValue], (error, results) => {
+      if (error) throw error;
+  
+      res.send(results);
+    });
+  });
+
 module.exports = app;
