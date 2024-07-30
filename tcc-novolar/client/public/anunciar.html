@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="anunciar.css">
+    <title>Formulário</title>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="logo"><img src="imagens/Logo NovoLar.png"> </a>
+    </header>
+    <div class="container">
+
+        <div class="form">
+            <form action="#">
+                <div class="form-header">
+                    <div class="title">
+                        <h1>Anunciar Imóvel</h1>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="firstname">Título</label>
+                        <input id="firstname" type="text" name="firstname" placeholder="Digite o título do imóvel"
+                            required>
+                    </div>
+
+                    <div class="input-box-valor">
+                        <label for="lastname">Valor</label>
+                        <input id="lastname" type="text" name="lastname" placeholder="Digite o valor" required>
+                    </div>
+                    <div class="input-box-area">
+                        <label for="email">Área</label>
+                        <input id="email" type="email" name="email" placeholder="Digite a área" required>
+                    </div>
+
+                    <div class="input-box-endereco">
+                        <label for="number">Endereço</label>
+                        <input id="number" type="tel" name="number" placeholder="Digite o endereço" required>
+                    </div>
+
+                    <div class="input-box-descricao">
+                        <label for="number">Descrição</label>
+                        <input id="number" type="text" name="description" placeholder="Digite a descrição " required>
+                    </div>
+                    <!----------------------------------------- FIM TABELA IMOVEL ------------------------------------>
+
+                </div>
+
+
+
+
+            </form>
+        </div>
+
+        <div class="form-image">
+            <div class="input-box">
+                <label for="imagens">Imagens</label>
+                <input id="imagens" type="file" name="imagens" placeholder="Selecione Imagens" required multiple>
+            </div>
+
+
+            <div class="gender-inputs">
+                <div class="gender-title">
+                    <h6>Idade</h6>
+                </div>
+
+                <div class="gender-group">
+                    <div class="gender-input">
+                        <input id="female" type="radio" name="gender">
+                        <label for="female">+18</label>
+                    </div>
+
+                    <div class="gender-input">
+                        <input id="male" type="radio" name="gender">
+                        <label for="male">17-25</label>
+                    </div>
+
+                    <div class="gender-input">
+                        <input id="others" type="radio" name="gender">
+                        <label for="others">25-35</label>
+                    </div>
+
+                    <div class="gender-input">
+                        <input id="none" type="radio" name="gender">
+                        <label for="none">Qualquer idade</label>
+                    </div>
+                </div>
+            </div>
+            <div class="gender-inputs">
+                <div class="gender-title">
+                    <h6>Sexo</h6>
+                </div>
+
+                <div class="gender-group">
+                    <div class="gender-input">
+                        <input id="female" type="radio" name="gender">
+                        <label for="female">Feminino</label>
+                    </div>
+
+                    <div class="gender-input">
+                        <input id="male" type="radio" name="gender">
+                        <label for="male">Masculino</label>
+                    </div>
+
+                    <div class="gender-input">
+                        <input id="others" type="radio" name="gender">
+                        <label for="others">Ambos</label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="gender-inputs">
+                <div class="gender-title">
+                    <h6>Animais</h6>
+                </div>
+
+                <div class="gender-group">
+                    <div class="gender-input">
+                        <input id="female" type="radio" name="gender">
+                        <label for="female">Permitido</label>
+                    </div>
+
+                    <div class="gender-input">
+                        <input id="male" type="radio" name="gender">
+                        <label for="male">Proibido</label>
+                    </div>
+                </div>
+            </div>
+            <div class="gender-inputs">
+                <div class="gender-title">
+                    <h6>Fumar</h6>
+                </div>
+
+                <div class="gender-group">
+                    <div class="gender-input">
+                        <input id="female" type="radio" name="gender">
+                        <label for="female">Permitido</label>
+                    </div>
+
+                    <div class="gender-input">
+                        <input id="male" type="radio" name="gender">
+                        <label for="male">Proibido</label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="continue-button">
+                <button><a href="#">Continuar</a> </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
