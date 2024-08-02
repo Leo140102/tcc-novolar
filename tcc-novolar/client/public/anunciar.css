@@ -75,7 +75,7 @@ body {
     background-color: #fff;
     padding: 3rem;
     border-radius: 15px;
-    top: 9.2rem;
+    top: 19.2rem;
 }
 
 .form-header {
@@ -138,7 +138,15 @@ body {
 }
 
 
-.input-box label {
+.tipo-title h6 {
+    margin-top: 1.62rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #000000c0;
+}
+
+.input-box label{
+
     font-size: 0.75rem;
     font-weight: 600;
     color: #000000c0;
@@ -151,18 +159,20 @@ body {
 .idade-group,
 .gender-group,
 .animais-group,
-.fumar-group {
+.fumar-group,
+.tipo-group {
     display: flex;
     /* justify-content: space-between; */
     margin-top: 0.62rem;
     padding: 0 .5rem;
-    
+
 }
 
 .idade-input,
 .gender-input,
 .animais-input,
-.fumar-input {
+.fumar-input,
+.tipo-input {
     display: flex;
     align-items: center;
     padding-right: 3rem;
@@ -171,14 +181,16 @@ body {
 .idade-input input,
 .gender-input input,
 .animais-input input,
-.fumar-input input {
+.fumar-input input,
+.tipo-input input {
     margin-right: 0.35rem;
 }
 
 .idade-input label,
 .gender-input label,
 .animais-input label,
-.fumar-input label {
+.fumar-input label,
+.tipo-input label {
     font-size: 0.81rem;
     font-weight: 600;
     color: #000000c0;
