@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&family=Open+Sans:wght@300;400;500;600&display=swap');
+
 * {
     padding: 0;
     margin: 0;
@@ -65,13 +66,9 @@ body {
     padding: 1rem;
 }
 
-.form-image img {
-    width: 31rem;
-}
-
 .form {
     width: 50%;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -86,29 +83,6 @@ body {
     display: flex;
     justify-content: space-between;
     top: 9.2rem;
-}
-
-.login-button {
-    display: flex;
-    align-items: center;
-}
-
-.login-button button {
-    border: none;
-    background-color: rgb(26, 16, 117);
-    padding: 0.4rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.login-button button:hover {
-    background-color: rgb(26, 16, 117);
-}
-
-.login-button button a {
-    text-decoration: none;
-    font-weight: 500;
-    color: #fff;
 }
 
 .form-header h1::after {
@@ -153,8 +127,18 @@ body {
     outline: 1px solid rgb(26, 16, 117);
 }
 
-.input-box label,
-.gender-title h6 {
+.idade-title h6,
+.gender-title h6,
+.animais-title h6,
+.fumar-title h6 {
+    margin-top: 1.62rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgb(26, 16, 117);
+}
+
+
+.input-box label {
     font-size: 0.75rem;
     font-weight: 600;
     color: #000000c0;
@@ -164,29 +148,43 @@ body {
     color: #000000be;
 }
 
-.gender-group {
+.idade-group,
+.gender-group,
+.animais-group,
+.fumar-group {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     margin-top: 0.62rem;
     padding: 0 .5rem;
+    
 }
 
-.gender-input {
+.idade-input,
+.gender-input,
+.animais-input,
+.fumar-input {
     display: flex;
     align-items: center;
+    padding-right: 3rem;
 }
 
-.gender-input input {
+.idade-input input,
+.gender-input input,
+.animais-input input,
+.fumar-input input {
     margin-right: 0.35rem;
 }
 
-.gender-input label {
+.idade-input label,
+.gender-input label,
+.animais-input label,
+.fumar-input label {
     font-size: 0.81rem;
     font-weight: 600;
     color: #000000c0;
 }
 
-.continue-button button {
+.anuncie-button button {
     width: 100%;
     margin-top: 2.5rem;
     border: none;
@@ -196,11 +194,11 @@ body {
     cursor: pointer;
 }
 
-.continue-button button:hover {
+.anuncie-button button:hover {
     background-color: rgb(26, 16, 117);
 }
 
-.continue-button button a {
+.anuncie-button button a {
     text-decoration: none;
     font-size: 0.93rem;
     font-weight: 500;
@@ -211,9 +209,11 @@ body {
     .form-image {
         display: none;
     }
+
     .container {
         width: 50%;
     }
+
     .form {
         width: 100%;
     }
@@ -224,6 +224,7 @@ body {
         width: 90%;
         height: auto;
     }
+
     .input-group {
         flex-direction: column;
         z-index: 5;
@@ -232,15 +233,19 @@ body {
         overflow-y: scroll;
         flex-wrap: nowrap;
     }
+
     .gender-inputs {
         margin-top: 2rem;
     }
+
     .gender-group {
         flex-direction: column;
     }
+
     .gender-title h6 {
         margin: 0;
     }
+
     .gender-input {
         margin-top: 0.5rem;
     }
