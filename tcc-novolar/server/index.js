@@ -401,25 +401,20 @@ app.post("/registerImovel", (req, res) => {
     const valor = req.body.valor
     const area = req.body.area
     const descricao = req.body.descricao
-    const valid = req.body.valid
     const locatario_id = req.body.locatario_id
     const endereco = req.body.endereco
     const titulo = req.body.titulo
-    const nota = req.body.nota
-    const avaliador_id = req.body.avaliador_id
 
     const idade = req.body.idade
     const sexo = req.body.sexo
     const animais = req.body.animais
     const fumar = req.body.fumar
-    const imoveis_id_regras = req.body.imoveis_id_regras
-
 
     try {
         // Supondo que db seja uma instância válida do seu banco de dados
         db.query(
-            "INSERT INTO mydb.imovel (tipo, valor, area, descricao, valid, locatario_id, endereco, titulo, nota, avaliador_id) VALUES (?,?,?,?,?,?,?,?,?,?)",
-            [tipo, valor, area, descricao, valid, locatario_id, endereco, titulo, nota, avaliador_id],
+            "INSERT INTO mydb.imovel (tipo, valor, area, descricao, locatario_id, endereco, titulo) VALUES (?,?,?,?,?,?,?)",
+            [tipo, valor, area, descricao, locatario_id, endereco, titulo],
             async (err, result) => {
                 if (err) {
                     console.log(err);
@@ -429,8 +424,8 @@ app.post("/registerImovel", (req, res) => {
                 const imovelId = result.insertId;
 
                 await db.query(
-                    "INSERT INTO mydb.regras (idade, sexo, animais, fumar, imoveis_id_regras) VALUES (?, ?, ?, ?, ?)",
-                    [idade, sexo, animais, fumar, imoveis_id_regras],
+                    "INSERT INTO mydb.regras (idade, sexo, animais, fumar) VALUES (?, ?, ?, ?)",
+                    [idade, sexo, animais, fumar, imovelId],
                     (err, insertRegraResult) => {
                         if (err) {
                             return res.status(500).send({ error: 'Erro ao inserir regra.' });

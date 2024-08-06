@@ -5,6 +5,7 @@ const container = document.querySelector(".container");
 const login_btn2 = document.querySelector("#login-btn2");
 const cadastro_btn2 = document.querySelector("#cadastro-btn2");
 
+/* fale conosco */
 const inputs = document.querySelectorAll(".input");
 
 function focusFunc() {
@@ -24,6 +25,7 @@ inputs.forEach((input) => {
   input.addEventListener("focus", focusFunc);
   input.addEventListener("blur", blurFunc);
 });
+/* fale conosco */
 
 cadastro_btn.addEventListener("click", () => {
   container.classList.add("cadastro-mode");

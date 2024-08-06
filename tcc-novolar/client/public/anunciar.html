@@ -17,7 +17,7 @@
     <div class="container">
 
         <div class="form">
-            <form action="#">
+            <form action="" class="cadastroImovel-form" id="cadastroImovel">
                 <div class="form-header">
                     <div class="title">
                         <h1>Anunciar Imóvel</h1>
@@ -39,7 +39,7 @@
                             <input id="intervalo1" type="radio" name="tipo">
                             <label for="intervalo1">Apartamento</label>
                         </div>
-            
+
                         <div class="tipo-input">
                             <input id="intervalo2" type="radio" name="tipo">
                             <label for="intervalo2">República</label>
@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="input-box-endereco">
-                        <label for="endereco">Endereço</label> 
+                        <label for="endereco">Endereço</label>
                         <input id="endereco" type="text" name="endereco" placeholder="Digite o endereço" required>
                     </div>
 
@@ -84,14 +84,14 @@
 
 
 
-            </form>
+
         </div>
 
         <div class="form-image">
-                <div class="input-box">
-                    <label for="imagens">Imagens</label>
-                    <input id="imagens" type="file" name="imagens" placeholder="Selecione Imagens" required multiple>
-                </div>
+            <div class="input-box">
+                <label for="imagens">Imagens</label>
+                <input id="imagens" type="file" name="imagens" placeholder="Selecione Imagens" required multiple>
+            </div>
 
             <div class="idade-inputs">
                 <div class="idade-title">
@@ -179,11 +179,22 @@
                 </div>
             </div>
 
+            <!-- <div class="anuncie-button">
+                <button type="submit" class="btnImv" onclick="cadastroImovel()"><a href="index.html">anunciar</a>
+                </button>
+            </div> -->
+
             <div class="anuncie-button">
-                <button><a href="index.html">anunciar</a> </button>
+                <button type="submit" class="btnImv" onclick="cadastroImovel()"><a>anunciar</a>
+                </button>
             </div>
         </div>
+        </form>
     </div>
+
+    <script src="cadastroImovel.js"></script>
 </body>
+
+
 
 </html>
