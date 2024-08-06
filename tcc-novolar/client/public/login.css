@@ -88,7 +88,7 @@ body {
 .container {
     position: relative;
     width: 70vw;
-    height: 80vh;
+    height: 85vh;
     background: white;
     border-radius: 15px;
     box-shadow: 0 4px 20px 0 rgb(145, 153, 161);
@@ -547,4 +547,30 @@ a {
 
 .toast.active ~ button{
     pointer-events: none;
+}
+
+.tipoUser-group {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    /* justify-content: space-between; */
+    margin-top: 1rem;
+    padding: 0 .5rem;
+
+}
+
+.tipoUser-input {
+    display: flex;
+    align-items: center;
+    padding-right: 3rem;
+}
+
+.tipoUser-input input {
+    margin-right: 0.35rem;
+}
+
+.tipoUser-input label {
+    font-size: 0.81rem;
+    font-weight: 600;
+    color: #4a464ec0;
 }

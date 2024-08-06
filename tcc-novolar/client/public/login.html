@@ -39,7 +39,7 @@
                     Esqueceu a senha?
                 </a>
 
-               
+
                 <button type="button" class="btn" id="login" onclick="logar()">Login</button>
 
                 <p class="social-text">Ou entre usando:</p>
@@ -58,6 +58,17 @@
             </form>
             <form action="" class="cadastro-form" id="cadastro">
                 <h2 class="title">Cadastre-se</h2>
+                <div class="tipoUser-group">
+                    <div class="tipoUser-input" required>
+                        <input id="dono" type="radio" name="tipoUser">
+                        <label for="dono">Quero anunciar</label>
+                    </div>
+
+                    <div class="tipoUser-input">
+                        <input id="estudante" type="radio" name="tipoUser">
+                        <label for="estudante">Quero alugar</label>
+                    </div>
+                </div>
                 <div class="input-field">
                     <i class="bx bx-user"></i>
                     <input type="text" placeholder="Nome" required id="nome">
@@ -81,24 +92,16 @@
                         inputmode="numeric" title="Digite o CPF no formato 000.000.000-00" id="cpf">
                 </div>
                 <div class="input-field">
+                    <i class="bx bx-phone"></i>
+                    <input type="text" title="Por favor, insira apenas números." placeholder="Telefone" required id="telefoneCadastro" inputmode="numeric">
+                </div>
+                <div class="input-field">
                     <i class="bx bx-envelope"></i>
                     <input type="email" placeholder="Email" required id="emailCadastro">
                 </div>
                 <div class="input-field">
                     <i class="bx bx-lock"></i>
-                    <!-- <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                            const senhaInput = document.querySelector('input[type="text"][placeholder="Senha"]');
 
-                            cpfInput.addEventListener('input', function (e) {
-                                if (/^[A-Za-z0-9]{6,}$/.test(this.value)) {
-
-                                } else {
-                                    alert('Por favor, insira uma senha válida com no mínimo 6 caracteres.');
-                                }
-                            });
-                        });
-                    </script> -->
                     <input type="password" placeholder="Senha" required id="senhaCadastro">
                 </div>
 
@@ -111,7 +114,7 @@
                 <a href="index.html">
                     <button type="submit" class="btn" onclick="cadastroUser()">Cadastrar</button>
                 </a>
-                <p class="social-text">Ou entre usando:</p>
+                <!-- <p class="social-text">Ou entre usando:</p>
                 <div class="social-media">
                     <a href="#" class="social-icon">
                         <i class="bx bxl-facebook"></i>
@@ -122,7 +125,7 @@
                     <a href="" class="social-icon">
                         <i class="bx bxl-google"></i>
                     </a>
-                </div>
+                </div> -->
                 <p class="account-text">Já possui uma conta? <a href="#" id="login-btn2">Entrar</a></p>
             </form>
         </div>
@@ -165,7 +168,7 @@
     <script src="App.js"></script>
     <script src="login.js"></script>
     <script src="cadastro.js"></script>
-    
+
 
 
 </body>

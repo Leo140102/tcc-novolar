@@ -231,9 +231,16 @@ header {
 }
 
 .heading span {
+    text-align: center;
     font-size: 1rem;
     font-weight: 600;
     color: black;
+}
+
+.titulo span2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: rgb(74, 65, 163);
 }
 
 .heading h1 {
@@ -422,7 +429,7 @@ header {
 }
 
 .popular__grid {
-    margin-top: -2rem;
+    margin-top: -4rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem
@@ -493,6 +500,81 @@ header {
 }
 
 .popular__content p {
+    color: #959BC7
+}
+
+.republica__grid {
+    margin-top: -4rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem
+}
+
+.republica__card img {
+    height: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.republica__card {
+    height: 18rem;
+    width: 17.7rem;
+    overflow: hidden;
+    border-radius: 1rem;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: .35s;
+}
+
+.republica__card .stars {
+    flex: 1 1 10rem;
+    display: flex;
+    text-align: center;
+    padding-left: 1rem;
+    align-items: center;
+    color: rgb(26, 16, 117);
+
+
+}
+
+.republica__card:hover {
+    opacity: .6;
+}
+
+.republica__content {
+    padding: 1rem;
+}
+
+.republica__card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.republica__card__header h4 {
+
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: black;
+}
+
+.republica__card__header h4:hover {
+
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgb(26, 16, 117);
+}
+
+.republica__card__header h3 {
+
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: black;
+}
+
+.republica__content p {
     color: #959BC7
 }
 
