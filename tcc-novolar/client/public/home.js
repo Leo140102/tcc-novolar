@@ -73,6 +73,70 @@ function get_imoveisMaiorNotas() {
 
         })
 }
+
+document.querySelector('#searchInput').addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+        const searchTerm = this.value;
+        get_imoveisPesquisa(searchTerm);
+    }
+});
+
+function get_imoveisPesquisa(searchTerm) {
+    // Construa a URL com o termo de pesquisa
+    const url = `http://localhost:8000/pesquisa?query=${encodeURIComponent(searchTerm)}`;
+
+    fetch(url)
+        .then(response => {
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                console.log('Erro ao buscar imóveis');
+            }
+        })
+        .then(imoveis => {
+            if (imoveis.length === 0) {
+                document.querySelector("#no_imoveis").classList.remove("d-none");
+            } else {
+                console.log(imoveis);
+                document.querySelector("#anuncios").innerHTML = null;
+
+                imoveis.forEach(imovel => {
+                    let html = `
+                        <a href="imovelItem.html?id=${imovel.id}">
+                            <img src="imagens/${imovel.image_url}" alt="Popular Hotel" />
+                            <div class="stars">
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star'></i>
+                                <i class='bx bxs-star-half'></i>
+                                <span id="nota">4.7</span>
+                            </div>
+                            <div class="popular__content">
+                                <div class="popular__card__header">
+                                    <h4>${imovel.titulo}</h4>
+                                    <h3>R$${imovel.valor}</h3>
+                                </div>
+                                <p>${imovel.endereco}</p>
+                            </div>
+                        </a>`;
+                    
+                    let newAnuncio = document.createElement('div');
+                    newAnuncio.classList.add('popular__card');
+                    newAnuncio.innerHTML = html;
+
+                    document.querySelector("#anuncios").appendChild(newAnuncio);
+                });
+                // Ocultar mensagem de não há imóveis disponíveis
+                document.querySelector("#no_imoveis").classList.add("d-none");
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao buscar imóveis:', error);
+        });
+}
+
+
 //pesquisar
 const searchToggle = document.querySelector(".searchToggle");
 

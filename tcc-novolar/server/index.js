@@ -1,5 +1,10 @@
 const express = require('express');
 const app = express()
+const fileupload = require('express-fileupload')
+
+const multer = require('multer');
+
+app.use(fileupload())
 
 const PORT = 8000;
 const mysql = require("mysql");
@@ -12,6 +17,29 @@ const flash = require("connect-flash")
 
 const path = require('path')
 
+// Configuração do Multer
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: (req, file, cb) => {
+            cb(null, './public/upload/users');
+        },
+        filename: (req, file, cb) => {
+            cb(null, Date.now().toString() + "_" + file.originalname);
+        }
+    }),
+    fileFilter: (req, file, cb) => {
+        const allowedExtensions = ['image/png', 'image/jpg', 'image/jpeg'];
+        const extension = file.mimetype.split('/')[1];
+        if (allowedExtensions.includes(extension)) {
+            cb(null, true);
+        } else {
+            cb(null, false);
+        }
+    }
+});
+
+app.use(upload.array("fotos"));
+
 //Configurações do banco
 const db = mysql.createConnection({
     host: "localhost",
@@ -23,7 +51,7 @@ const db = mysql.createConnection({
 app.use(express.json());
 app.use(cors());
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000"); // Substitua pelo domínio do seu cliente
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.setHeader("Access-Control-Allow-Credentials", "true");
@@ -122,8 +150,8 @@ app.post("/login", async (req, res) => {
                 if (erro) {
                     reject(erro);
                 } else {
-                    resolve(result);    
-                    
+                    resolve(result);
+
                 }
             });
         });
@@ -145,15 +173,15 @@ app.post("/login", async (req, res) => {
 app.get("/user/name", (req, res) => {
     req.session.nome = myGlobalVariable
     if (req.session.nome) {
-        res.json({ nome: req.session.nome }); 
+        res.json({ nome: req.session.nome });
     } else {
-        res.status(404).json({ message: 'Usuário não encontrado.' }); 
+        res.status(404).json({ message: 'Usuário não encontrado.' });
     }
 });
 
 app.get('/logout', (req, res) => {
     req.session.destroy()
-  });
+});
 
 /* -------------------- ROTAS ANUNCIOS IMOVEIS ----------------*/
 /* TESTE */
@@ -179,7 +207,7 @@ app.get("/imovel/:id", (req, res) => {
 //imovel.html
 app.get("/imoveis/:id", (req, res) => {
 
-    db.query("WITH RankedImages AS (SELECT imovel.*,imagens.image_url, ROW_NUMBER() OVER(PARTITION BY imovel.id ORDER BY imagens.id ASC) AS RowNum FROM mydb.imovel INNER JOIN mydb.imagens ON imovel.id = imagens.imovel_id) SELECT * FROM RankedImages WHERE RowNum = 1;"
+    db.query("WITH RankedImages AS (SELECT imovel.* ,imagens.image_url, ROW_NUMBER() OVER(PARTITION BY imovel.id ORDER BY imagens.id ASC) AS RowNum FROM mydb.imovel INNER JOIN mydb.imagens ON imovel.id = imagens.imovel_id) SELECT * FROM RankedImages WHERE RowNum = 1;"
         , [req.params.id], (err, results) => {
             if (err) {
                 res.send('err.message');
@@ -247,12 +275,178 @@ app.get('/pesquisa', (req, res) => {
     const { query } = req.query;
 
     let queryValue = '%' + query + '%';
-  
-    db.query('SELECT * FROM mydb.imovel WHERE descricao LIKE ?', [queryValue], (error, results) => {
-      if (error) throw error;
-  
-      res.send(results);
+
+    db.query('WITH RankedImages AS (SELECT imovel.*, imagens.image_url,ROW_NUMBER() OVER(PARTITION BY imovel.id ORDER BY imagens.id ASC) AS RowNum FROM mydb.imovel INNER JOIN mydb.imagens ON imovel.id = imagens.imovel_id WHERE imovel.titulo LIKE ?)SELECT * FROM RankedImages WHERE RowNum = 1;', [queryValue], (error, results) => {
+        if (error) throw error;
+
+        res.send(results);
     });
-  });
+});
+
+app.post("/registerLocador", (req, res) => {
+
+    const nome = req.body.nome
+    const email = req.body.email
+    const cpf = req.body.cpf
+    const senha = req.body.senha
+    const telefone = req.body.telefone
+    const dtNascimento = req.body.dtNascimento
+
+    db.query("SELECT * FROM mydb.locador WHERE email =?",
+        [email],
+        (err, result) => {
+            if (err) {
+                return res.status(500).send({ error: err });
+            }
+            console.log(result.length)
+            if (result.length === 0) {
+                bcrypt.hash(senha, saltRounds, (erro, hash) => {
+                    db.query(
+                        "INSERT INTO mydb.locador (email, senha, cpf, nome,telefone,dtNascimento) VALUES (?,?,?,?,?,?)",
+                        [email, hash, cpf, nome, telefone, dtNascimento], (err, response) => {
+                            if (err) {
+                                return res.send(err)
+                            }
+                            return res.status(201).send('Usuário cadastrado com sucesso!')
+                        })
+                })
+
+            } else {
+                return res.status(409).send('Usuário já cadastrado.');
+            }
+        }
+    )
+})
+
+// app.post("/registerImovel", (req, res) => {
+
+//     const tipo = req.body.tipo
+//     const valor = req.body.valor
+//     const area = req.body.area
+//     const descricao = req.body.descricao
+//     const valid = req.body.valid
+//     const locatario_id = req.body.locatario_id
+//     const endereco = req.body.endereco
+//     const titulo = req.body.titulo
+//     const nota = req.body.nota
+//     const avaliador_id = req.body.avaliador_id
+
+//     db.query(
+//         "INSERT INTO mydb.imovel (tipo, valor, area, descricao,valid,locatario_id,endereco,titulo,nota,avaliador_id) VALUES (?,?,?,?,?,?,?,?,?,?)",
+//         [tipo, valor, area, descricao, valid, locatario_id, endereco, titulo, nota, avaliador_id], (err, response) => {
+//            db.query("INSERT INTO mydb.imagens()")
+//         })
+// })
+
+// app.post("/registerImovel", (req, res) => {
+//     const { tipo, valor, area, descricao, valid, locatario_id, endereco, titulo, nota, avaliador_id } = req.body;
+//     const fotos = req.body.fotos || []; 
+//     const regra = {
+//       idade: req.body.idade,
+//       sexo: req.body.sexo,
+//       animais: req.body.animais,
+//       fumar: req.body.fumar,
+//       imoveis_id_regras: req.body.imoveis_id_regras
+//     };
+
+//     try {
+//         db.query(
+//             "INSERT INTO mydb.imovel (tipo, valor, area, descricao, valid, locatario_id, endereco, titulo, nota, avaliador_id) VALUES (?,?,?,?,?,?,?,?,?,?)",
+//             [tipo, valor, area, descricao, valid, locatario_id, endereco, titulo, nota, avaliador_id],
+//             (err, result) => {
+//                 if (err) {
+//                     console.log(err)
+//                     return res.status(500).send({ error: 'Erro ao inserir imóvel.' });
+//                 }
+
+//                 const imovelId = result.insertId;
+
+//                 db.query(
+//                     "INSERT INTO mydb.regras (idade, sexo, animais, fumar, imoveis_id_regras) VALUES (?, ?, ?, ?, ?)",
+//                     [regra.idade, regra.sexo, regra.animais, regra.fumar, regra.imoveis_id_regras],
+//                     (err, insertRegraResult) => {
+//                         if (err) {
+//                             return res.status(500).send({ error: 'Erro ao inserir regra.' });
+//                         }
+
+//                         console.log(`Regra adicionada com sucesso.`);
+
+//                         fotos.forEach(fotoUrl => {
+//                             db.query(
+//                                 "INSERT INTO mydb.imagens (id_imovel, url_foto) VALUES (?, ?)",
+//                                 [imovelId, fotoUrl],
+//                                 (err, insertPhotoResult) => {
+//                                     if (err) {
+//                                         return res.status(500).send({ error: 'Erro ao inserir foto.' });
+//                                     }
+//                                     console.log(`Foto adicionada com sucesso.`);
+//                                 }
+//                             );
+//                         });
+
+//                         res.status(200).send('Cadastro realizado com sucesso.');
+//                     }
+//                 );
+//             }
+//         );
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).send({ error: 'Ocorreu um erro inesperado ao realizar o cadastro.' });
+//     }
+// });
+
+app.post("/registerImovel", (req, res) => {
+
+    const tipo = req.body.tipo
+    const valor = req.body.valor
+    const area = req.body.area
+    const descricao = req.body.descricao
+    const valid = req.body.valid
+    const locatario_id = req.body.locatario_id
+    const endereco = req.body.endereco
+    const titulo = req.body.titulo
+    const nota = req.body.nota
+    const avaliador_id = req.body.avaliador_id
+
+    const idade = req.body.idade
+    const sexo = req.body.sexo
+    const animais = req.body.animais
+    const fumar = req.body.fumar
+    const imoveis_id_regras = req.body.imoveis_id_regras
+
+
+    try {
+        // Supondo que db seja uma instância válida do seu banco de dados
+        db.query(
+            "INSERT INTO mydb.imovel (tipo, valor, area, descricao, valid, locatario_id, endereco, titulo, nota, avaliador_id) VALUES (?,?,?,?,?,?,?,?,?,?)",
+            [tipo, valor, area, descricao, valid, locatario_id, endereco, titulo, nota, avaliador_id],
+            async (err, result) => {
+                if (err) {
+                    console.log(err);
+                    return res.status(500).send({ error: 'Erro ao inserir imóvel.' });
+                }
+
+                const imovelId = result.insertId;
+
+                await db.query(
+                    "INSERT INTO mydb.regras (idade, sexo, animais, fumar, imoveis_id_regras) VALUES (?, ?, ?, ?, ?)",
+                    [idade, sexo, animais, fumar, imoveis_id_regras],
+                    (err, insertRegraResult) => {
+                        if (err) {
+                            return res.status(500).send({ error: 'Erro ao inserir regra.' });
+                        }
+                    }
+                );
+
+                res.status(200).send('Cadastro realizado com sucesso.');
+            }
+        );
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: 'Ocorreu um erro inesperado ao realizar o cadastro.' });
+    }
+});
+
+
 
 module.exports = app;
