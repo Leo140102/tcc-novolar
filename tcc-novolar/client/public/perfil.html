@@ -15,6 +15,7 @@
 
     <link rel="stylesheet" href="perfil.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 </head>
 
 <body>
@@ -35,21 +36,16 @@
                             <a class="list-group-item list-group-item-action" data-toggle="list"
                                 href="#account-change-password">Alterar Senha</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list"
-                                href="#account-connections">Meus anúncios</a>
+                                href="#account-imoveis">Meus anúncios</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list"
-                                href="#account-connections">Meus comentários</a>
+                                href="#account-imoveis">Meus comentários</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list"
-                                href="#account-notifications">Deletar Conta</a>
+                                href="#account-delete">Deletar Conta</a>
                         </div>
                     </div>
                     <div class="col-md-9">
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="account-general">
-                                <div class="card-body media align-items-center">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt
-                                        class="d-block ui-w-80">
-
-                                </div>
                                 <hr class="border-light m-0">
                                 <div class="card-body">
                                     <div class="form-group">
@@ -87,8 +83,8 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                          
+
+
                             <div class="tab-pane fade" id="account-social-links">
                                 <div class="card-body pb-2">
                                     <div class="form-group">
@@ -113,38 +109,29 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="account-connections">
-                                <div class="card-body">
-                                    <button type="button" class="btn btn-twitter">Connect to
-                                        <strong>Twitter</strong></button>
+                            <div class="tab-pane fade" id="account-imoveis">
+
+                                <div class="anuncio">
+                                    <a href="imovelItem.html">
+                                        <img src="imagens/casa2.jpg" alt="Foto do imóvel">
+                                    </a>
+
+                                    <div class="detalhes">
+                                        <h3>Título do Anúncio</h3>
+                                        <h6>R$ 1000</h6>
+                                        <p>Av. Exemplo, 123</p>
+                                    </div>
+
                                 </div>
-                                <hr class="border-light m-0">
-                                <div class="card-body">
-                                    <h5 class="mb-2">
-                                        <a href="javascript:void(0)" class="float-right text-muted text-tiny"><i
-                                                class="ion ion-md-close"></i> Remove</a>
-                                        <i class="ion ion-logo-google text-google"></i>
-                                        You are connected to Google:
-                                    </h5>
-                                    <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                        data-cfemail="f9979498818e9c9595b994989095d79a9694">[email&#160;protected]</a>
-                                </div>
-                                <hr class="border-light m-0">
-                                <div class="card-body">
-                                    <button type="button" class="btn btn-facebook">Connect to
-                                        <strong>Facebook</strong></button>
-                                </div>
-                                <hr class="border-light m-0">
-                                <div class="card-body">
-                                    <button type="button" class="btn btn-instagram">Connect to
-                                        <strong>Instagram</strong></button>
-                                </div>
+
+
                             </div>
-                            <div class="tab-pane fade" id="account-notifications">
+                            <div class="tab-pane fade" id="account-delete">
                                 <div class="card-body pb-2">
 
 
-                                    <p style="margin-top: 2rem; color: rgb(30, 16, 158);"><b>Está pensando em excluir sua conta conosco? Por favor, leia as informações
+                                    <p style="margin-top: 2rem; color: rgb(30, 16, 158);"><b>Está pensando em excluir
+                                            sua conta conosco? Por favor, leia as informações
                                             abaixo
                                             antes de prosseguir:</b></p>
 
@@ -152,7 +139,7 @@
                                         dados associados serão permanentemente removidos de nossos sistemas. Essa ação
                                         não pode ser desfeita.</p>
 
-                                    <a href="#" class="mb-4" style="color: red; ">Excluir conta</a>
+                                    <a href="#" class="mb-4" id="excluirUser" style="color: red; ">Excluir conta</a>
                                 </div>
                                 <hr class="border-light m-0">
 
@@ -170,9 +157,13 @@
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="perfil.js"></script>
     <script type="text/javascript">
 
+
     </script>
+
+
 </body>
 
 </html>

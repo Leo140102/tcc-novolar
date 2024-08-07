@@ -524,12 +524,10 @@ app.post("/registerImovel", (req, res) => {
 
 
 //DELETAR CONTA
-app.delete("/usuarios/:id", (req, res) => {
+app.delete("/deletar/:id", (req, res) => {
     const userId = req.params.id;
 
-    // Verifica se o usuário existe antes de tentar excluí-lo
-
-    db.query("DELETE FROM locador WHERE id = ?", [userId], (err, result) => {
+    db.query("DELETE FROM mydb.locador WHERE id = ?", [userId], (err, result) => {
         if (err) {
             res.status(500).send('Erro ao excluir o usuário.');
         } else {
@@ -537,7 +535,16 @@ app.delete("/usuarios/:id", (req, res) => {
         }
     });
 
+});
 
+//IMOVEIS POR USUARIO LOGADO
+app.get("/imoveisUser/:id", (req, res) => {
+    db.query("WITH RankedImages AS ( SELECT imovel.*, imagens.image_url, ROW_NUMBER() OVER(PARTITION BY imovel.id ORDER BY imovel.nota DESC) AS RowNum FROM mydb.imovel INNER JOIN mydb.imagens ON imovel.id = imagens.imovel_id WHERE imovel.usuarioId = ?) SELECT * FROM RankedImages WHERE RowNum = 1 AND RowNum <= 4;", [req.params.id], (err, results) => {
+        if (err) {
+            res.send('err.message');
+        }
+        res.json(results);
+    })
 });
 
 

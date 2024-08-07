@@ -155,3 +155,28 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
     padding: 0.85rem 1.5rem;
     border-color: rgba(24, 28, 33, 0.03) !important;
 }
+
+
+.anuncio {
+    display: flex;
+    align-items: center; /* Alinha verticalmente os itens */
+    margin-bottom: 20px; /* Espaço entre os anúncios */
+    text-decoration: none;
+    cursor: pointer;
+    transition: .35s;
+    margin-top: 2rem;
+}
+
+.anuncio img {
+    width: 200px; /* Define o tamanho da imagem */
+    height: auto; /* Mantém a proporção da imagem */
+    margin-right: 20px; /* Espaço entre a imagem e os detalhes */
+    border-radius: 0.5rem;
+}
+
+.detalhes {
+    text-decoration: none;
+    flex-grow: 1; /* Ocupa o espaço restante na linha */
+}
+
+
