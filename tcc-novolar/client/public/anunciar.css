@@ -64,6 +64,7 @@ body {
     background-color: white;
     border-radius: 15px;
     padding: 1rem;
+    margin-top: 7.2rem;
 }
 
 .form {
@@ -423,5 +424,38 @@ input-box {
 }
 
 .input-box-descricao input::placeholder {
+    color: #000000be;
+}
+
+
+
+
+
+
+.input-box-imagens input {
+    margin: 0.6rem 0;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    width: 28rem;
+}
+
+.input-box-imagens input:hover {
+    background-color: #eeeeee75;
+}
+
+.input-box-imagens input:focus-visible {
+    outline: 1px solid rgb(26, 16, 117);
+}
+
+.input-box-imagens label,
+.gender-title h6 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #000000c0;
+}
+
+.input-box-imagens input::placeholder {
     color: #000000be;
 }

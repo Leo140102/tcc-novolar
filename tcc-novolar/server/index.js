@@ -180,7 +180,9 @@ app.get("/user/name", (req, res) => {
 });
 
 app.get('/logout', (req, res) => {
-    req.session.destroy()
+    req.logout();
+    // req.flash('success_msg', "Deslogado com sucesso!");
+    res.redirect("index.html");
 });
 
 /* -------------------- ROTAS ANUNCIOS IMOVEIS ----------------*/

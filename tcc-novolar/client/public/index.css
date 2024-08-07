@@ -100,7 +100,7 @@ header {
     top: 75%;
     left: 0;
     width: 0;
-    height: 1.5px;
+    height: 2.5px;
     background: rgb(0, 134, 211);
     transition: .3s;
 }
