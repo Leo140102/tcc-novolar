@@ -2,8 +2,9 @@ let id = 2;
 
 window.onload = () => {
     get_username(id);
-    get_imoveisMaiorNotas();
     get_republicas();
+    get_imoveisMaiorNotas();
+    
 }
 function get_username(id) {
     fetch(`http://localhost:8000/imovel/${id}`)

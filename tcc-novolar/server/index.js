@@ -175,7 +175,7 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/user/id", (req, res) => {
-        res.json({myGlobalVariableId});
+    res.json({ myGlobalVariableId });
 });
 
 app.get("/user/name", (req, res) => {
@@ -498,7 +498,7 @@ app.post("/registerImovel", (req, res) => {
                         if (err) {
                             console.log(err)
                             return res.status(500).send({ error: 'Erro ao inserir regra.' });
-                            
+
                         }
 
                         res.status(200).send('Cadastro realizado com sucesso.');
@@ -521,6 +521,25 @@ app.post("/registerImovel", (req, res) => {
 
 //     res.sendStatus(200);
 // });
+
+
+//DELETAR CONTA
+app.delete("/usuarios/:id", (req, res) => {
+    const userId = req.params.id;
+
+    // Verifica se o usuário existe antes de tentar excluí-lo
+
+    db.query("DELETE FROM locador WHERE id = ?", [userId], (err, result) => {
+        if (err) {
+            res.status(500).send('Erro ao excluir o usuário.');
+        } else {
+            res.status(200).send('Usuário excluído com sucesso.');
+        }
+    });
+
+
+});
+
 
 
 module.exports = app;
