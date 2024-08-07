@@ -262,6 +262,17 @@ app.get("/bemAvaliados", (req, res) => {
     })
 })
 
+//index.html REPUBLICAS
+app.get("/republicas", (req, res) => {
+
+    db.query("WITH RankedImages AS ( SELECT imovel.*, imagens.image_url, ROW_NUMBER() OVER(PARTITION BY imovel.id ORDER BY imovel.nota DESC) AS RowNum FROM mydb.imovel INNER JOIN mydb.imagens ON imovel.id = imagens.imovel_id WHERE imovel.tipo = 'republica') SELECT * FROM RankedImages WHERE RowNum = 1 AND RowNum <= 4;", (err, results) => {
+        if (err) {
+            res.send("err.message");
+        }
+        res.send(results);
+    })
+})
+
 /* IMOVEIS POR ID */
 app.get("/imoveis/:id", (req, res) => {
     db.query("SELECT id, titulo FROM imovel WHERE id = ?", [req.params.id], (err, results) => {
@@ -449,6 +460,15 @@ app.post("/registerImovel", (req, res) => {
     }
 });
 
+// ----------------- ROTA ALTERAR INFOS USUARIO
+router.patch('/usuarios/:id', async (req, res) => {
+    const id = parseInt(req.params.id);
+    const { nome, cpf, telefone, email } = req.body;
+
+    await db.query(`UPDATE Usuarios SET nome='${nome}', cpf='${cpf}', telefone='${telefone}', email='${email}' WHERE id=${id}`);
+
+    res.sendStatus(200);
+});
 
 
 module.exports = app;
