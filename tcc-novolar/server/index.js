@@ -68,6 +68,8 @@ app.use(session({
 }));
 
 global.myGlobalVariable = null
+global.myGlobalVariableId = null
+
 
 
 
@@ -161,6 +163,9 @@ app.post("/login", async (req, res) => {
         }
 
         myGlobalVariable = req.session.nome = result[0].nome
+        myGlobalVariableId = req.session.id = result[0].id
+
+        console.log("myGlobalVariableId ->" + myGlobalVariableId)
         return res.sendStatus(200);
 
     } catch (error) {
@@ -169,6 +174,9 @@ app.post("/login", async (req, res) => {
     }
 });
 
+app.get("/user/id", (req, res) => {
+        res.json({myGlobalVariableId});
+});
 
 app.get("/user/name", (req, res) => {
     req.session.nome = myGlobalVariable
@@ -413,8 +421,7 @@ app.post("/registerImovel", (req, res) => {
     try {
         // Supondo que db seja uma instância válida do seu banco de dados
         db.query(
-            "INSERT INTO mydb.imovel (tipo, valor, area, descricao, locatario_id, endereco, titulo) VALUES (?,?,?,?,?,?,?)",
-            [tipo, valor, area, descricao, locatario_id, endereco, titulo],
+            "INSERT INTO mydb.imovel (tipo, valor, area, descricao, locatario_id, endereco, titulo) VALUES (?,?,?,?,?,?,?)",[tipo, valor, area, descricao, locatario_id, endereco, titulo],
             async (err, result) => {
                 if (err) {
                     console.log(err);

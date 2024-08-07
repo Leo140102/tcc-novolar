@@ -185,7 +185,7 @@
             </div> -->
 
             <div class="anuncie-button">
-                <button type="submit" class="btnImv" onclick="cadastroImovel()"><a>anunciar</a>
+                <button type="submit" class="btnImv" data-id-user="" id="anuncioButton" onclick="cadastroImovel()"><a>anunciar</a>
                 </button>
             </div>
         </div>
@@ -193,6 +193,17 @@
     </div>
 
     <script src="cadastroImovel.js"></script>
+
+    <script>
+        fetch('http://localhost:8000/user/id')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('anuncioButton').dataset.idUser = data.id;
+                // iconUser.classList.remove('bx-group'); // Indica que o usuário está logado
+                // iconUser.classList.add('bx-user');
+            })
+            .catch(error => console.error('Erro ao carregar nome do usuário:', error));
+    </script>
 </body>
 
 
