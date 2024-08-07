@@ -3,7 +3,17 @@ function redirectToLogin() {
     window.location.href = '/login.html';
 }
 
-function cadastroImovel(idLocatario) {
+
+fetch('http://localhost:8000/user/id')
+              .then(response => response.json())
+              .then(data => {
+                var idLocatario = data.myGlobalVariableId;
+                console.log("idLocatario ->" + idLocatario)
+                cadastroImovel(idLocatario)
+               })
+              .catch(error => console.error('Erro ao carregar nome do usuário:', error));
+
+function cadastroImovel(locatario_id) {
     // Obtém o elemento do formulário
     const formElement = document.getElementById('cadastroImovel');
     // Define a função de manipulação do evento
@@ -15,6 +25,7 @@ function cadastroImovel(idLocatario) {
         const area = document.getElementById('area').value.toString().trim();
         const endereco = document.getElementById('endereco').value.toString().trim();
         const descricao = document.getElementById('descricao').value.toString().trim();
+        
 
         const idadeRadio = document.getElementsByName('idade');
         const tipoRadio = document.getElementsByName('tipo');
@@ -113,12 +124,14 @@ function cadastroImovel(idLocatario) {
             callAlert('Todos os campos são obrigatórios.');
         }
 
+
+console.log("TESTE ID LOCATARIO ---> " + locatario_id)
         const formCad = {
             tipo,
             valor,
             area,
             descricao,
-            idLocatario,
+            locatario_id,
             endereco,
             titulo,
             idade,
@@ -140,16 +153,16 @@ function cadastroImovel(idLocatario) {
         };
         console.log(options);
 
-        // fetch('http://localhost:8000/registerImovel', options)
-        //     .then(response => {
-        //         if (response.status === 201) {
-        //             redirectToLogin();
-        //         } else if (response.status === 409) {
-        //             callAlert('Usuário já cadastrado.');
-        //         }
-        //     })
-        //     .then(data => console.log(data))
-        //     .catch(error => console.error('Erro:', error));
+        fetch('http://localhost:8000/registerImovel', options)
+            .then(response => {
+                if (response.status === 201) {
+                    redirectToLogin();
+                } else if (response.status === 409) {
+                    callAlert('Usuário já cadastrado.');
+                }
+            })
+            .then(data => console.log(data))
+            .catch(error => console.error('Erro:', error));
     }
 
     // Verifica se o evento já foi adicionado
