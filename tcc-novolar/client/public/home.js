@@ -3,6 +3,7 @@ let id = 2;
 window.onload = () => {
     get_username(id);
     get_imoveisMaiorNotas();
+    get_republicas();
 }
 function get_username(id) {
     fetch(`http://localhost:8000/imovel/${id}`)
@@ -66,6 +67,56 @@ function get_imoveisMaiorNotas() {
                     new_anuncio.innerHTML = html;
 
                     document.querySelector("#anuncios").appendChild(new_anuncio);
+
+                });
+                //document.querySelector("#no_imoveis").classList.add("d-none");
+            }
+
+        })
+}
+
+function get_republicas() {
+    fetch(`http://localhost:8000/republicas`)
+        .then(response => {
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                console.log('erro')
+            }
+        })
+        .then(imoveis => {
+            if (imoveis.length === 0) {
+                document.querySelector("#no_imoveis").classList.remove("d-none")
+            } else {
+                console.log(imoveis);
+                document.querySelector("#anuncios").innerHTML = null;
+
+                imoveis.forEach(imovel => {
+                    let html = `
+            <a href="imovelItem.html?id=${imovel.id}">
+          <img src="imagens/${imovel.image_url}" alt="republica" />
+          <div class="stars">
+            <i class='bx bxs-star'></i>
+            <i class='bx bxs-star'></i>
+            <i class='bx bxs-star'></i>
+            <i class='bx bxs-star'></i>
+            <i class='bx bxs-star-half'></i>
+            <span id = "nota"> 4.7</span>
+          </div>
+          <div class="republica__content">
+            <div class="republica__card__header">
+              <h4>${imovel.titulo}</h4>
+              <h3>R$${imovel.valor}</h3>
+            </div>
+            <p>${imovel.endereco}</p>
+          </div>
+        </a>`;
+
+                    let new_anuncio = document.createElement('div');
+                    new_anuncio.classList.add('republica__card')
+                    new_anuncio.innerHTML = html;
+
+                    document.querySelector("#anunciosRep").appendChild(new_anuncio);
 
                 });
                 //document.querySelector("#no_imoveis").classList.add("d-none");
