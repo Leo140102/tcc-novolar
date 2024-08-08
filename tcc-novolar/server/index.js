@@ -105,7 +105,7 @@ app.post("/register", (req, res) => {
                 bcrypt.hash(senha, saltRounds, (erro, hash) => {
                     db.query(
                         "INSERT INTO mydb.locatario (email, senha, cpf, nome, telefone,tipo) VALUES (?,?,?,?,?,?)",
-                        [email, hash, cpf, nome,telefone,tipo], (err, response) => {
+                        [email, hash, cpf, nome, telefone, tipo], (err, response) => {
                             if (err) {
                                 return res.send(err)
                             }
@@ -142,7 +142,7 @@ app.post("/registerLocador", (req, res) => {
                 bcrypt.hash(senha, saltRounds, (erro, hash) => {
                     db.query(
                         "INSERT INTO mydb.locador (email, senha, cpf, nome, telefone,tipo) VALUES (?,?,?,?,?,?)",
-                        [email, hash, cpf, nome,telefone,tipo], (err, response) => {
+                        [email, hash, cpf, nome, telefone, tipo], (err, response) => {
                             if (err) {
                                 return res.send(err)
                             }
@@ -380,129 +380,6 @@ app.post("/registerLocador", (req, res) => {
     )
 })
 
-// app.post("/registerImovel", (req, res) => {
-
-//     const tipo = req.body.tipo
-//     const valor = req.body.valor
-//     const area = req.body.area
-//     const descricao = req.body.descricao
-//     const valid = req.body.valid
-//     const locatario_id = req.body.locatario_id
-//     const endereco = req.body.endereco
-//     const titulo = req.body.titulo
-//     const nota = req.body.nota
-//     const avaliador_id = req.body.avaliador_id
-
-//     db.query(
-//         "INSERT INTO mydb.imovel (tipo, valor, area, descricao,valid,locatario_id,endereco,titulo,nota,avaliador_id) VALUES (?,?,?,?,?,?,?,?,?,?)",
-//         [tipo, valor, area, descricao, valid, locatario_id, endereco, titulo, nota, avaliador_id], (err, response) => {
-//            db.query("INSERT INTO mydb.imagens()")
-//         })
-// })
-
-// app.post("/registerImovel", (req, res) => {
-//     const { tipo, valor, area, descricao, valid, locatario_id, endereco, titulo, nota, avaliador_id } = req.body;
-//     const fotos = req.body.fotos || []; 
-//     const regra = {
-//       idade: req.body.idade,
-//       sexo: req.body.sexo,
-//       animais: req.body.animais,
-//       fumar: req.body.fumar,
-//       imoveis_id_regras: req.body.imoveis_id_regras
-//     };
-
-//     try {
-//         db.query(
-//             "INSERT INTO mydb.imovel (tipo, valor, area, descricao, valid, locatario_id, endereco, titulo, nota, avaliador_id) VALUES (?,?,?,?,?,?,?,?,?,?)",
-//             [tipo, valor, area, descricao, valid, locatario_id, endereco, titulo, nota, avaliador_id],
-//             (err, result) => {
-//                 if (err) {
-//                     console.log(err)
-//                     return res.status(500).send({ error: 'Erro ao inserir imóvel.' });
-//                 }
-
-//                 const imovelId = result.insertId;
-
-//                 db.query(
-//                     "INSERT INTO mydb.regras (idade, sexo, animais, fumar, imoveis_id_regras) VALUES (?, ?, ?, ?, ?)",
-//                     [regra.idade, regra.sexo, regra.animais, regra.fumar, regra.imoveis_id_regras],
-//                     (err, insertRegraResult) => {
-//                         if (err) {
-//                             return res.status(500).send({ error: 'Erro ao inserir regra.' });
-//                         }
-
-//                         console.log(`Regra adicionada com sucesso.`);
-
-//                         fotos.forEach(fotoUrl => {
-//                             db.query(
-//                                 "INSERT INTO mydb.imagens (id_imovel, url_foto) VALUES (?, ?)",
-//                                 [imovelId, fotoUrl],
-//                                 (err, insertPhotoResult) => {
-//                                     if (err) {
-//                                         return res.status(500).send({ error: 'Erro ao inserir foto.' });
-//                                     }
-//                                     console.log(`Foto adicionada com sucesso.`);
-//                                 }
-//                             );
-//                         });
-
-//                         res.status(200).send('Cadastro realizado com sucesso.');
-//                     }
-//                 );
-//             }
-//         );
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).send({ error: 'Ocorreu um erro inesperado ao realizar o cadastro.' });
-//     }
-// });
-
-// app.post("/registerImovel", (req, res) => {
-
-//     const tipo = req.body.tipo
-//     const valor = req.body.valor
-//     const area = req.body.area
-//     const descricao = req.body.descricao
-//     const locatario_id = req.body.locatario_id
-//     const endereco = req.body.endereco
-//     const titulo = req.body.titulo
-
-//     const idade = req.body.idade
-//     const sexo = req.body.sexo
-//     const animais = req.body.animais
-//     const fumar = req.body.fumar
-
-//     try {
-//         db.query(
-//             "INSERT INTO mydb.imovel (tipo, valor, area, descricao, locatario_id, endereco, titulo) VALUES (?,?,?,?,?,?,?)",[tipo, valor, area, descricao, locatario_id, endereco, titulo],
-//             async (err, result) => {
-//                 if (err) {
-//                     console.log(err);
-//                     return res.status(500).send({ error: 'Erro ao inserir imóvel.' });
-//                 }
-
-//                 const imovelId = result.insertId;
-
-//                 await db.query(
-//                     "INSERT INTO mydb.regras (idade, sexo, animais, fumar) VALUES (?, ?, ?, ?)",
-//                     [idade, sexo, animais, fumar, imovelId],
-//                     (err, insertRegraResult) => {
-//                         if (err) {
-//                             return res.status(500).send({ error: 'Erro ao inserir regra.' });
-//                         }
-//                     }
-//                 );
-
-//                 res.status(200).send('Cadastro realizado com sucesso.');
-//             }
-//         );
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).send({ error: 'Ocorreu um erro inesperado ao realizar o cadastro.' });
-//     }
-// });
-
-
 app.post("/registerImovel", (req, res) => {
     const tipo = req.body.tipo;
     const valor = req.body.valor;
@@ -518,7 +395,6 @@ app.post("/registerImovel", (req, res) => {
     const fumar = req.body.fumar;
 
     try {
-        // Primeira consulta: Insere um novo imóvel
         db.query(
             "INSERT INTO mydb.imovel (tipo, valor, area, descricao, locatario_id, endereco, titulo) VALUES (?,?,?,?,?,?,?)",
             [tipo, valor, area, descricao, locatario_id, endereco, titulo],
@@ -528,10 +404,8 @@ app.post("/registerImovel", (req, res) => {
                     return res.status(500).send({ error: 'Erro ao inserir imóvel.' });
                 }
 
-                // Acessando o ID gerado pela última operação de inserção
                 const imovelId = result.insertId;
 
-                // Segunda consulta: Insere na tabela regras usando o id obtido
                 db.query(
                     "INSERT INTO mydb.regras (idade, sexo, animais, fumar, imoveis_id_regras) VALUES (?, ?, ?, ?, ?)",
                     [idade, sexo, animais, fumar, imovelId],
@@ -586,6 +460,55 @@ app.delete("/deletar/:id", (req, res) => {
 //         res.json(results);
 //     })
 // });
+
+app.patch("/updateUserPhone/:id", (req, res) => {
+    const id = req.params.id;
+    const telefone = req.body.telefone; // O novo número de telefone deve ser enviado no corpo da requisição
+    const email = req.body.email;
+    let table = "";
+    try {
+        // Verificando se o usuário existe na tabela 'locador'
+        db.query("SELECT * FROM mydb.locador WHERE id = ? AND email = ?", [id, email], (err, locadorResult) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).send({ error: 'Erro ao verificar o locador.' });
+            } else if (locadorResult.length > 0) {
+                table = "mydb.locador";
+            }
+
+            // Verificando se o usuário existe na tabela 'locatario'
+            db.query("SELECT * FROM mydb.locatario WHERE id = ? AND email = ?", [id, email], (err, locatarioResult) => {
+                if (err) {
+                    console.log(err);
+                    return res.status(500).send({ error: 'Erro ao verificar o locatario.' });
+                } else if (locatarioResult.length > 0) {
+                    table = "mydb.locatario";
+                }
+
+                if (table === "") {
+                    return res.status(404).send({ error: 'Usuário não encontrado nas tabelas locador ou locatario.' });
+                }
+
+                const updateQuery = `UPDATE ${table} SET telefone = ? WHERE id = ?`;
+                db.query(updateQuery, [telefone, id], (err, updateResult) => {
+                    if (err) {
+                        console.log(err);
+                        return res.status(500).send({ error: 'Erro ao atualizar o telefone.' });
+                    }
+
+                    if (updateResult.affectedRows === 0) {
+                        return res.status(404).send({ error: 'Usuário não encontrado para atualização.' });
+                    }
+
+                    res.status(200).send('Telefone atualizado com sucesso.');
+                });
+            });
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: 'Ocorreu um erro inesperado ao atualizar o telefone.' });
+    }
+});
 
 
 

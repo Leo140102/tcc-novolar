@@ -4,6 +4,8 @@ window.onload = () => {
 
 const excluir = document.querySelector("#excluirUser");
 
+const atualizar = document.querySelector('#alterarUser')
+
 excluir.addEventListener("click", () => {
     console.log("entrouclick");
     fetch('http://localhost:8000/user/id')
@@ -15,6 +17,51 @@ excluir.addEventListener("click", () => {
         })
         .catch(error => console.error('Erro ao carregar nome do usuário:', error));
 });
+
+atualizar.addEventListener("click", () => {
+    console.log("entrouclick");
+    fetch('http://localhost:8000/user/id')
+        .then(response => response.json())
+        .then(data => {
+            var idUser = data.myGlobalVariableId;
+            console.log("idLocatario ->" + idUser)
+            atualizarUser(idUser)
+        })
+        .catch(error => console.error('Erro ao carregar nome do usuário:', error));
+})
+
+function atualizarUser(idUser) {
+    const telefone = document.getElementById('telefone').value.toString().trim();
+    const email = document.getElementById('email').value.toString().trim();
+
+    const formCad = {
+        telefone,
+        email
+    };
+
+    const jsonData = JSON.stringify(formCad);
+    console.log(jsonData);
+
+    const options = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: jsonData
+    };
+    fetch(`http://localhost:8000/updateUserPhone/${idUser}`, options)
+        .then(response => {
+            if (response.status === 201) {
+                redirectToLogin();
+            } else if (response.status === 409) {
+                callAlert('Falha ao atualizar usuário.');
+            }
+        })
+        .then(data => console.log(data))
+        .catch(error => console.error('Erro:', error));
+}
+
+
 
 function excluirUser(idUser) {
     fetch(`http://localhost:8000/deletar/${idUser}`, {
@@ -37,7 +84,7 @@ function excluirUser(idUser) {
             } else {
                 res.redirect("index.html");
                 console.log('Usuário excluído com sucesso');
-                
+
             }
         })
         .catch(error => {
