@@ -1,5 +1,5 @@
 window.onload = () => {
-    // get_ImoveisDoUser();
+    get_ImoveisDoUser();
 }
 
 const excluir = document.querySelector("#excluirUser");
@@ -92,9 +92,40 @@ function excluirUser(idUser) {
         });
 }
 
+//IMOVEIS EXCLUIR IMOVEL
+function excluirImovel(idImovel) {
+    console.log("excluirImovel");
+    fetch(`http://localhost:8000/deletarImovel/${idImovel}`, {
+        method: 'DELETE',
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            return response.json();
+        })
+        .then(dados => {
+            if (typeof dados !== 'object' || dados === null || !Array.isArray(dados)) {
+                console.error('Dados não são um array:', dados);
+                return;
+            }
+            if (dados.length === 0) {
+                console.log('Erro na exclusão!');
+            } else {
+                res.redirect("index.html");
+                console.log('Imovel excluído com sucesso');
+
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao deletar Imovel:', error);
+        });
+}
+
 
 //IMOVEIS USUARIO
-function get_ImoveisDoUser(id) {
+function get_ImoveisDoUser() {
     fetch('http://localhost:8000/user/id')
         .then(response => response.json())
         .then(data => {
@@ -130,6 +161,11 @@ function ImoveisUsuario(idUser) {
                                         <h3>${imovel.titulo}</h3>
                                         <h6>R$ ${imovel.valor}</h6>
                                         <p>${imovel.endereco}</p>
+
+                                        <div id="excluirImovel" style="color: rgb(26, 16, 117);"
+                                            onclick="excluirImovel(${imovel.id})">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </div>
                                     </div>`;
 
                     let new_anuncio = document.createElement('div');

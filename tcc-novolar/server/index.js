@@ -451,15 +451,28 @@ app.delete("/deletar/:id", (req, res) => {
 
 });
 
+//DELETAR IMOVEL
+app.delete("/deletarImovel/:id", (req, res) => {
+
+    db.query("DELETE FROM imovel WHERE id = ?", [req.params.id], (err, result) => {
+        if (err) {
+            res.status(500).send('Erro ao excluir o imóvel.');
+        } else {
+            res.status(200).send('imóvel excluído com sucesso.');
+        }
+    });
+
+});
+
 //IMOVEIS POR USUARIO LOGADO
-// app.get("/imoveisUser/:id", (req, res) => {
-//     db.query("WITH RankedImages AS ( SELECT imovel.*, imagens.image_url, ROW_NUMBER() OVER(PARTITION BY imovel.id ORDER BY imovel.nota DESC) AS RowNum FROM mydb.imovel INNER JOIN mydb.imagens ON imovel.id = imagens.imovel_id WHERE imovel.usuarioId = ?) SELECT * FROM RankedImages WHERE RowNum = 1 AND RowNum <= 4;", [req.params.id], (err, results) => {
-//         if (err) {
-//             res.send('err.message');
-//         }
-//         res.json(results);
-//     })
-// });
+app.get("/imoveisUser/:id", (req, res) => {
+    db.query("WITH RankedImages AS ( SELECT imovel.*, imagens.image_url, ROW_NUMBER() OVER(PARTITION BY imovel.id ORDER BY imovel.nota DESC) AS RowNum FROM mydb.imovel INNER JOIN mydb.imagens ON imovel.id = imagens.imovel_id WHERE imovel.locatario_id = ?) SELECT * FROM RankedImages WHERE RowNum = 1 AND RowNum <= 4;", [req.params.id], (err, results) => {
+        if (err) {
+            res.send('err.message');
+        }
+        res.json(results);
+    })
+});
 
 app.patch("/updateUserPhone/:id", (req, res) => {
     const id = req.params.id;
