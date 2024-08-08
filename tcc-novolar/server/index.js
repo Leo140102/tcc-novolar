@@ -175,15 +175,17 @@ app.post("/login", async (req, res) => {
         const senha = req.body.senha;
 
         const result = await new Promise((resolve, reject) => {
-            db.query("SELECT * FROM mydb.locatario WHERE email =?", [email], (err, result) => {
+            db.query("SELECT * FROM mydb.locador WHERE email =?", [email], (err, resultQuery) => {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(result);
+                    resolve(resultQuery);
                 }
             });
         });
+    
 
+        console.log("RESULT --> " + result)
         if (result.length === 0) {
             return res.status(404).send('Conta não encontrada.');
         }
@@ -214,6 +216,7 @@ app.post("/login", async (req, res) => {
         return res.status(500).send({ error: error.message });
     }
 });
+
 
 app.get("/user/id", (req, res) => {
     res.json({ myGlobalVariableId });
