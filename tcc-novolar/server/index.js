@@ -85,10 +85,13 @@ global.myGlobalVariableId = null
 
 app.post("/register", (req, res) => {
 
+    console.log("register")
+
     const nome = req.body.nome
     const email = req.body.email
     const cpf = req.body.cpf
     const senha = req.body.senha
+    const telefone = req.body.telefone
 
     db.query("SELECT * FROM mydb.locatario WHERE email =?",
         [email],
@@ -100,8 +103,44 @@ app.post("/register", (req, res) => {
             if (result.length === 0) {
                 bcrypt.hash(senha, saltRounds, (erro, hash) => {
                     db.query(
-                        "INSERT INTO mydb.locatario (email, senha, cpf, nome) VALUES (?,?,?,?)",
-                        [email, hash, cpf, nome], (err, response) => {
+                        "INSERT INTO mydb.locatario (email, senha, cpf, nome, telefone) VALUES (?,?,?,?,?)",
+                        [email, hash, cpf, nome,telefone], (err, response) => {
+                            if (err) {
+                                return res.send(err)
+                            }
+                            return res.status(201).send('Usuário cadastrado com sucesso!')
+                        })
+                })
+
+            } else {
+                return res.status(409).send('Usuário já cadastrado.');
+            }
+        }
+    )
+})
+
+app.post("/registerLocador", (req, res) => {
+
+    console.log("registerLocador")
+
+    const nome = req.body.nome
+    const email = req.body.email
+    const cpf = req.body.cpf
+    const senha = req.body.senha
+    const telefone = req.body.telefone
+
+    db.query("SELECT * FROM mydb.locador WHERE email =?",
+        [email],
+        (err, result) => {
+            if (err) {
+                return res.status(500).send({ error: err });
+            }
+            console.log(result.length)
+            if (result.length === 0) {
+                bcrypt.hash(senha, saltRounds, (erro, hash) => {
+                    db.query(
+                        "INSERT INTO mydb.locador (email, senha, cpf, nome, telefone) VALUES (?,?,?,?,?)",
+                        [email, hash, cpf, nome,telefone], (err, response) => {
                             if (err) {
                                 return res.send(err)
                             }
@@ -525,9 +564,8 @@ app.post("/registerImovel", (req, res) => {
 
 //DELETAR CONTA
 app.delete("/deletar/:id", (req, res) => {
-    const userId = req.params.id;
 
-    db.query("DELETE FROM mydb.locador WHERE id = ?", [userId], (err, result) => {
+    db.query("DELETE FROM locatario WHERE id = ?", [req.params.id], (err, result) => {
         if (err) {
             res.status(500).send('Erro ao excluir o usuário.');
         } else {
@@ -538,14 +576,14 @@ app.delete("/deletar/:id", (req, res) => {
 });
 
 //IMOVEIS POR USUARIO LOGADO
-app.get("/imoveisUser/:id", (req, res) => {
-    db.query("WITH RankedImages AS ( SELECT imovel.*, imagens.image_url, ROW_NUMBER() OVER(PARTITION BY imovel.id ORDER BY imovel.nota DESC) AS RowNum FROM mydb.imovel INNER JOIN mydb.imagens ON imovel.id = imagens.imovel_id WHERE imovel.usuarioId = ?) SELECT * FROM RankedImages WHERE RowNum = 1 AND RowNum <= 4;", [req.params.id], (err, results) => {
-        if (err) {
-            res.send('err.message');
-        }
-        res.json(results);
-    })
-});
+// app.get("/imoveisUser/:id", (req, res) => {
+//     db.query("WITH RankedImages AS ( SELECT imovel.*, imagens.image_url, ROW_NUMBER() OVER(PARTITION BY imovel.id ORDER BY imovel.nota DESC) AS RowNum FROM mydb.imovel INNER JOIN mydb.imagens ON imovel.id = imagens.imovel_id WHERE imovel.usuarioId = ?) SELECT * FROM RankedImages WHERE RowNum = 1 AND RowNum <= 4;", [req.params.id], (err, results) => {
+//         if (err) {
+//             res.send('err.message');
+//         }
+//         res.json(results);
+//     })
+// });
 
 
 

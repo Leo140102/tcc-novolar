@@ -1,11 +1,46 @@
 let id = 2;
 
 window.onload = () => {
-    get_username(id);
-    get_republicas();
-    get_imoveisMaiorNotas();
+    if (document.location.pathname === '/index.html') {
+        get_username(id);
+        get_republicas();
+        get_imoveisMaiorNotas();
+    }
     
 }
+
+const logarrr = document.querySelector("#login2");
+const test = document.querySelector("#userSession2");
+console.log(logarrr)
+logarrr.addEventListener("click", () => {
+    console.log("clicou login*****************************************************************************************")
+        fetch('http://localhost:8000/user/name')
+            .then(response => response.json())
+            .then(data => {
+                
+                console.log(test);
+                let iconUser = document.querySelector('#user-icon');
+                // iconUser.classList.remove('bx-group'); // Indica que o usuário está logado
+                // iconUser.classList.add('bx-user');
+            })
+            .catch(error => console.error('Erro ao carregar nome do usuário:', error));
+
+});
+
+const sair = document.querySelector("#sair");
+
+sair.addEventListener("click", () => {
+
+    fetch('http://localhost:8000/logout')
+        .then(response => response.json())
+        .then(data => {
+            iconUser.classList.remove('bx-group'); // Indica que o usuário está logado
+            // iconUser.classList.add('bx-user');
+        })
+        .catch(error => console.error('Erro ao carregar nome do usuário:', error));
+
+});
+
 function get_username(id) {
     fetch(`http://localhost:8000/imovel/${id}`)
         .then(response => {
@@ -126,7 +161,7 @@ function get_republicas() {
         })
 }
 
-document.querySelector('#searchInput').addEventListener('keyup', function(event) {
+document.querySelector('#searchInput').addEventListener('keyup', function (event) {
     if (event.key === 'Enter') {
         const searchTerm = this.value;
         get_imoveisPesquisa(searchTerm);
@@ -172,7 +207,7 @@ function get_imoveisPesquisa(searchTerm) {
                                 <p>${imovel.endereco}</p>
                             </div>
                         </a>`;
-                    
+
                     let newAnuncio = document.createElement('div');
                     newAnuncio.classList.add('popular__card');
                     newAnuncio.innerHTML = html;

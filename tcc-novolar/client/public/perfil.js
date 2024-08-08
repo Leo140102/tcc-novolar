@@ -1,10 +1,11 @@
 window.onload = () => {
-    get_ImoveisDoUser();
+    // get_ImoveisDoUser();
 }
 
 const excluir = document.querySelector("#excluirUser");
 
 excluir.addEventListener("click", () => {
+    console.log("entrouclick");
     fetch('http://localhost:8000/user/id')
         .then(response => response.json())
         .then(data => {
@@ -16,23 +17,34 @@ excluir.addEventListener("click", () => {
 });
 
 function excluirUser(idUser) {
-    fetch(`http://localhost:8000/deletar/${idUser}`)
+    fetch(`http://localhost:8000/deletar/${idUser}`, {
+        method: 'DELETE',
+    })
         .then(response => {
-            if (response.status === 200) {
-                return response.json();
-            } else {
-                console.log('nok')
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
+
+            return response.json();
         })
         .then(dados => {
-            if (dados.length === 0) {
-                console.log('erro!')
-            } else {
-
+            if (typeof dados !== 'object' || dados === null || !Array.isArray(dados)) {
+                console.error('Dados não são um array:', dados);
+                return;
             }
-
+            if (dados.length === 0) {
+                console.log('Erro na exclusão!');
+            } else {
+                res.redirect("index.html");
+                console.log('Usuário excluído com sucesso');
+                
+            }
         })
+        .catch(error => {
+            console.error('Erro ao deletar usuário:', error);
+        });
 }
+
 
 //IMOVEIS USUARIO
 function get_ImoveisDoUser(id) {

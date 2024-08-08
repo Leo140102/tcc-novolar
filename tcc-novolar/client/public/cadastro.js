@@ -106,11 +106,30 @@ function cadastroUser() {
         const email = document.getElementById('emailCadastro').value.toString().trim();
         const cpf = document.getElementById('cpf').value.toString().trim();
         const cpfValido = cpf.replace(/\D/g, "");
-        console.log("CPFLIMPO" + cpfValido);
-
         const senha = document.getElementById('senhaCadastro').value.toString().trim();
+        const telefone = document.getElementById('telefoneCadastro').value.toString().trim();
 
-        if (!nome || !email || !cpf || !senha) {
+        const isDonoRadio = document.getElementsByName('tipoUser')
+
+        let selectedValueIsDono;
+
+        let isDono
+
+        for (let i = 0; i < isDonoRadio.length; i++) {
+            if (isDonoRadio[i].checked) {
+                selectedValueIsDono = isDonoRadio[i].id;
+                break;
+            }
+        }
+
+        if (selectedValueIsDono == "dono") {
+            isDono = true
+        } else if (selectedValueIsDono === "estudante") {
+            isDono = false
+        }
+
+
+        if (!nome || !email || !cpf || !senha || !telefone) {
             callAlert('Todos os campos são obrigatórios.');
         }
 
@@ -143,11 +162,14 @@ function cadastroUser() {
             return false;
         }
 
+        console.log("telefone" + telefone)
+
         const formCad = {
             email,
             senha,
             cpf,
-            nome
+            nome,
+            telefone
         };
 
         const jsonData = JSON.stringify(formCad);
@@ -162,7 +184,10 @@ function cadastroUser() {
         };
         console.log(options);
 
-        fetch('http://localhost:8000/register', options)
+        console.log("isDono --> "+isDono)
+
+        if(isDono){
+            fetch('http://localhost:8000/register', options)
             .then(response => {
                 if (response.status === 201) {
                     redirectToLogin();
@@ -172,6 +197,20 @@ function cadastroUser() {
             })
             .then(data => console.log(data))
             .catch(error => console.error('Erro:', error));
+        }else{
+            fetch('http://localhost:8000/registerLocador', options)
+            .then(response => {
+                if (response.status === 201) {s
+                    redirectToLogin();
+                } else if (response.status === 409) {
+                    callAlert('Usuário já cadastrado.');
+                }
+            })
+            .then(data => console.log(data))
+            .catch(error => console.error('Erro:', error));
+        }
+
+        
     }
 
     // Verifica se o evento já foi adicionado
