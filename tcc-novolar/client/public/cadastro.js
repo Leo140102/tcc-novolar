@@ -128,6 +128,11 @@ function cadastroUser() {
             isDono = false
         }
 
+        let tipo = "1"
+        if(isDono == true){
+            tipo = "0"
+        }
+
 
         if (!nome || !email || !cpf || !senha || !telefone) {
             callAlert('Todos os campos são obrigatórios.');
@@ -162,14 +167,15 @@ function cadastroUser() {
             return false;
         }
 
-        console.log("telefone" + telefone)
+        console.log("tipo --> " + tipo)
 
         const formCad = {
             email,
             senha,
             cpf,
             nome,
-            telefone
+            telefone,
+            tipo
         };
 
         const jsonData = JSON.stringify(formCad);
@@ -200,7 +206,7 @@ function cadastroUser() {
         }else{
             fetch('http://localhost:8000/registerLocador', options)
             .then(response => {
-                if (response.status === 201) {s
+                if (response.status === 201) {
                     redirectToLogin();
                 } else if (response.status === 409) {
                     callAlert('Usuário já cadastrado.');

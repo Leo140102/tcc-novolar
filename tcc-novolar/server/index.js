@@ -92,6 +92,7 @@ app.post("/register", (req, res) => {
     const cpf = req.body.cpf
     const senha = req.body.senha
     const telefone = req.body.telefone
+    const tipo = req.body.tipo
 
     db.query("SELECT * FROM mydb.locatario WHERE email =?",
         [email],
@@ -103,8 +104,8 @@ app.post("/register", (req, res) => {
             if (result.length === 0) {
                 bcrypt.hash(senha, saltRounds, (erro, hash) => {
                     db.query(
-                        "INSERT INTO mydb.locatario (email, senha, cpf, nome, telefone) VALUES (?,?,?,?,?)",
-                        [email, hash, cpf, nome,telefone], (err, response) => {
+                        "INSERT INTO mydb.locatario (email, senha, cpf, nome, telefone,tipo) VALUES (?,?,?,?,?,?)",
+                        [email, hash, cpf, nome,telefone,tipo], (err, response) => {
                             if (err) {
                                 return res.send(err)
                             }
@@ -128,6 +129,7 @@ app.post("/registerLocador", (req, res) => {
     const cpf = req.body.cpf
     const senha = req.body.senha
     const telefone = req.body.telefone
+    const tipo = req.body.tipo
 
     db.query("SELECT * FROM mydb.locador WHERE email =?",
         [email],
@@ -139,8 +141,8 @@ app.post("/registerLocador", (req, res) => {
             if (result.length === 0) {
                 bcrypt.hash(senha, saltRounds, (erro, hash) => {
                     db.query(
-                        "INSERT INTO mydb.locador (email, senha, cpf, nome, telefone) VALUES (?,?,?,?,?)",
-                        [email, hash, cpf, nome,telefone], (err, response) => {
+                        "INSERT INTO mydb.locador (email, senha, cpf, nome, telefone,tipo) VALUES (?,?,?,?,?,?)",
+                        [email, hash, cpf, nome,telefone,tipo], (err, response) => {
                             if (err) {
                                 return res.send(err)
                             }
