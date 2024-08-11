@@ -5,35 +5,89 @@ function logar() {
     var email = document.getElementById("email").value;
     var senha = document.getElementById("senha").value;
 
+    const isDonoRadio = document.getElementsByName('tipoUserLogin')
+
+    let selectedValueIsDono;
+
+    for (let i = 0; i < isDonoRadio.length; i++) {
+        if (isDonoRadio[i].checked) {
+            selectedValueIsDono = isDonoRadio[i].id;
+            break;
+        }
+    }
+
+    let isDono
+
+    if (selectedValueIsDono == "donoLogin") {
+        isDono = true
+    } else if (selectedValueIsDono === "estudanteLogin") {
+        isDono = false
+    }
+
+    let tipo = "1"
+    if (isDono == true) {
+        tipo = "0"
+    }
+
     console.log(JSON.stringify({
         email: email,
         senha: senha
     }));
 
-    fetch('http://localhost:8000/login', {
-        method: 'POST',
-        body: JSON.stringify({
-            email: email,
-            senha: senha
-        }),
-        headers: { "content-type": "application/json" }
-    })
-        .then(async (resp) => {
-            var statusCode = await resp.status;
-            if (statusCode === 200) {
-                window.location.href = "/index.html";
-            } else if (statusCode === 404) {
-                callAlert('Conta não encontrada.');
-            } else if (statusCode === 401) {
-                callAlert('Senha incorreta.');
-            } else {
-                callAlert(`Status desconhecido: ${statusCode}`);
-            }
-        })
+    console.log("isDono -->"+isDono)
 
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+    if (isDono) {
+        fetch('http://localhost:8000/login', {
+            method: 'POST',
+            body: JSON.stringify({
+                email: email,
+                senha: senha
+            }),
+            headers: { "content-type": "application/json" }
+        })
+            .then(async (resp) => {
+                var statusCode = await resp.status;
+                if (statusCode === 200) {
+                    window.location.href = "/index.html";
+                } else if (statusCode === 404) {
+                    callAlert('Conta não encontrada.');
+                } else if (statusCode === 401) {
+                    callAlert('Senha incorreta.');
+                } else {
+                    callAlert(`Status desconhecido: ${statusCode}`);
+                }
+            })
+
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    } else {
+        fetch('http://localhost:8000/loginEstudante', {
+            method: 'POST',
+            body: JSON.stringify({
+                email: email,
+                senha: senha
+            }),
+            headers: { "content-type": "application/json" }
+        })
+            .then(async (resp) => {
+                var statusCode = await resp.status;
+                if (statusCode === 200) {
+                    window.location.href = "/index.html";
+                } else if (statusCode === 404) {
+                    callAlert('Conta não encontrada.');
+                } else if (statusCode === 401) {
+                    callAlert('Senha incorreta.');
+                } else {
+                    callAlert(`Status desconhecido: ${statusCode}`);
+                }
+            })
+
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
 }
 
 function callAlert(msg) {

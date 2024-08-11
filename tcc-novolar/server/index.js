@@ -217,6 +217,54 @@ app.post("/login", async (req, res) => {
     }
 });
 
+app.post("/loginEstudante", async (req, res) => {
+    try {
+        const email = req.body.email;
+        const senha = req.body.senha;
+
+        const result = await new Promise((resolve, reject) => {
+            db.query("SELECT * FROM mydb.locador WHERE email =?", [email], (err, resultQuery) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(resultQuery);
+                }
+            });
+        });
+    
+
+        console.log("RESULT --> " + result)
+        if (result.length === 0) {
+            return res.status(404).send('Conta não encontrada.');
+        }
+
+        const passwordMatch = await new Promise((resolve, reject) => {
+            bcrypt.compare(senha, result[0].senha, (erro, result) => {
+                if (erro) {
+                    reject(erro);
+                } else {
+                    resolve(result);
+
+                }
+            });
+        });
+
+        if (!passwordMatch) {
+            return res.status(401).send('Senha incorreta.');
+        }
+
+        myGlobalVariable = req.session.nome = result[0].nome
+        myGlobalVariableId = req.session.id = result[0].id
+
+        console.log("myGlobalVariableId ->" + myGlobalVariableId)
+        return res.sendStatus(200);
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send({ error: error.message });
+    }
+});
+
 
 app.get("/user/id", (req, res) => {
     res.json({ myGlobalVariableId });
