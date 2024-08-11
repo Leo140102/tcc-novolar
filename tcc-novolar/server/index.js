@@ -175,7 +175,7 @@ app.post("/login", async (req, res) => {
         const senha = req.body.senha;
 
         const result = await new Promise((resolve, reject) => {
-            db.query("SELECT * FROM mydb.locador WHERE email =?", [email], (err, resultQuery) => {
+            db.query("SELECT * FROM mydb.locatario WHERE email =?", [email], (err, resultQuery) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -469,7 +469,7 @@ app.delete("/deletarImovel/:id", (req, res) => {
 
 //IMOVEIS POR USUARIO LOGADO
 app.get("/imoveisUser/:id", (req, res) => {
-    db.query("WITH RankedImages AS ( SELECT imovel.*, imagens.image_url, ROW_NUMBER() OVER(PARTITION BY imovel.id ORDER BY imovel.nota DESC) AS RowNum FROM mydb.imovel INNER JOIN mydb.imagens ON imovel.id = imagens.imovel_id WHERE imovel.locatario_id = ?) SELECT * FROM RankedImages WHERE RowNum = 1 AND RowNum <= 4;", [req.params.id], (err, results) => {
+    db.query("SELECT * FROM imovel WHERE locatario_id = ?;", [req.params.id], (err, results) => {
         if (err) {
             res.send('err.message');
         }

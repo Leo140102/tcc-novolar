@@ -137,6 +137,7 @@ function get_ImoveisDoUser() {
 }
 
 function ImoveisUsuario(idUser) {
+    console.log(idUser);
     fetch(`http://localhost:8000/imoveisUser/${idUser}`)
         .then(response => {
             if (response.status === 200) {
