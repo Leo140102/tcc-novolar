@@ -27,6 +27,17 @@
         <div class="login">
             <form action="" class="login-form">
                 <h2 class="title">Entre</h2>
+                <div class="tipoUser-group">
+                    <div class="tipoUser-input" required>
+                        <input id="dono" type="radio" name="tipoUser" checked>
+                        <label for="dono">Sou dono</label>
+                    </div>
+
+                    <div class="tipoUser-input">
+                        <input id="estudante" type="radio" name="tipoUser">
+                        <label for="estudante">Quero alugar</label>
+                    </div>
+                </div>
                 <div class="input-field">
                     <i class="bx bx-envelope"></i>
                     <input type="email" placeholder="E-mail" id="email" required>
@@ -93,7 +104,8 @@
                 </div>
                 <div class="input-field">
                     <i class="bx bx-phone"></i>
-                    <input type="text" title="Por favor, insira apenas números." placeholder="Telefone" required id="telefoneCadastro" inputmode="numeric">
+                    <input type="text" title="Por favor, insira apenas números." placeholder="Telefone" required
+                        id="telefoneCadastro" inputmode="numeric">
                 </div>
                 <div class="input-field">
                     <i class="bx bx-envelope"></i>
