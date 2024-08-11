@@ -574,3 +574,33 @@ a {
     font-weight: 600;
     color: #4a464ec0;
 }
+
+
+
+
+
+.tipoUserLogin-group {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    /* justify-content: space-between; */
+    margin-top: 1rem;
+    padding: 0 .5rem;
+
+}
+
+.tipoUserLogin-input {
+    display: flex;
+    align-items: center;
+    padding-right: 3rem;
+}
+
+.tipoUserLogin-input input {
+    margin-right: 0.35rem;
+}
+
+.tipoUserLogin-input label {
+    font-size: 0.81rem;
+    font-weight: 600;
+    color: #4a464ec0;
+}
