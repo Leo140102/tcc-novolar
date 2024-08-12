@@ -37,7 +37,7 @@
 
                     <div class="tipo-group">
                         <div class="tipo-input">
-                            <input id="maior" type="radio" name="tipo">
+                            <input id="maior" type="radio" name="tipo" checked>
                             <label for="maior">Casa</label>
                         </div>
 
@@ -67,7 +67,7 @@
 
                     <div class="input-box-valor">
                         <label for="valor">Valor</label>
-                        <input id="valor" type="text" name="valor" placeholder="Digite o valor" required>
+                        <input id="valor" type="text" name="valor" placeholder="Digite o valor" required onblur="">
                     </div>
                     <div class="input-box-area">
                         <label for="area">Área</label>
@@ -191,13 +191,24 @@
             </div> -->
 
             <div class="anuncie-button">
-                <button type="submit" class="btnImv" data-id-user="" id="anuncioButton" onclick="cadastroImovel()"><a>anunciar</a>
+                <button type="submit" class="btnImv" data-id-user="" id="anuncioButton"
+                    onclick="cadastroImovel()"><a>anunciar</a>
                 </button>
             </div>
         </div>
         </form>
     </div>
-
+    <div class="toast">
+        <div class="toast-content">
+            <i class="fas fa-solid fa-check check"></i>
+            <div class="message">
+                <span class="text text-1">Aviso!</span>
+                <span class="text"></span>
+            </div>
+        </div>
+        <i class="bx bxl-x close"></i>
+        <div class="progress"></div>
+    </div>
     <script src="cadastroImovel.js"></script>
 
     <script>

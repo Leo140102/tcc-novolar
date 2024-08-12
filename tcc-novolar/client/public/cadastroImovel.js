@@ -5,13 +5,13 @@ function redirectToLogin() {
 
 
 fetch('http://localhost:8000/user/id')
-              .then(response => response.json())
-              .then(data => {
-                var idLocatario = data.myGlobalVariableId;
-                console.log("idLocatario ->" + idLocatario)
-                cadastroImovel(idLocatario)
-               })
-              .catch(error => console.error('Erro ao carregar nome do usuário:', error));
+    .then(response => response.json())
+    .then(data => {
+        var idLocatario = data.myGlobalVariableId;
+        console.log("idLocatario ->" + idLocatario)
+        cadastroImovel(idLocatario)
+    })
+    .catch(error => console.error('Erro ao carregar nome do usuário:', error));
 
 function cadastroImovel(locatario_id) {
     // Obtém o elemento do formulário
@@ -25,7 +25,7 @@ function cadastroImovel(locatario_id) {
         const area = document.getElementById('area').value.toString().trim();
         const endereco = document.getElementById('endereco').value.toString().trim();
         const descricao = document.getElementById('descricao').value.toString().trim();
-        
+
 
         const idadeRadio = document.getElementsByName('idade');
         const tipoRadio = document.getElementsByName('tipo');
@@ -125,7 +125,7 @@ function cadastroImovel(locatario_id) {
         }
 
 
-console.log("TESTE ID LOCATARIO ---> " + locatario_id)
+        console.log("TESTE ID LOCATARIO ---> " + locatario_id)
         const formCad = {
             tipo,
             valor,
@@ -174,44 +174,58 @@ console.log("TESTE ID LOCATARIO ---> " + locatario_id)
     }
 }
 
+function formatarMoeda(valor) {
+    // Remove tudo que não seja dígito
+    valor = valor.replace(/\D/g, "");
+
+    // Substitui o ponto decimal por vírgula
+    valor = valor.replace(/(\d)(\d{2})$/, "$1,$2");
+
+    // Coloca o ponto antes dos últimos três dígitos
+    valor = valor.replace(/(?=(\d{3})+(\.\d{2})?$)/g, ".$1");
+
+    return valor;
+}
+
+
 function callAlert(msg) {
     alert(msg);
 }
 
-// window.alert = function (message, timeout = null) {
-//     console.log(message);
-//     mens = document.querySelector('.text'),
-//         toast = document.querySelector(".toast"),
-//         closeIcon = document.querySelector(".close"),
-//         progress = document.querySelector(".progress");
+window.alert = function (message, timeout = null) {
+    console.log(message);
+    mens = document.querySelector('.text'),
+        toast = document.querySelector(".toast"),
+        closeIcon = document.querySelector(".close"),
+        progress = document.querySelector(".progress");
 
-//     let timer1, timer2;
+    let timer1, timer2;
 
-//     toast.classList.add("active");
-//     progress.classList.add("active");
+    toast.classList.add("active");
+    progress.classList.add("active");
 
-//     mens.textContent = message;
+    mens.textContent = message;
 
-//     timer1 = setTimeout(() => {
-//         toast.classList.remove("active");
-//     }, 5000); //1s = 1000 milliseconds
+    timer1 = setTimeout(() => {
+        toast.classList.remove("active");
+    }, 5000); //1s = 1000 milliseconds
 
-//     timer2 = setTimeout(() => {
-//         progress.classList.remove("active");
-//     }, 5300);
+    timer2 = setTimeout(() => {
+        progress.classList.remove("active");
+    }, 5300);
 
 
-//     closeIcon.addEventListener("click", () => {
-//         toast.classList.remove("active");
+    closeIcon.addEventListener("click", () => {
+        toast.classList.remove("active");
 
-//         setTimeout(() => {
-//             progress.classList.remove("active");
-//         }, 300);
+        setTimeout(() => {
+            progress.classList.remove("active");
+        }, 300);
 
-//         clearTimeout(timer1);
-//         clearTimeout(timer2);
-//     });
-// }
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+    });
+}
 
 
 
