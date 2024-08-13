@@ -5,8 +5,9 @@ window.onload = () => {
         get_username(id);
         get_republicas();
         get_imoveisMaiorNotas();
+        checkUserSession();
     }
-    
+
 }
 
 const logarrr = document.querySelector("#login2");
@@ -14,16 +15,16 @@ const test = document.querySelector("#userSession2");
 console.log(logarrr)
 logarrr.addEventListener("click", () => {
     console.log("clicou login*****************************************************************************************")
-        fetch('http://localhost:8000/user/name')
-            .then(response => response.json())
-            .then(data => {
-                
-                console.log(test);
-                let iconUser = document.querySelector('#user-icon');
-                // iconUser.classList.remove('bx-group'); // Indica que o usuário está logado
-                // iconUser.classList.add('bx-user');
-            })
-            .catch(error => console.error('Erro ao carregar nome do usuário:', error));
+    fetch('http://localhost:8000/user/name')
+        .then(response => response.json())
+        .then(data => {
+
+            console.log(test);
+            let iconUser = document.querySelector('#user-icon');
+            // iconUser.classList.remove('bx-group'); // Indica que o usuário está logado
+            // iconUser.classList.add('bx-user');
+        })
+        .catch(error => console.error('Erro ao carregar nome do usuário:', error));
 
 });
 
@@ -252,3 +253,17 @@ searchToggle.addEventListener("click", () => {
 // window.addEventListener("click", function (e) {
 //     if (!btn.contains(e.target)) classList.remove("active");
 // });
+
+function checkUserSession() {
+    var userSessionText = document.getElementById('userSession2').innerText;
+    // Verifica se o texto é "Undefined"
+    if (userSessionText === "Undefined" || userSessionText === "") {
+        // Esconde a div .profile-dropdown
+        var profileDropdown = document.querySelector('.profile-dropdown');
+        profileDropdown.style.display = 'none';
+    } else {
+        // Mostra a div .profile-dropdown
+        var profileDropdown = document.querySelector('.profile-dropdown');
+        profileDropdown.style.display = 'block';
+    }
+}
