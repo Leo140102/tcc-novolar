@@ -526,6 +526,16 @@ app.get("/imoveisUser/:id", (req, res) => {
     })
 });
 
+//IMOVEIS POR USUARIO LOGADO
+app.get("/dadosUser/:id", (req, res) => {
+    db.query("SELECT * FROM locatario WHERE id = ?;", [req.params.id], (err, results) => {
+        if (err) {
+            res.send('err.message');
+        }
+        res.json(results);
+    })
+});
+
 app.patch("/updateUserPhone/:id", (req, res) => {
     const id = req.params.id;
     const telefone = req.body.telefone; // O novo número de telefone deve ser enviado no corpo da requisição

@@ -1,5 +1,6 @@
 window.onload = () => {
     get_ImoveisDoUser();
+    set_DadosDoUser();
 }
 
 const excluir = document.querySelector("#excluirUser");
@@ -126,13 +127,11 @@ function excluirImovel(idImovel) {
 
 
 //IMOVEIS USUARIO
-const anuncio = document.getElementById('account-imoveis');
 function get_ImoveisDoUser() {
     fetch('http://localhost:8000/user/id')
         .then(response => response.json())
         .then(data => {
             var idUser = data.myGlobalVariableId;
-            console.log(anuncio);
             ImoveisUsuario(idUser);
         })
         .catch(error => console.error('Erro ao carregar nome do usuário:', error));
@@ -150,7 +149,7 @@ function ImoveisUsuario(idUser) {
         })
         .then(imoveis => {
             if (imoveis.length === 0) {
-                document.querySelector("#no_imoveis").classList.remove("d-none")
+                // document.querySelector("#no_imoveis").classList.remove("d-none")
                 console.log("entra imoveis.length === 0");
             } else {
                 document.querySelector("#account-imoveis").innerHTML = null;
@@ -182,5 +181,40 @@ function ImoveisUsuario(idUser) {
             }
 
         })
+}
+
+function set_DadosDoUser() {
+    fetch('http://localhost:8000/user/id')
+        .then(response => response.json())
+        .then(data => {
+            var idUser = data.myGlobalVariableId;
+            setaDadosUsuario(idUser);
+        })
+        .catch(error => console.error('Erro ao carregar nome do usuário:', error));
+}
+
+function setaDadosUsuario(idUser) {
+    console.log(idUser + "setaDadosUsuario");
+    fetch(`http://localhost:8000/dadosUser/${idUser}`)
+        .then(response => {
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                console.log('Erro ao buscar dados do usuário');
+                throw new Error('Erro ao buscar dados do usuário'); // Lança um erro para tratar na próxima etapa
+            }
+        })
+        .then(data => { // 'data' é o array de usuários
+            const usuario = data[0]; // Pega o primeiro objeto do array
+            // Agora 'usuario' deve conter os dados do usuário
+            console.log(usuario.email);
+            document.getElementById('nomeLogado').value = usuario.nome || '';
+            document.getElementById('cpfLogado').value = usuario.cpf || '';
+            document.getElementById('telefone').value = usuario.telefone || '';
+            document.getElementById('emailLogado').value = usuario.email || '';
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+        });
 }
 
