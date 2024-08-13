@@ -635,7 +635,6 @@ app.patch('/alterPasswordLocatario/:id', async (req, res) => {
 app.patch('/alterPasswordLocador/:id', async (req, res) => {
     const { id } = req.params;
     const { senhaAtual, novaSenha } = req.body;
-    const email = req.body.email;
     let table = "";
 
     try {
@@ -681,7 +680,7 @@ app.patch('/alterPasswordLocador/:id', async (req, res) => {
 
 app.get("/tipoUser/:id", (req, res) => {
     const { id } = req.params;
-    const email = req.body.email;
+    const { email } = req.query;
     let tipo;
 
     db.query("SELECT * FROM mydb.locador WHERE id = ? AND email = ?", [id, email], (err, locadorResult) => {

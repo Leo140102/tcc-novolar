@@ -62,6 +62,76 @@ function atualizarUser(idUser) {
         .catch(error => console.error('Erro:', error));
 }
 
+function atualizarPassword(idUser) {
+    const senhaAtual = document.getElementById('senhaAtual').value.toString().trim();
+    const novaSenha = document.getElementById('senhaNova').value.toString().trim();
+    const senhaNovaRepet = document.getElementById('senhaNovaRepet').value.toString().trim();
+    const email = document.getElementById('email').value.toString().trim();
+
+    if (senhaAtual === "" || novaSenha === "" || senhaNovaRepet === "") {
+        return
+    } else {
+        if (novaSenha != senhaNovaRepet) {
+            console.log('Confirmação de senha não correspondente');
+            return;
+        }
+
+        fetch(`http://localhost:8000/tipoUser/${idUser}?email=${email}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.tipoUsuario === "1") { // Verifica se é um locador
+                    const formCad = {
+                        senhaAtual,
+                        novaSenha,
+                    };
+                    const jsonData = JSON.stringify(formCad);
+                    console.log(jsonData);
+
+                    const options = {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: jsonData
+                    };
+                    fetch(`http://localhost:8000/alterPasswordLocatario/${idUser}`, options)
+                        .then(response => {
+                            if (response.status === 201) {
+                                redirectToLogin();
+                            } else if (response.status === 409) {
+                                callAlert('Falha ao atualizar usuário.');
+                            }
+                        })
+                        .catch(error => console.error('Erro:', error));
+                } else {
+                    const formCad = {
+                        senhaAtual,
+                        novaSenha,
+                    };
+                    const jsonData = JSON.stringify(formCad);
+                    console.log(jsonData);
+
+                    const options = {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: jsonData
+                    };
+                    fetch(`http://localhost:8000/alterPasswordLocador/${idUser}`, options)
+                        .then(response => {
+                            if (response.status === 201) {
+                                redirectToLogin();
+                            } else if (response.status === 409) {
+                                callAlert('Falha ao atualizar usuário.');
+                            }
+                        })
+                        .catch(error => console.error('Erro:', error));
+                }
+            })
+            .catch(error => console.error('Erro ao verificar o tipo de usuário:', error));
+    }
+}
 
 
 function excluirUser(idUser) {
