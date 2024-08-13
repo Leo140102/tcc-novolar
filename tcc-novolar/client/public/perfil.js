@@ -114,7 +114,7 @@ function excluirImovel(idImovel) {
             if (dados.length === 0) {
                 console.log('Erro na exclusão!');
             } else {
-                res.redirect("index.html");
+                res.redirect("perfil.html");
                 console.log('Imovel excluído com sucesso');
 
             }
