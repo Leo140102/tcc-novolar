@@ -38,14 +38,14 @@ function get_imoveis(id) {
         })
         .then(imoveis => {
             if (imoveis.length === 0) {
-                document.querySelector("#no_imoveis").classList.remove("d-none")
+                
             } else {
                 document.querySelector("#anuncios").innerHTML = null;
 
                 imoveis.forEach(imovel => {
                     let html = `
             <a href="imovelItem.html?id=${imovel.id}">
-                <img src="imagens/loft1.0.jpg" alt="popular hotel" />
+                <img src="imagens/${imovel.image_url}" alt="popular hotel" />
                 <div class="stars">
                     <i class='bx bxs-star'></i>
                     <i class='bx bxs-star'></i>
@@ -160,21 +160,21 @@ function get_imoveisPesquisa(searchTerm) {
     const url = `http://localhost:8000/pesquisa?query=${encodeURIComponent(searchTerm)}`;
 
     fetch(url)
-    .then(response => {
-        if (response.status === 200) {
-            return response.json();
-        } else {
-            console.log('erro')
-        }
-    })
-    .then(imoveis => {
-        if (imoveis.length === 0) {
-            document.querySelector("#no_imoveis").classList.remove("d-none")
-        } else {
-            document.querySelector("#anuncios").innerHTML = null;
+        .then(response => {
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                console.log('erro')
+            }
+        })
+        .then(imoveis => {
+            if (imoveis.length === 0) {
+                document.querySelector("#no_imoveis").classList.remove("d-none")
+            } else {
+                document.querySelector("#anuncios").innerHTML = null;
 
-            imoveis.forEach(imovel => {
-                let html = `
+                imoveis.forEach(imovel => {
+                    let html = `
         <a href="imovelItem.html?id=${imovel.id}">
             <img src="imagens/${imovel.image_url}" alt="popular hotel" />
             <div class="stars">
@@ -193,17 +193,17 @@ function get_imoveisPesquisa(searchTerm) {
             </div>
         </a>`;
 
-                let new_anuncio = document.createElement('div');
-                new_anuncio.classList.add('popular__card')
-                new_anuncio.innerHTML = html;
+                    let new_anuncio = document.createElement('div');
+                    new_anuncio.classList.add('popular__card')
+                    new_anuncio.innerHTML = html;
 
-                document.querySelector("#anuncios").appendChild(new_anuncio);
+                    document.querySelector("#anuncios").appendChild(new_anuncio);
 
-            });
-            //document.querySelector("#no_imoveis").classList.add("d-none");
-        }
+                });
+                //document.querySelector("#no_imoveis").classList.add("d-none");
+            }
 
-    })
+        })
 }
 
 function checkUserSession() {

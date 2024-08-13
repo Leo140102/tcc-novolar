@@ -254,16 +254,17 @@ searchToggle.addEventListener("click", () => {
 //     if (!btn.contains(e.target)) classList.remove("active");
 // });
 
-// function checkUserSession() {
-//     var userSessionText = document.getElementById('userSession2').innerText;
-//     // Verifica se o texto é "Undefined"
-//     if (userSessionText === "Undefined" || userSessionText === "") {
-//         // Esconde a div .profile-dropdown
-//         var profileDropdown = document.querySelector('.profile-dropdown');
-//         profileDropdown.style.display = 'none';
-//     } else {
-//         // Mostra a div .profile-dropdown
-//         var profileDropdown = document.querySelector('.profile-dropdown');
-//         profileDropdown.style.display = 'block';
-//     }
-// }
+function checkUserSession() {
+    var userSessionText = document.getElementById('userSession2').innerText;
+    console.log(userSessionText + "checkUserSession");
+    // Verifica se o texto é "Undefined"
+    if (userSessionText === "undefined") {
+        // Esconde a div .profile-dropdown
+        var profileDropdown = document.querySelector('.profile-dropdown');
+        profileDropdown.style.display = 'none';
+    } else {
+        // Mostra a div .profile-dropdown
+        var profileDropdown = document.querySelector('.profile-dropdown');
+        profileDropdown.style.display = 'block';
+    }
+}

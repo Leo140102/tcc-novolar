@@ -224,8 +224,11 @@ function ImoveisUsuario(idUser) {
         })
         .then(imoveis => {
             if (imoveis.length === 0) {
-                // document.querySelector("#no_imoveis").classList.remove("d-none")
-                console.log("entra imoveis.length === 0");
+                console.log("SEM IMOVEIS");
+                var donoSemImoveis = document.querySelector('.donoSemImoveis');
+                var donoComImoveis = document.querySelector('.anuncio');
+                donoSemImoveis.style.display = 'block';
+                donoComImoveis.style.display = 'none';
             } else {
                 document.querySelector("#account-imoveis").innerHTML = null;
 

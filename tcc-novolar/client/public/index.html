@@ -53,7 +53,7 @@
           </div>
 
         </a></li>
-      <li><a href="login.html" id="loginicon">
+      <li><a href="login.html" id="loginicon" class="logina">
           <span class="bx bx-user" id="user-icon"></span>
         </a></li>
       <li>
@@ -71,8 +71,7 @@
         <ul class="profile-dropdown-list">
           <li class="profile-dropdown-list-item">
             <a href="perfil.html">
-              <i class="fa-regular fa-user"><span id="userSession2"
-                  style="font-size: 12px; color: grey;"></span></i>
+              <i class="fa-regular fa-user"><span id="userSession2" style="font-size: 12px; color: grey;"></span></i>
 
             </a>
           </li>
@@ -294,6 +293,19 @@
     .then(data => {
       document.getElementById('userSession2').innerText = data.nome;
       let iconUser = document.querySelector('#user-icon');
+      var userSessionText = document.getElementById('userSession2').innerText;
+
+      if (userSessionText === "undefined") {
+        var profileDropdown = document.querySelector('.profile-dropdown');
+        var logina = document.querySelector('.logina');
+        profileDropdown.style.display = 'none';
+        logina.style.display = 'block';
+      } else {
+        var profileDropdown = document.querySelector('.profile-dropdown');
+        var logina = document.querySelector('.logina');
+        profileDropdown.style.display = 'block';
+        logina.style.display = 'none';
+      }
       // iconUser.classList.remove('bx-group'); // Indica que o usuário está logado
       // iconUser.classList.add('bx-user');
     })
