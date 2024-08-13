@@ -25,8 +25,8 @@ atualizar.addEventListener("click", () => {
         .then(response => response.json())
         .then(data => {
             var idUser = data.myGlobalVariableId;
-            console.log("idLocatario ->" + idUser)
             atualizarUser(idUser)
+            atualizarPassword(idUser)
         })
         .catch(error => console.error('Erro ao carregar nome do usuário:', error));
 })
