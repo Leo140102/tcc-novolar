@@ -183,7 +183,7 @@ app.post("/login", async (req, res) => {
                 }
             });
         });
-    
+
 
         console.log("RESULT --> " + result)
         if (result.length === 0) {
@@ -231,9 +231,7 @@ app.post("/loginEstudante", async (req, res) => {
                 }
             });
         });
-    
 
-        console.log("RESULT --> " + result)
         if (result.length === 0) {
             return res.status(404).send('Conta não encontrada.');
         }
@@ -590,8 +588,8 @@ app.patch("/updateUserPhone/:id", (req, res) => {
 app.patch('/alterPasswordLocatario/:id', async (req, res) => {
     const { id } = req.params;
     const { senhaAtual, novaSenha } = req.body;
-     const email = req.body.email;
-    let table = "";
+    const email = req.body.email;
+
 
     try {
         const result = await new Promise((resolve, reject) => {
@@ -632,6 +630,86 @@ app.patch('/alterPasswordLocatario/:id', async (req, res) => {
         console.error(error);
         res.status(500).send({ message: 'Erro interno do servidor' });
     }
+});
+
+app.patch('/alterPasswordLocador/:id', async (req, res) => {
+    const { id } = req.params;
+    const { senhaAtual, novaSenha } = req.body;
+    const email = req.body.email;
+    let table = "";
+
+    try {
+        const result = await new Promise((resolve, reject) => {
+            db.query("SELECT * FROM mydb.locador WHERE id =?", [id], (err, resultQuery) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(resultQuery);
+                }
+            });
+        });
+        if (result.length === 0) {
+            return res.status(404).send({ message: 'Usuário não encontrado' });
+        }
+
+        const passwordMatch = await new Promise((resolve, reject) => {
+            bcrypt.compare(senhaAtual, result[0].senha, (erro, match) => {
+                if (erro) {
+                    reject(erro);
+                } else {
+                    resolve(match);
+                }
+            });
+        });
+
+        if (!passwordMatch) {
+            return res.status(401).send({ message: 'Senha incorreta.' });
+        }
+
+        const saltRounds = 10;
+        const hashedNovaSenha = await bcrypt.hash(novaSenha, saltRounds);
+
+        const updateQuery = "UPDATE mydb.locatario SET senha = ? WHERE id = ?";
+        await db.query(updateQuery, [hashedNovaSenha, id]);
+
+        res.send({ message: 'Senha atualizada com sucesso!' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ message: 'Erro interno do servidor' });
+    }
+});
+
+app.get("/tipoUser/:id", (req, res) => {
+    const { id } = req.params;
+    const email = req.body.email;
+    let tipo;
+
+    db.query("SELECT * FROM mydb.locador WHERE id = ? AND email = ?", [id, email], (err, locadorResult) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).send({ error: 'Erro ao verificar o locador.' });
+        } else if (locadorResult.length > 0) {
+            tipo = "1";
+        }
+
+        db.query("SELECT * FROM mydb.locatario WHERE id = ? AND email = ?", [id, email], (err, locatarioResult) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).send({ error: 'Erro ao verificar o locatario.' });
+            } else if (locatarioResult.length > 0) {
+                tipo = "0";
+            }
+
+            if (tipo === "") {
+                return res.status(404).send({ error: 'Usuário não encontrado nas tabelas locador ou locatario.' });
+            } else {
+
+                return res.status(200).json({ tipoUsuario: tipo });
+            }
+
+
+        });
+    });
 });
 
 // app.patch('/alterPasswordLocatario/:id', async (req, res) => {
