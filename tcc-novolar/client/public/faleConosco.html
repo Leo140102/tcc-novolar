@@ -40,6 +40,38 @@
         <span class="bx bx-menu" id="menu-icon"></span>
       </li>
       <span id="userSession"></span>
+      <div class="profile-dropdown">
+        <div onclick="toggle()" class="profile-dropdown-btn">
+
+          <span>
+            <i class="fa-solid fa-angle-down"></i>
+          </span>
+        </div>
+
+        <ul class="profile-dropdown-list">
+          <li class="profile-dropdown-list-item">
+            <a href="perfil.html">
+              <i class="fa-regular fa-user"><span id="userSession2" style="font-size: 12px; color: grey;"></span></i>
+
+            </a>
+          </li>
+
+          <li class="profile-dropdown-list-item">
+            <a href="#">
+              <i class="fa-regular fa-circle-question"></i>
+              Ajuda e suporte
+            </a>
+          </li>
+          <hr />
+
+          <li class="profile-dropdown-list-item">
+            <a href="/logout" id="sair">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              Sair
+            </a>
+          </li>
+        </ul>
+      </div>
     </ul>
 
 
@@ -51,8 +83,8 @@
     <div class="form">
       <div class="contact-info">
         <h3 class="title">Entre em contato conosco</h3>
-        <p class="text ">Estamos aqui para ajudar você a encontrar o lar perfeito durante seus estudos. 
-          Se você tiver dúvidas, sugestões ou precisar de assistência, não hesite em entrar em contato conosco. 
+        <p class="text ">Estamos aqui para ajudar você a encontrar o lar perfeito durante seus estudos.
+          Se você tiver dúvidas, sugestões ou precisar de assistência, não hesite em entrar em contato conosco.
           Nossa equipe está pronta para atendê-lo!</p>
 
         <div class="info">
@@ -92,7 +124,7 @@
         <span class="circle one"></span>
         <span class="circle two"></span>
 
-        <form action="https://formsubmit.co/kamilyxavierp@gmail.com" method="POST" autocomplete="off" >
+        <form action="https://formsubmit.co/kamilyxavierp@gmail.com" method="POST" autocomplete="off">
           <h3 class="title">Envie uma mensagem</h3>
           <div class="input-container">
             <input type="text" name="Nome" class="input" required>
@@ -144,13 +176,14 @@
   <div id="root"></div>
   <script src="App.js"></script>
   <script src="Main.js"></script>
+  <script src="faleConosco.js"></script>
 
- <!--whatssapp-->
- <div class="buttonzap">
-  <a href="https://wa.me/5544998996466" class="iconzap" target="_blank"><i class="bx bxl-whatsapp"  id="zap"></i></a>
-</div>
-<script src="App.js"></script>
-<script src="login.js"></script>
+  <!--whatssapp-->
+  <div class="buttonzap">
+    <a href="https://wa.me/5544998996466" class="iconzap" target="_blank"><i class="bx bxl-whatsapp" id="zap"></i></a>
+  </div>
+  <script src="App.js"></script>
+  <script src="login.js"></script>
 </body>
 
 </html>

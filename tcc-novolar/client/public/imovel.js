@@ -5,6 +5,7 @@ let id = 2;
 window.onload = () => {
     get_username(id);
     get_imoveis(id);
+    checkUserSession();
 }
 function get_username(id) {
     fetch(`http://localhost:8000/imovel/${id}`)
@@ -203,4 +204,18 @@ function get_imoveisPesquisa(searchTerm) {
         }
 
     })
+}
+
+function checkUserSession() {
+    var userSessionText = document.getElementById('userSession2').innerText;
+    // Verifica se o texto é "Undefined"
+    if (userSessionText === "Undefined" || userSessionText === "") {
+        // Esconde a div .profile-dropdown
+        var profileDropdown = document.querySelector('.profile-dropdown');
+        profileDropdown.style.display = 'none';
+    } else {
+        // Mostra a div .profile-dropdown
+        var profileDropdown = document.querySelector('.profile-dropdown');
+        profileDropdown.style.display = 'block';
+    }
 }
