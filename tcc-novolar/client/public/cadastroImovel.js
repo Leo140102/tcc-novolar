@@ -3,6 +3,9 @@ function redirectToLogin() {
     window.location.href = '/login.html';
 }
 
+function redirectToPerfil() {
+    window.location.href = '/perfil.html';
+}
 
 fetch('http://localhost:8000/user/id')
     .then(response => response.json())
@@ -152,11 +155,13 @@ function cadastroImovel(locatario_id) {
             body: jsonData
         };
         console.log(options);
+        redirectToPerfil();
 
         fetch('http://localhost:8000/registerImovel', options)
             .then(response => {
                 if (response.status === 201) {
-                    redirectToLogin();
+                    console.log(entrou200);
+                    redirectToIndex();
                 } else if (response.status === 409) {
                     callAlert('Usuário já cadastrado.');
                 }

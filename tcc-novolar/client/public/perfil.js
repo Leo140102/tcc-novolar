@@ -119,18 +119,20 @@ function excluirImovel(idImovel) {
             }
         })
         .catch(error => {
+            console.log(idImovel);
             console.error('Erro ao deletar Imovel:', error);
         });
 }
 
 
 //IMOVEIS USUARIO
+const anuncio = document.getElementById('account-imoveis');
 function get_ImoveisDoUser() {
     fetch('http://localhost:8000/user/id')
         .then(response => response.json())
         .then(data => {
             var idUser = data.myGlobalVariableId;
-            console.log("idLocatario ->" + idUser)
+            console.log(anuncio);
             ImoveisUsuario(idUser);
         })
         .catch(error => console.error('Erro ao carregar nome do usuário:', error));
@@ -149,8 +151,9 @@ function ImoveisUsuario(idUser) {
         .then(imoveis => {
             if (imoveis.length === 0) {
                 document.querySelector("#no_imoveis").classList.remove("d-none")
+                console.log("entra imoveis.length === 0");
             } else {
-                document.querySelector("#anuncios").innerHTML = null;
+                document.querySelector("#account-imoveis").innerHTML = null;
 
                 imoveis.forEach(imovel => {
                     let html = `           
@@ -163,8 +166,7 @@ function ImoveisUsuario(idUser) {
                                         <h6>R$ ${imovel.valor}</h6>
                                         <p>${imovel.endereco}</p>
 
-                                        <div id="excluirImovel" style="color: rgb(26, 16, 117);"
-                                            onclick="excluirImovel(${imovel.id})">
+                                        <div id="excluirImovel" style="color: rgb(26, 16, 117);" onclick="excluirImovel(${imovel.id})">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </div>
                                     </div>`;

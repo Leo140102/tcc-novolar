@@ -507,6 +507,7 @@ app.delete("/deletarImovel/:id", (req, res) => {
 
     db.query("DELETE FROM imovel WHERE id = ?", [req.params.id], (err, result) => {
         if (err) {
+            console.log(req.params.id);
             res.status(500).send('Erro ao excluir o imóvel.');
         } else {
             res.status(200).send('imóvel excluído com sucesso.');
@@ -517,7 +518,7 @@ app.delete("/deletarImovel/:id", (req, res) => {
 
 //IMOVEIS POR USUARIO LOGADO
 app.get("/imoveisUser/:id", (req, res) => {
-    db.query("SELECT * FROM imovel WHERE locatario_id = ?;", [req.params.id], (err, results) => {
+    db.query("WITH RankedImages AS (SELECT imovel.*, imagens.image_url,ROW_NUMBER() OVER(PARTITION BY imovel.id ORDER BY imagens.id ASC) AS RowNum FROM mydb.imovel INNER JOIN mydb.imagens ON imovel.id = imagens.imovel_id WHERE imovel.locatario_id = ?)SELECT * FROM RankedImages WHERE RowNum = 1;", [req.params.id], (err, results) => {
         if (err) {
             res.send('err.message');
         }
@@ -573,6 +574,101 @@ app.patch("/updateUserPhone/:id", (req, res) => {
         res.status(500).send({ error: 'Ocorreu um erro inesperado ao atualizar o telefone.' });
     }
 });
+
+
+
+app.patch('/alterPasswordLocatario/:id', async (req, res) => {
+    const { id } = req.params;
+    const { senhaAtual, novaSenha } = req.body;
+     const email = req.body.email;
+    let table = "";
+
+    try {
+        const result = await new Promise((resolve, reject) => {
+            db.query("SELECT * FROM mydb.locatario WHERE id =?", [id], (err, resultQuery) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(resultQuery);
+                }
+            });
+        });
+        if (result.length === 0) {
+            return res.status(404).send({ message: 'Usuário não encontrado' });
+        }
+
+        const passwordMatch = await new Promise((resolve, reject) => {
+            bcrypt.compare(senhaAtual, result[0].senha, (erro, match) => {
+                if (erro) {
+                    reject(erro);
+                } else {
+                    resolve(match);
+                }
+            });
+        });
+
+        if (!passwordMatch) {
+            return res.status(401).send({ message: 'Senha incorreta.' });
+        }
+
+        const saltRounds = 10;
+        const hashedNovaSenha = await bcrypt.hash(novaSenha, saltRounds);
+
+        const updateQuery = "UPDATE mydb.locatario SET senha = ? WHERE id = ?";
+        await db.query(updateQuery, [hashedNovaSenha, id]);
+
+        res.send({ message: 'Senha atualizada com sucesso!' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ message: 'Erro interno do servidor' });
+    }
+});
+
+// app.patch('/alterPasswordLocatario/:id', async (req, res) => {
+//     const { id } = req.params;
+//     const { senhaAtual, novaSenha } = req.body;
+
+//     try {
+//         const result = await new Promise((resolve, reject) => {
+//             db.query("SELECT * FROM mydb.locador WHERE id =?", [id], (err, resultQuery) => {
+//                 if (err) {
+//                     reject(err);
+//                 } else {
+//                     resolve(resultQuery);
+//                 }
+//             });
+//         });
+//         if (result.length === 0) {
+//             return res.status(404).send({ message: 'Usuário não encontrado' });
+//         }
+
+//         const passwordMatch = await new Promise((resolve, reject) => {
+//             bcrypt.compare(senhaAtual, result[0].senha, (erro, match) => {
+//                 if (erro) {
+//                     reject(erro);
+//                 } else {
+//                     resolve(match);
+//                 }
+//             });
+//         });
+
+//         if (!passwordMatch) {
+//             return res.status(401).send({ message: 'Senha incorreta.' });
+//         }
+
+//         const saltRounds = 10;
+//         const hashedNovaSenha = await bcrypt.hash(novaSenha, saltRounds);
+
+//         const updateQuery = "UPDATE mydb.locatario SET senha = ? WHERE id = ?";
+//         await db.query(updateQuery, [hashedNovaSenha, id]);
+
+//         res.send({ message: 'Senha atualizada com sucesso!' });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).send({ message: 'Erro interno do servidor' });
+//     }
+// });
+
 
 
 

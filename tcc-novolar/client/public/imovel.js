@@ -44,7 +44,7 @@ function get_imoveis(id) {
                 imoveis.forEach(imovel => {
                     let html = `
             <a href="imovelItem.html?id=${imovel.id}">
-                <img src="imagens/${imovel.image_url}" alt="popular hotel" />
+                <img src="imagens/loft1.0.jpg" alt="popular hotel" />
                 <div class="stars">
                     <i class='bx bxs-star'></i>
                     <i class='bx bxs-star'></i>
