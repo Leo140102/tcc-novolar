@@ -33,7 +33,7 @@ atualizar.addEventListener("click", () => {
 
 function atualizarUser(idUser) {
     const telefone = document.getElementById('telefone').value.toString().trim();
-    const email = document.getElementById('email').value.toString().trim();
+    const email = document.getElementById('emailLogado').value.toString().trim();
 
     const formCad = {
         telefone,
@@ -66,7 +66,7 @@ function atualizarPassword(idUser) {
     const senhaAtual = document.getElementById('senhaAtual').value.toString().trim();
     const novaSenha = document.getElementById('senhaNova').value.toString().trim();
     const senhaNovaRepet = document.getElementById('senhaNovaRepet').value.toString().trim();
-    const email = document.getElementById('email').value.toString().trim();
+    const email = document.getElementById('emailLogado').value.toString().trim();
 
     if (senhaAtual === "" || novaSenha === "" || senhaNovaRepet === "") {
         return
@@ -79,7 +79,10 @@ function atualizarPassword(idUser) {
         fetch(`http://localhost:8000/tipoUser/${idUser}?email=${email}`)
             .then(response => response.json())
             .then(data => {
-                if (data.tipoUsuario === "1") { // Verifica se é um locador
+                if (data.tipoUsuario === "1") {
+
+                    console.log("ENTROU LOCADOR ")
+
                     const formCad = {
                         senhaAtual,
                         novaSenha,
@@ -104,6 +107,8 @@ function atualizarPassword(idUser) {
                         })
                         .catch(error => console.error('Erro:', error));
                 } else {
+                    console.log("ENTROU LOCATARIO ")
+
                     const formCad = {
                         senhaAtual,
                         novaSenha,
@@ -265,26 +270,56 @@ function set_DadosDoUser() {
 
 function setaDadosUsuario(idUser) {
     console.log(idUser + "setaDadosUsuario");
-    fetch(`http://localhost:8000/dadosUser/${idUser}`)
-        .then(response => {
-            if (response.status === 200) {
-                return response.json();
+    fetch(`http://localhost:8000/tipoUserID/${idUser}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.tipoUsuario === "1") {
+
+                fetch(`http://localhost:8000/dadosUserLocador/${idUser}`)
+                    .then(response => {
+                        if (response.status === 200) {
+                            return response.json();
+                        } else {
+                            console.log('Erro ao buscar dados do usuário');
+                            throw new Error('Erro ao buscar dados do usuário'); // Lança um erro para tratar na próxima etapa
+                        }
+                    })
+                    .then(data => { // 'data' é o array de usuários
+                        const usuario = data[0]; // Pega o primeiro objeto do array
+                        // Agora 'usuario' deve conter os dados do usuário
+                        console.log(usuario.email);
+                        document.getElementById('nomeLogado').value = usuario.nome || '';
+                        document.getElementById('cpfLogado').value = usuario.cpf || '';
+                        document.getElementById('telefone').value = usuario.telefone || '';
+                        document.getElementById('emailLogado').value = usuario.email || '';
+                    })
+                    .catch(error => {
+                        console.error('Erro:', error);
+                    });
             } else {
-                console.log('Erro ao buscar dados do usuário');
-                throw new Error('Erro ao buscar dados do usuário'); // Lança um erro para tratar na próxima etapa
+                fetch(`http://localhost:8000/dadosUser/${idUser}`)
+                    .then(response => {
+                        if (response.status === 200) {
+                            return response.json();
+                        } else {
+                            console.log('Erro ao buscar dados do usuário');
+                            throw new Error('Erro ao buscar dados do usuário'); // Lança um erro para tratar na próxima etapa
+                        }
+                    })
+                    .then(data => { // 'data' é o array de usuários
+                        const usuario = data[0]; // Pega o primeiro objeto do array
+                        // Agora 'usuario' deve conter os dados do usuário
+                        console.log(usuario.email);
+                        document.getElementById('nomeLogado').value = usuario.nome || '';
+                        document.getElementById('cpfLogado').value = usuario.cpf || '';
+                        document.getElementById('telefone').value = usuario.telefone || '';
+                        document.getElementById('emailLogado').value = usuario.email || '';
+                    })
+                    .catch(error => {
+                        console.error('Erro:', error);
+                    });
             }
         })
-        .then(data => { // 'data' é o array de usuários
-            const usuario = data[0]; // Pega o primeiro objeto do array
-            // Agora 'usuario' deve conter os dados do usuário
-            console.log(usuario.email);
-            document.getElementById('nomeLogado').value = usuario.nome || '';
-            document.getElementById('cpfLogado').value = usuario.cpf || '';
-            document.getElementById('telefone').value = usuario.telefone || '';
-            document.getElementById('emailLogado').value = usuario.email || '';
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-        });
-}
+        .catch(error => console.error('Erro ao verificar o tipo de usuário:', error));
 
+}

@@ -534,6 +534,15 @@ app.get("/dadosUser/:id", (req, res) => {
     })
 });
 
+app.get("/dadosUserLocador/:id", (req, res) => {
+    db.query("SELECT * FROM locador WHERE id = ?;", [req.params.id], (err, results) => {
+        if (err) {
+            res.send('err.message');
+        }
+        res.json(results);
+    })
+});
+
 app.patch("/updateUserPhone/:id", (req, res) => {
     const id = req.params.id;
     const telefone = req.body.telefone; // O novo número de telefone deve ser enviado no corpo da requisição
@@ -692,6 +701,39 @@ app.get("/tipoUser/:id", (req, res) => {
         }
 
         db.query("SELECT * FROM mydb.locatario WHERE id = ? AND email = ?", [id, email], (err, locatarioResult) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).send({ error: 'Erro ao verificar o locatario.' });
+            } else if (locatarioResult.length > 0) {
+                tipo = "0";
+            }
+
+            if (tipo === "") {
+                return res.status(404).send({ error: 'Usuário não encontrado nas tabelas locador ou locatario.' });
+            } else {
+
+                return res.status(200).json({ tipoUsuario: tipo });
+            }
+
+
+        });
+    });
+});
+
+app.get("/tipoUserID/:id", (req, res) => {
+    const { id } = req.params;
+
+    let tipo;
+
+    db.query("SELECT * FROM mydb.locador WHERE id = ?", [id], (err, locadorResult) => {
+        if (err) {
+            console.log(err);
+            return res.status(500).send({ error: 'Erro ao verificar o locador.' });
+        } else if (locadorResult.length > 0) {
+            tipo = "1";
+        }
+
+        db.query("SELECT * FROM mydb.locatario WHERE id = ?", [id], (err, locatarioResult) => {
             if (err) {
                 console.log(err);
                 return res.status(500).send({ error: 'Erro ao verificar o locatario.' });
