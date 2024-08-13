@@ -32,7 +32,7 @@
       <li><a href="imoveis.html">Imóveis</a></li>
       <li><a href="sobreNos.html">Sobre nós</a></li>
       <li><a href="faleConosco.html">Fale conosco</a></li>
-      <li><a href="anunciar.html">Anunciar</a></li>
+      <li class="anunciar"><a href="anunciar.html">Anunciar</a></li>
     </ul>
 
 
@@ -298,7 +298,9 @@
       if (userSessionText === "undefined") {
         var profileDropdown = document.querySelector('.profile-dropdown');
         var logina = document.querySelector('.logina');
+        var anunciar = document.querySelector('.anunciar');
         profileDropdown.style.display = 'none';
+        anunciar.style.display = 'none';
         logina.style.display = 'block';
       } else {
         var profileDropdown = document.querySelector('.profile-dropdown');

@@ -277,11 +277,11 @@ app.get("/user/name", (req, res) => {
     }
 });
 
-app.get('/logout', (req, res) => {
-    req.logout();
-    // req.flash('success_msg', "Deslogado com sucesso!");
-    res.redirect("index.html");
-});
+// app.get('/logout', (req, res) => {
+//     req.logout();
+//     // req.flash('success_msg', "Deslogado com sucesso!");
+//     res.redirect("perfil.html?aba=account-imoveis");
+// });
 
 /* -------------------- ROTAS ANUNCIOS IMOVEIS ----------------*/
 /* TESTE */

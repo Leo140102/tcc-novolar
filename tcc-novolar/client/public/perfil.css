@@ -158,11 +158,11 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 
 
 .anuncio {
+    display: flex; /* Define o container como flexível */
+    flex-direction: row; /* Disposição dos filhos em linha horizontal */
+    align-items: center; /* Centraliza verticalmente os filhos */
     gap: 40px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    align-items: center; /* Alinha verticalmente os itens */
-    margin-bottom: 20px; /* Espaço entre os anúncios */
+    margin-bottom: 20px;
     text-decoration: none;
     cursor: pointer;
     transition: .35s;
@@ -170,15 +170,13 @@ html:not(.dark-style) .account-settings-links .list-group-item.active {
 }
 
 .anuncio img {
-    width: 200px; /* Define o tamanho da imagem */
-    height: auto; /* Mantém a proporção da imagem */
-    margin-right: 20px; /* Espaço entre a imagem e os detalhes */
+    width: 200px;
+    height: auto;
+    margin-right: 20px;
     border-radius: 0.5rem;
 }
 
 .detalhes {
     text-decoration: none;
-    flex-grow: 1; /* Ocupa o espaço restante na linha */
+    flex-grow: 1;
 }
-
-
