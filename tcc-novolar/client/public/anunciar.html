@@ -67,29 +67,42 @@
 
                     <div class="input-box-valor">
                         <label for="valor">Valor</label>
-                        <input id="valor" type="text" name="valor" placeholder="Digite o valor" required onblur="">
+                        <input id="valor" type="text" name="valor" placeholder="Digite o valor" required
+                            onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="8"
+                            onblur="formatarMoeda(this);">
                     </div>
+                    <script>
+                        function formatarMoeda(input) {
+                            // Remove tudo que não é dígito para limpar o valor antes de formatar
+                            let valor = input.value.replace(/[\D]/g, '');
+
+                            // Adiciona vírgula como separador decimal antes dos últimos dois dígitos
+                            valor = valor.slice(0, -2) + ',' + valor.slice(-2);
+
+                            // Adiciona ponto como separador de milhar se o valor tiver mais de três dígitos
+                            valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+                            // Atualiza o valor do campo com o formato aplicado
+                            input.value = valor;
+                        }
+                    </script>
                     <div class="input-box-area">
                         <label for="area">Área</label>
-                        <input id="area" type="text" name="area" placeholder="Digite a área" required>
+                        <input id="area" type="text" name="area" placeholder="Digite a área" required maxlength="10">
                     </div>
 
                     <div class="input-box-endereco">
                         <label for="endereco">Endereço</label>
-                        <input id="endereco" type="text" name="endereco" placeholder="Digite o endereço" required>
+                        <input id="endereco" type="text" name="endereco" placeholder="Digite o endereço" required maxlength="38">
                     </div>
 
                     <div class="input-box-descricao">
                         <label for="descricao">Descrição</label>
-                        <input id="descricao" type="text" name="descricao" placeholder="Digite a descrição " required>
+                        <textarea id="descricao" name="descricao" placeholder="Digite a descrição" required maxlength="200"></textarea>
                     </div>
                     <!----------------------------------------- FIM TABELA IMOVEL ------------------------------------>
 
                 </div>
-
-
-
-
 
         </div>
 

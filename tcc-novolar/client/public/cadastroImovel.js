@@ -174,19 +174,6 @@ function cadastroImovel(locatario_id) {
     }
 }
 
-function formatarMoeda(valor) {
-    // Remove tudo que não seja dígito
-    valor = valor.replace(/\D/g, "");
-
-    // Substitui o ponto decimal por vírgula
-    valor = valor.replace(/(\d)(\d{2})$/, "$1,$2");
-
-    // Coloca o ponto antes dos últimos três dígitos
-    valor = valor.replace(/(?=(\d{3})+(\.\d{2})?$)/g, ".$1");
-
-    return valor;
-}
-
 
 function callAlert(msg) {
     alert(msg);

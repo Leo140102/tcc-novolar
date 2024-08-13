@@ -397,7 +397,7 @@ input-box {
     margin-bottom: 1.1rem;
 }
 
-.input-box-descricao input {
+.input-box-descricao textarea {
     margin: 0.6rem 0;
     padding: 0.8rem 1.2rem;
     border: none;
@@ -408,11 +408,11 @@ input-box {
     height: 9rem;
 }
 
-.input-box-descricao input:hover {
+.input-box-descricao textarea:hover {
     background-color: #eeeeee75;
 }
 
-.input-box-descricao input:focus-visible {
+.input-box-descricao textarea:focus-visible {
     outline: 1px solid rgb(26, 16, 117);
 }
 
