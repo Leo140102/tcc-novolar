@@ -307,7 +307,7 @@ app.get("/imovel/:id", (req, res) => {
 //imovel.html
 app.get("/imoveis/:id", (req, res) => {
 
-    db.query("WITH RankedImages AS (SELECT imovel.* ,imagens.image_url, ROW_NUMBER() OVER(PARTITION BY imovel.id ORDER BY imagens.id ASC) AS RowNum FROM mydb.imovel INNER JOIN mydb.imagens ON imovel.id = imagens.imovel_id) SELECT * FROM RankedImages WHERE RowNum = 1;"
+    db.query("WITH RankedImages AS (SELECT imovel.* ,imagens.image_url, ROW_NUMBER() OVER(PARTITION BY imovel.id ORDER BY imagens.id ASC) AS RowNum FROM mydb.imovel INNER JOIN mydb.imagens ON imovel.id = imagens.imovel_id AND imovel.ativado = 1) SELECT * FROM RankedImages WHERE RowNum = 1;"
         , [req.params.id], (err, results) => {
             if (err) {
                 res.send('err.message');
