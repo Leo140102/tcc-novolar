@@ -266,6 +266,18 @@ function ImoveisUsuario(idUser) {
         })
 }
 
+document.getElementById('salvarAlteracoes').addEventListener('click', function() {
+
+    var checkboxes = document.querySelectorAll('.ativarAnuncio input[type="checkbox"]');
+    var idsImoveis = [];
+    checkboxes.forEach(function(checkbox) {
+        var idImovel = checkbox.getAttribute('data-id');
+        idsImoveis.push(idImovel);
+    });
+
+    console.log(idsImoveis);
+});
+
 function set_DadosDoUser() {
     fetch('http://localhost:8000/user/id')
         .then(response => response.json())
