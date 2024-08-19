@@ -248,7 +248,7 @@ function ImoveisUsuario(idUser) {
                                         </div>
 
                                         <div class="ativarAnuncio">
-                                            <input type="checkbox" id="ativarAnuncioCheckbox">
+                                            <input type="checkbox" id="ativarAnuncioCheckbox" data-id="${imovel.id}">
                                             <label for="ativarAnuncioCheckbox">Ativar anúncio</label>
                                         </div>
                                     </div>`;
