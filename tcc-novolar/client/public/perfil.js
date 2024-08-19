@@ -248,7 +248,7 @@ function ImoveisUsuario(idUser) {
                                         </div>
 
                                         <div class="ativarAnuncio">
-                                            <input type="checkbox" id="ativarAnuncioCheckbox">
+                                            <input type="checkbox" id="ativarAnuncioCheckbox" data-id="${imovel.id}">
                                             <label for="ativarAnuncioCheckbox">Ativar anúncio</label>
                                         </div>
                                     </div>`;
@@ -265,6 +265,18 @@ function ImoveisUsuario(idUser) {
 
         })
 }
+
+document.getElementById('salvarAlteracoes').addEventListener('click', function() {
+
+    var checkboxes = document.querySelectorAll('.ativarAnuncio input[type="checkbox"]');
+    var idsImoveis = [];
+    checkboxes.forEach(function(checkbox) {
+        var idImovel = checkbox.getAttribute('data-id');
+        idsImoveis.push(idImovel);
+    });
+
+    console.log(idsImoveis + "AAAAAAAAAAAAAAAAAAAAAAAAAAA");
+});
 
 function set_DadosDoUser() {
     fetch('http://localhost:8000/user/id')
