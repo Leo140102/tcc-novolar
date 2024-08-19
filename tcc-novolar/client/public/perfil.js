@@ -267,7 +267,6 @@ function ImoveisUsuario(idUser) {
 }
 
 document.getElementById('alterarUser').addEventListener('click', function () {
-
     var checkboxes = document.querySelectorAll('.ativarAnuncio input[type="checkbox"]');
     var idsImoveis = [];
     var valores = [];
@@ -282,9 +281,29 @@ document.getElementById('alterarUser').addEventListener('click', function () {
         }
     });
 
-    console.log(idsImoveis + "AAAAAAAAAAAAAAAAAAAAAAAAAAA");
-    console.log(valores + "BBBBBBBBBBBBBBBBBB");
+    const dataToSend = {
+        ids: idsImoveis,
+        valores: valores
+    };
+
+    const jsonData = JSON.stringify(dataToSend);
+
+    console.log("jsonData--> ", jsonData);
+
+    const options = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: jsonData
+    };
+
+    fetch(`http://localhost:8000/atualizar-imoveis`, options)
+        .then(response => response.text()) 
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
 });
+
 
 function set_DadosDoUser() {
     fetch('http://localhost:8000/user/id')

@@ -799,7 +799,7 @@ app.get("/tipoUserID/:id", (req, res) => {
 // });
 
 
-app.post('/atualizar-imoveis', (req, res) => {
+app.patch('/atualizar-imoveis', (req, res) => {
     const { ids, valores } = req.body;
   
     if (ids.length !== valores.length) {
@@ -822,4 +822,5 @@ app.post('/atualizar-imoveis', (req, res) => {
   
     res.send(`Iniciadas atualizações para os IDs fornecidos.`);
   });
+
 module.exports = app;
