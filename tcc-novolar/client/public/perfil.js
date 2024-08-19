@@ -271,7 +271,7 @@ document.getElementById('salvarAlteracoes').addEventListener('click', function (
     var checkboxes = document.querySelectorAll('.ativarAnuncio input[type="checkbox"]');
     var idsImoveis = [];
     var valores = [];
-    
+
     checkboxes.forEach(function (checkbox) {
         var idImovel = checkbox.getAttribute('data-id');
         idsImoveis.push(idImovel);
@@ -283,7 +283,7 @@ document.getElementById('salvarAlteracoes').addEventListener('click', function (
     });
 
     console.log(idsImoveis + "AAAAAAAAAAAAAAAAAAAAAAAAAAA");
-    console.log(valores + "AAAAAAAAAAAAAAAAAAAAAAAAAAA");
+    console.log(valores + "BBBBBBBBBBBBBBBBBB");
 });
 
 function set_DadosDoUser() {
