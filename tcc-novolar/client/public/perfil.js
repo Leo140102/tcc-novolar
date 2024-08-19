@@ -246,6 +246,11 @@ function ImoveisUsuario(idUser) {
                                         <div id="excluirImovel" style="color: rgb(26, 16, 117);" onclick="excluirImovel(${imovel.id})">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </div>
+
+                                        <div class="ativarAnuncio">
+                                            <input type="checkbox" id="ativarAnuncioCheckbox">
+                                            <label for="ativarAnuncioCheckbox">Ativar anúncio</label>
+                                        </div>
                                     </div>`;
 
                     let new_anuncio = document.createElement('div');
