@@ -248,8 +248,8 @@ function ImoveisUsuario(idUser) {
                                         </div>
 
                                         <div class="ativarAnuncio">
-                                            <input type="checkbox" id="ativarAnuncioCheckbox" data-id="${imovel.id}" ${imovel.ativar == 1 ? 'checked' : ''}>
-                                            <label for="ativarAnuncioCheckbox">Ativar anúncio</label>
+                                            <input type="checkbox" id="ativarAnuncioCheckbox" data-id="${imovel.id}" ${imovel.ativado == 1 ? 'checked' : ''}>
+                                            <label for="ativarAnuncioCheckbox">Ativar anúncio </label>
                                         </div>
                                     </div>`;
 
