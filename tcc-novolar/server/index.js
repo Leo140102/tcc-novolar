@@ -799,6 +799,27 @@ app.get("/tipoUserID/:id", (req, res) => {
 // });
 
 
+app.post('/atualizar-imoveis', (req, res) => {
+    const { ids, valores } = req.body;
+  
+    if (ids.length !== valores.length) {
+      return res.status(400).send('Os arrays de IDs e valores devem ter o mesmo tamanho.');
+    }
+  
+    let query = 'UPDATE imovel SET ativado = ? WHERE id IN (';
 
+    ids.forEach((id, index) => {
+      query += `?`;
+      if (index < ids.length - 1) query += ', ';
+    });
+  
+    query += ')';
+  
+    db.query(query, [...ids, ...valores], (error, results) => {
+      if (error) throw error;
+      res.send(`Atualização concluída.`);
+    });
+  });
+  
 
 module.exports = app;
