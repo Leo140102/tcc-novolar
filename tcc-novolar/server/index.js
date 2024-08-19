@@ -445,8 +445,8 @@ app.post("/registerImovel", (req, res) => {
 
     try {
         db.query(
-            "INSERT INTO mydb.imovel (tipo, valor, area, descricao, locatario_id, endereco, titulo) VALUES (?,?,?,?,?,?,?)",
-            [tipo, valor, area, descricao, locatario_id, endereco, titulo],
+            "INSERT INTO mydb.imovel (tipo, valor, area, descricao, locatario_id, endereco, titulo, ativado) VALUES (?,?,?,?,?,?,?,?)",
+            [tipo, valor, area, descricao, locatario_id, endereco, titulo, "1"],
             async (err, result) => {
                 if (err) {
                     console.log(err);
