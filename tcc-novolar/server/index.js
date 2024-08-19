@@ -806,20 +806,20 @@ app.post('/atualizar-imoveis', (req, res) => {
       return res.status(400).send('Os arrays de IDs e valores devem ter o mesmo tamanho.');
     }
   
-    let query = 'UPDATE imovel SET ativado = ? WHERE id IN (';
-
     ids.forEach((id, index) => {
-      query += `?`;
-      if (index < ids.length - 1) query += ', ';
-    });
+      const valor = valores[index]; 
   
-    query += ')';
-  
-    db.query(query, [...ids, ...valores], (error, results) => {
-      if (error) throw error;
-      res.send(`Atualização concluída.`);
-    });
-  });
-  
+      const query = 'UPDATE imovel SET ativado = ? WHERE id = ?';
 
+      db.query(query, [valor, id], (error, result) => {
+        if (error) {
+          console.error(error);
+          return res.status(500).send('Erro ao atualizar o imóvel.');
+        }
+
+      });
+    });
+  
+    res.send(`Iniciadas atualizações para os IDs fornecidos.`);
+  });
 module.exports = app;
