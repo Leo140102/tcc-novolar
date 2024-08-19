@@ -275,7 +275,7 @@ document.getElementById('salvarAlteracoes').addEventListener('click', function()
         idsImoveis.push(idImovel);
     });
 
-    console.log(idsImoveis);
+    console.log(idsImoveis + "AAAAAAAAAAAAAAAAAAAAAAAAAAA");
 });
 
 function set_DadosDoUser() {
