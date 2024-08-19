@@ -266,7 +266,7 @@ function ImoveisUsuario(idUser) {
         })
 }
 
-document.getElementById('salvarAlteracoes').addEventListener('click', function () {
+document.getElementById('alterarUser').addEventListener('click', function () {
 
     var checkboxes = document.querySelectorAll('.ativarAnuncio input[type="checkbox"]');
     var idsImoveis = [];
